@@ -147,7 +147,7 @@ We are now seeking support for:
 If you believe in this vision — help us build it.
 
 📧 Email: **aijusticeforall@gmail.com**  
-🌐 GitHub: [github.com/aijusticeforall](https://github.com/aijusticeforall)
+📦 [Download AI_Justice_Timestamp_Proofs_NEW.zip](https://github.com/Aijusticeforall/ai-justice-for-all/raw/main/AI_Justice_Timestamp_Proofs_NEW.zip)
 
 📄 Download ZIP Proof Package:  
 https://github.com/Aijusticeforall/ai-justice-for-all/raw/main/AI_Justice_Timestamp_Proofs_NEW.zip
