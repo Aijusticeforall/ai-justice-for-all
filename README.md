@@ -1,6 +1,7 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Aijusticeforall/ai-justice-for-all/main/banner.png" alt="AI Justice For All Banner"/>
+  <img src="banner.png" alt="AI Justice For All Banner" width="800"/>
 </p>
+
 
 
 # 🧠 AI Justice For All  
