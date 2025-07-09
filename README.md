@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/Aijusticeforall/ai-justice-for-all/assets/your-banner-image" width="100%" alt="AI Justice For All Banner"/>
+  <img src="https://raw.githubusercontent.com/Aijusticeforall/ai-justice-for-all/main/banner.png" alt="AI Justice For All Banner"/>
 </p>
 
 # 🧠 AI Justice For All  
@@ -16,18 +16,18 @@ AI Justice For All is a global initiative to build a morally intelligent AI engi
 
 We aim to evolve justice — not replace it — using:
 
-- ✅ Human intent & context simulation
-- ✅ Truth-checking & ethical logic verification
+- ✅ Human intent & context simulation  
+- ✅ Truth-checking & ethical logic verification  
 - ✅ A future-proof, incorruptible justice engine
 
 ---
 
 ## 🛠️ Project Highlights
 
-- 📜 [Founder’s Constitution](https://github.com/Aijusticeforall/ai-justice-for-all/wiki/Founders-Constitution)
-- 🧪 [AI Simulator (Phase 2)](https://github.com/Aijusticeforall/ai-justice-for-all/wiki/Simulator-Prototype)
-- 📅 [Roadmap](https://github.com/Aijusticeforall/ai-justice-for-all/wiki/Project-Roadmap)
-- 🧑‍🤝‍🧑 [Team & Contributors](https://github.com/Aijusticeforall/ai-justice-for-all/wiki/Team-%26-Contributors)
+- 📜 [Founder’s Constitution](https://github.com/Aijusticeforall/ai-justice-for-all/wiki/Founders-Constitution)  
+- 🧪 [AI Simulator (Phase 2)](https://github.com/Aijusticeforall/ai-justice-for-all/wiki/Simulator-Prototype)  
+- 📅 [Roadmap](https://github.com/Aijusticeforall/ai-justice-for-all/wiki/Project-Roadmap)  
+- 🧑‍🤝‍🧑 [Team & Contributors](https://github.com/Aijusticeforall/ai-justice-for-all/wiki/Team-%26-Contributors)  
 - 📝 [Full Wiki](https://github.com/Aijusticeforall/ai-justice-for-all/wiki)
 
 ---
@@ -42,7 +42,7 @@ All files timestamped and verified via SHA-256:
 
 ## 🌍 External Pages
 
-- 🌐 [Public Landing Page (Notion)](https://galvanized-chili-6c8.notion.site/AI-Justice-for-all-228217b278f180a480f6e8f6ed622a78)
+- 🌐 [Public Landing Page (Notion)](https://galvanized-chili-6c8.notion.site/AI-Justice-for-all-228217b278f180a480f6e8f6ed622a78)  
 - 📬 Email: [aijusticeforall@gmail.com](mailto:aijusticeforall@gmail.com)
 
 ---
