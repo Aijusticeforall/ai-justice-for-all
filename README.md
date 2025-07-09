@@ -4,6 +4,7 @@
 
 
 
+
 # 🧠 AI Justice For All  
 **Morally intelligent justice — powered by AI, for every human being.**  
 _Last verified July 9, 2025 • Blockchain-timestamped_
