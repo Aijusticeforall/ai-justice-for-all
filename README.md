@@ -150,7 +150,7 @@ If you believe in this vision — help us build it.
 🌐 GitHub: [github.com/aijusticeforall](https://github.com/aijusticeforall)
 
 📄 Download ZIP Proof Package:  
-📦 [Download AI_Justice_Timestamp_Proofs_NEW.zip](https://github.com/Aijusticeforall/ai-justice-for-all/raw/main/AI_Justice_Timestamp_Proofs_NEW.zip)
+📦 [Download AI_Justice_Timestamp_Proofs_NEW.zip](https://github.com/Aijusticeforall/ai-justice-for-all/blob/main/AI_Justice_Timestamp_Proofs_NEW.zip?raw=true)
 
 Includes SHA-256 verified and blockchain-protected documents.
 
