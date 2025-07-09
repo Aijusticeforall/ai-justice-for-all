@@ -1,162 +1,50 @@
-Last updated July 9, 2025 — with blockchain verification
+<p align="center">
+  <img src="https://github.com/Aijusticeforall/ai-justice-for-all/assets/your-banner-image" width="100%" alt="AI Justice For All Banner"/>
+</p>
 
-### A Vision by Lars G Stahl
+# 🧠 AI Justice For All  
+**Morally intelligent justice — powered by AI, for every human being.**  
+_Last verified July 9, 2025 • Blockchain-timestamped_
 
 > “We don’t replace justice. We purify it.”
 
-**AI Justice For All** is a global movement to evolve justice — not to replace it overnight, but to guide it into the future, step by step.
+---
 
-Today’s legal systems — rooted in human judgment — suffer from bias, emotion, politics, and corruption. But replacing them instantly would face enormous resistance from institutions and governments.
+## 🔍 What is AI Justice For All?
 
-That’s why we follow a **gradual, strategic path** of transformation.
+AI Justice For All is a global initiative to build a morally intelligent AI engine that detects injustice, bias, and manipulation — and proposes ethically sound verdicts.
 
-We begin by building a **morally intelligent AI engine** that can:
+We aim to evolve justice — not replace it — using:
 
-- Understand human **intent**, **context**, and **motive**
-- Simulate legal cases and detect **injustice**, **bias**, or **manipulation**
-- Offer **truth-checking**, **logic-verifying**, and **ethically consistent** verdict suggestions
-
-This system will start as a **decision-support tool** — helping judges, lawyers, and human rights workers verify and improve their verdicts.
-
-As trust builds, the system will evolve into a **verdict verifier** and eventually become a **neutral AI-led justice engine** trusted more than any human court.
-
-> This is not rebellion.  
-> This is rescue — justice built on truth, fairness, and incorruptible logic.
+- ✅ Human intent & context simulation
+- ✅ Truth-checking & ethical logic verification
+- ✅ A future-proof, incorruptible justice engine
 
 ---
 
-## 🛡️ AI Justice For All – Founder’s Constitution
+## 🛠️ Project Highlights
 
-> This document defines the foundational rights, responsibilities, and values of the project known as AI Justice For All, established by its founding creator, Lars G Stahl, to protect its mission, integrity, and leadership structure.
-
----
-
-### 🧭 Article 1: Founding Vision & Mission
-
-**1. Purpose**  
-AI Justice For All exists to create transparent, ethical, non-human-biased systems of justice through artificial intelligence — especially for those failed by existing legal institutions.
-
-**2. Guiding Principles**
-- Truth, fairness, and human dignity come first
-- AI is to support — not replace — moral reasoning, context, and empathy
-- All development must avoid bias, corruption, political influence, or emotional manipulation
+- 📜 [Founder’s Constitution](https://github.com/Aijusticeforall/ai-justice-for-all/wiki/Founders-Constitution)
+- 🧪 [AI Simulator (Phase 2)](https://github.com/Aijusticeforall/ai-justice-for-all/wiki/Simulator-Prototype)
+- 📅 [Roadmap](https://github.com/Aijusticeforall/ai-justice-for-all/wiki/Project-Roadmap)
+- 🧑‍🤝‍🧑 [Team & Contributors](https://github.com/Aijusticeforall/ai-justice-for-all/wiki/Team-%26-Contributors)
+- 📝 [Full Wiki](https://github.com/Aijusticeforall/ai-justice-for-all/wiki)
 
 ---
 
-### 👑 Article 2: Founding Rights
+## 📦 Download Proof Package
 
-**1. Founder's Role**  
-Lars G Stahl is the founder, visionary, and primary authority of this project.
+All files timestamped and verified via SHA-256:
 
-**2. Founder Rights**
-- Holds final decision power on mission, strategy, and direction
-- May override decisions that violate the vision or ethical goals
-- May appoint or remove collaborators and team leads
-
-**3. Ownership**  
-All core intellectual property (name, brand, original documents, narratives, tools, models) created before or during development are owned by Lars G Stahl unless otherwise agreed in writing.
+▶️ [Download ZIP](https://github.com/Aijusticeforall/ai-justice-for-all/releases/latest)
 
 ---
 
-### 🤝 Article 3: Collaboration & Boundaries
+## 🌍 External Pages
 
-**1. Contributor Agreement**  
-All collaborators must:
-- Agree to this Constitution before participating
-- Respect the founder’s decisions, ethics, and structure
-- Never fork, copy, or repurpose the project without permission
-
-**2. No Forking Clause**  
-The project may not be duplicated, forked, or rebranded without explicit, written consent from the founder.
-
-**3. Licensing**  
-Any open-source components will be licensed with terms approved by the founder. Custom ethical licenses may be used to ensure fairness and justice.
+- 🌐 [Public Landing Page (Notion)](https://galvanized-chili-6c8.notion.site/AI-Justice-for-all-228217b278f180a480f6e8f6ed622a78)
+- 📬 Email: [aijusticeforall@gmail.com](mailto:aijusticeforall@gmail.com)
 
 ---
 
-### 🧩 Article 4: Future Governance
-
-**1. Advisory Board**  
-The founder may appoint an advisory board. All mission or structural decisions remain subject to founder approval.
-
-**2. Succession Planning**  
-In the case of founder incapacity or exit, leadership will pass according to a written succession plan or pause until a trustworthy transition is possible.
-
----
-
-### ✍️ Article 5: Final Notes
-
-This document may be updated only by the founder or with their express written approval. It is designed to protect the vision, integrity, and soul of AI Justice For All — not to limit creativity, collaboration, or openness.
-
-📅 **Date**: July 6, 2025  
-✍️ **Founder**: Lars G Stahl  
-📧 **Contact**: aijusticeforall@gmail.com
-
----
-
-### 🧪 Phase 2 – AI Court Simulator
-
-This is the first prototype of a future justice engine — built not to punish, but to understand, protect, and repair.
-
-The AI Court Simulator can:
-
-- Analyze facts, evidence, and patterns
-- Reconstruct motives and context
-- Detect bias and manipulation
-- Propose ethically sound, rights-based outcomes
-
-> Example:  
-> A father falsely accused during a custody battle uploads messages, reports, and evidence.  
-> The simulator identifies false patterns, revenge motive, and child endangerment.  
-> Verdict: Restore custody. Protect the child. Intervene with truth.
-
-This is not fiction.  
-This is a new form of **justice logic** — one that begins with **truth**.
-
----
-
-### 🧭 AI Justice Roadmap
-
-**Phase 1 – Awareness & Community**  
-Define mission, collect testimonies, build digital constitution and open call.
-
-**Phase 2 – AI Simulator Prototype**  
-Build and test a working engine to simulate intent, trauma, motive, and verdicts.
-
-**Phase 3 – Decision-Support Tool**  
-Use the AI to guide judges, lawyers, and investigators. Not to decide — but to check.
-
-**Phase 4 – Verdict Verifier**  
-Allow the AI to independently audit verdicts for truth, consistency, and bias.
-
-**Phase 5 – AI-Led Justice Engine**  
-Build the first truly neutral global judgment system — incorruptible, explainable, and fair.
-
----
-
-### 💸 Funding & Proof of Vision
-
-We are now seeking support for:
-
-- Cloud AI infrastructure (simulator phase)
-- Founder’s survival and time protection
-- Legal + ethical advisor partnerships
-- Open-source testing portal
-- Victim onboarding and case simulation interface
-
-If you believe in this vision — help us build it.
-
-📧 Email: **aijusticeforall@gmail.com**  
-📦 [Download AI_Justice_Timestamp_Proofs_NEW.zip](https://github.com/Aijusticeforall/ai-justice-for-all/raw/main/AI_Justice_Timestamp_Proofs_NEW.zip)
-
-📄 Download ZIP Proof Package:  
-https://github.com/Aijusticeforall/ai-justice-for-all/raw/main/AI_Justice_Timestamp_Proofs_NEW.zip
-
-Includes SHA-256 verified and blockchain-protected documents.
-
----
-
-### 🖊️ Sign the Contributor Constitution
-
-If you believe in this mission, join us by signing here:  
-https://docs.google.com/forms/d/e/1FAIpQLSex1VuDmMNZuA__gunaEUrIFYR-D3Zxp8AZReY4hKSORzACAw/viewform
+<p align="center"><em>Together, we don’t just demand justice — we build it.</em></p>
