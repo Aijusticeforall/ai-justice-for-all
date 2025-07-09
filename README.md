@@ -2,6 +2,7 @@
   <img src="https://raw.githubusercontent.com/Aijusticeforall/ai-justice-for-all/main/banner.png" alt="AI Justice For All Banner"/>
 </p>
 
+
 # 🧠 AI Justice For All  
 **Morally intelligent justice — powered by AI, for every human being.**  
 _Last verified July 9, 2025 • Blockchain-timestamped_
