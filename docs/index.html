@@ -1,6 +1,4 @@
-# Generate the full HTML index file as described with the glowing button and pop-up included
-
-index_html = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -57,41 +55,37 @@ index_html = """<!DOCTYPE html>
 
     .glow-button {
       position: absolute;
-      top: 36%;
-      left: 25%;
+      top: 44%;
+      left: 36%;
       transform: translate(-50%, -50%);
-      padding: 10px 14px;
-      background-color: #00ffcc;
-      color: #000;
-      border: none;
-      border-radius: 30px;
-      font-weight: bold;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #00ffff 0%, #006666 70%);
+      box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
       cursor: pointer;
-      box-shadow: 0 0 15px #00ffcc;
-      transition: background 0.3s ease;
-      z-index: 2;
+      transition: transform 0.3s ease;
+      z-index: 10;
     }
 
     .glow-button:hover {
-      background-color: #00ddb3;
-      box-shadow: 0 0 25px #00ffcc;
+      transform: scale(1.2);
     }
 
     .popup {
-      position: absolute;
-      top: 43%;
-      left: 15%;
-      background-color: rgba(20, 20, 20, 0.85);
-      color: #fff;
-      padding: 15px 20px;
-      border-radius: 10px;
-      max-width: 260px;
       display: none;
+      position: absolute;
+      top: 44%;
+      left: 25%;
+      transform: translateY(-50%);
+      background-color: rgba(20, 20, 20, 0.95);
+      color: #fff;
+      padding: 14px 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #00ffff;
+      width: 260px;
       font-size: 14px;
-      line-height: 1.4;
-      backdrop-filter: blur(3px);
-      z-index: 1;
-      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      z-index: 9;
     }
 
     @media (max-width: 768px) {
@@ -101,11 +95,31 @@ index_html = """<!DOCTYPE html>
         transform: translateX(-50%);
         justify-content: center;
       }
+
+      .glow-button {
+        top: 50%;
+        left: 50%;
+      }
+
+      .popup {
+        left: 10%;
+        width: 80%;
+      }
     }
   </style>
 </head>
 <body>
   <div class="hero">
+    <!-- Glow Button -->
+    <div class="glow-button" onclick="togglePopup(); playSound();"></div>
+
+    <!-- Popup -->
+    <div class="popup" id="popup">
+      ⚖️ <strong>JusticeLite Prototype</strong><br><br>
+      A live simulation model where you can explore AI-powered legal evaluations. Not final. Just the beginning.
+    </div>
+
+    <!-- Button Group -->
     <div class="button-group">
       <a href="constitution.html" class="button"><span class="emoji">📜</span> Constitution</a>
       <a href="simulator.html" class="button"><span class="emoji">🛠️</span> AI Simulator</a>
@@ -114,29 +128,22 @@ index_html = """<!DOCTYPE html>
       <a href="wiki.html" class="button"><span class="emoji">📚</span> Wiki</a>
       <a href="join.html" class="button"><span class="emoji">🧠</span> Join</a>
     </div>
-    <button class="glow-button" onclick="togglePopup()">⚖️ JusticeLite</button>
-    <div id="popup" class="popup">
-      A simplified AI tool to simulate verdicts, offer rights-based recommendations, and explore how justice could respond to real situations. [Try it in Simulator]
-    </div>
+
+    <!-- Breath Sound -->
+    <audio id="breathSound" src="https://cdn.pixabay.com/download/audio/2022/06/17/audio_eb50067937.mp3?filename=soft-breath-113772.mp3" preload="auto"></audio>
   </div>
 
   <script>
     function togglePopup() {
-      const popup = document.getElementById("popup");
-      popup.style.display = popup.style.display === "block" ? "none" : "block";
+      const popup = document.getElementById('popup');
+      popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+    }
 
-      const audio = new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_3a1c8d0d6d.mp3?filename=breathing-sound-ambient-21268.mp3");
-      audio.volume = 0.6;
-      audio.play();
+    function playSound() {
+      const sound = document.getElementById('breathSound');
+      sound.currentTime = 0;
+      sound.play();
     }
   </script>
 </body>
 </html>
-"""
-
-# Save to file
-index_path = "/mnt/data/index_aijustice_complete.html"
-with open(index_path, "w", encoding="utf-8") as f:
-    f.write(index_html)
-
-index_path
