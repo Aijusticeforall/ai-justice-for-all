@@ -8,100 +8,124 @@
     body, html {
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
+      font-family: sans-serif;
+      height: 100%;
+      background: #000;
     }
-    .banner {
-      background: url('ai-girl-banner.png') no-repeat center center;
+    .hero {
+      background-image: url('ai-girl-banner.png');
       background-size: cover;
+      background-position: center;
       height: 100vh;
+      position: relative;
       display: flex;
       flex-direction: column;
+      align-items: flex-end;
       justify-content: center;
-      align-items: center;
-      color: white;
-      text-align: center;
-      position: relative;
+      padding-right: 8%;
     }
-    .button-group {
-      margin-top: 20px;
+    .button-container {
       display: flex;
       gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .dropbtn {
-      background-color: rgba(255, 255, 255, 0.15);
-      color: white;
-      border: none;
-      padding: 14px 20px;
-      font-size: 18px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .dropbtn:hover {
-      background-color: rgba(255, 255, 255, 0.3);
+      margin-top: 100px;
+      z-index: 2;
     }
     .dropdown {
       position: relative;
-      display: inline-block;
+    }
+    .dropbtn {
+      background-color: transparent;
+      border: 1px solid white;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 16px;
     }
     .dropdown-content {
       display: none;
       position: absolute;
-      background-color: rgba(0, 0, 0, 0.85);
+      top: 45px;
+      background-color: rgba(0, 0, 0, 0.9);
       color: white;
-      min-width: 300px;
-      padding: 16px;
-      border-radius: 8px;
-      top: 60px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 1;
+      padding: 20px;
+      border-radius: 12px;
+      min-width: 250px;
     }
-    .dropdown.active .dropdown-content {
-      display: block;
+    .dropdown-content a {
+      color: #00bfff;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
-  <div class="banner">
-    <div class="button-group">
+  <div class="hero">
+    <div class="button-container">
       <div class="dropdown">
         <button class="dropbtn" onclick="toggleDropdown(this)">📜 Constitution</button>
-        <div class="dropdown-content">Link to: <a href="https://github.com/Aijusticeforall/ai-justice-for-all/blob/main/AI_Justice_For_All_by_Lars_G_Stahl.txt" target="_blank">Founder's Constitution</a></div>
+        <div class="dropdown-content">
+          <p><strong>“We don’t replace justice. We purify it.”</strong></p>
+          <p>The AI Justice Constitution defines our core values and principles. All contributors agree to this framework.</p>
+          <a href="https://github.com/Aijusticeforall/ai-justice-for-all/blob/main/Founder%27s-Constitution.md" target="_blank">Read full Constitution</a>
+        </div>
       </div>
       <div class="dropdown">
-        <button class="dropbtn" onclick="toggleDropdown(this)">🧪 Simulator</button>
-        <div class="dropdown-content">Visit our <a href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki/Phase-2%3A-Simulator" target="_blank">AI Simulator (Phase 2)</a> concept.</div>
+        <button class="dropbtn" onclick="toggleDropdown(this)">🧪 AI Simulator</button>
+        <div class="dropdown-content">
+          <p>Our AI Simulator is a Phase 2 concept designed to test morally intelligent verdicts using simulated cases.</p>
+          <a href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki/AI-Simulator-(Phase-2)" target="_blank">Explore Simulator</a>
+        </div>
       </div>
       <div class="dropdown">
         <button class="dropbtn" onclick="toggleDropdown(this)">📅 Roadmap</button>
-        <div class="dropdown-content">Read the <a href="https://github.com/Aijusticeforall/ai-justice-for-all/blob/main/ROADMAP.md" target="_blank">full roadmap</a> of the project.</div>
+        <div class="dropdown-content">
+          <p>We are rolling out development in 3 Phases, beginning with decentralized documentation, simulation, and proofs.</p>
+          <a href="https://github.com/Aijusticeforall/ai-justice-for-all/blob/main/ROADMAP.md" target="_blank">See Roadmap</a>
+        </div>
       </div>
       <div class="dropdown">
         <button class="dropbtn" onclick="toggleDropdown(this)">🧑‍🤝‍🧑 Team</button>
-        <div class="dropdown-content">Meet the <a href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki/Contributors" target="_blank">contributors</a> and join the effort.</div>
+        <div class="dropdown-content">
+          <p>Meet the contributors, visionaries, and supporters helping shape AI Justice For All.</p>
+          <a href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki/Team" target="_blank">Team & Contributors</a>
+        </div>
       </div>
       <div class="dropdown">
         <button class="dropbtn" onclick="toggleDropdown(this)">📝 Wiki</button>
-        <div class="dropdown-content">Explore the <a href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki" target="_blank">complete GitHub Wiki</a>.</div>
+        <div class="dropdown-content">
+          <p>Access our full documentation, simulation pages, and community notes.</p>
+          <a href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki" target="_blank">Full Wiki</a>
+        </div>
       </div>
       <div class="dropdown">
-        <button class="dropbtn" onclick="toggleDropdown(this)">👥 Join</button>
-        <div class="dropdown-content">Fill out the <a href="https://docs.google.com/forms/d/e/1FAIpQLSex1VuDmMNZuA__gunaEUrIFYR-D3Zxp8AZReY4hKSORzACAw/viewform" target="_blank">contributor form</a>.</div>
+        <button class="dropbtn" onclick="toggleDropdown(this)">🧠 Join</button>
+        <div class="dropdown-content">
+          <p>Want to contribute? Sign the digital Founder’s Constitution and submit the form.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSex1VuDmMNZuA__gunaEUrIFYR-D3Zxp8AZReY4hKSORzACAw/viewform" target="_blank">Join the Project</a><br>
+          <a href="https://www.notion.so/AI-Justice-for-all-228217b278f180a480f6e8f6ed622a78" target="_blank">View in Notion</a>
+        </div>
       </div>
     </div>
   </div>
+
   <script>
     function toggleDropdown(button) {
-      const dropdowns = document.querySelectorAll('.dropdown');
-      dropdowns.forEach(d => {
-        if (d.querySelector('button') !== button) {
-          d.classList.remove('active');
+      const allDropdowns = document.querySelectorAll(".dropdown-content");
+      allDropdowns.forEach(d => {
+        if (d !== button.nextElementSibling) {
+          d.style.display = "none";
         }
       });
-      button.parentElement.classList.toggle('active');
+
+      const content = button.nextElementSibling;
+      content.style.display = content.style.display === "block" ? "none" : "block";
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        const dropdowns = document.querySelectorAll(".dropdown-content");
+        dropdowns.forEach(d => d.style.display = "none");
+      }
     }
   </script>
 </body>
