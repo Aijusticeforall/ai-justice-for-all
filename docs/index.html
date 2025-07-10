@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AI Justice for All</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body, html {
       margin: 0;
       padding: 0;
@@ -15,20 +19,24 @@
     }
 
     .hero {
-      background-image: url("ai-girl-banner.png");
+      background: url("ai-girl-banner.png") no-repeat center center;
       background-size: cover;
-      background-position: center;
       height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       position: relative;
     }
 
     .button-group {
       position: absolute;
-      bottom: 90px;
-      right: 120px;
+      bottom: 160px; /* Adjust this number to fine-tune vertical placement */
+      right: 160px;  /* Adjust this number to align under "Justice for All" */
       display: flex;
-      flex-wrap: wrap;
       gap: 12px;
+      flex-wrap: wrap;
     }
 
     .button {
@@ -54,11 +62,10 @@
 
     @media (max-width: 768px) {
       .button-group {
+        bottom: 60px;
         right: 50%;
         transform: translateX(50%);
-        bottom: 60px;
-        flex-direction: column;
-        align-items: center;
+        justify-content: center;
       }
     }
   </style>
