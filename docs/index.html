@@ -2,77 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI Justice For All</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Justice for All</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #01101d, #061d29);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .banner {
-      width: 100%;
-      height: 100vh;
-      background: url('ai-girl-banner.png') no-repeat center center;
+      padding: 0;
+      background-image: url('ai-girl-banner.png');
       background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      font-family: "Segoe UI", sans-serif;
+      color: white;
+      text-align: center;
     }
 
     h1 {
       font-size: 4em;
-      margin-bottom: 40px;
-      text-shadow: 2px 2px 6px #000;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
     }
 
-    .button-container {
+    .button-group {
       display: flex;
+      gap: 20px;
       flex-wrap: wrap;
-      gap: 16px;
       justify-content: center;
     }
 
-    .button {
-      padding: 12px 24px;
-      background-color: #2b2b2b;
+    .button-group a {
+      padding: 10px 20px;
+      background-color: #333;
       color: white;
-      border: none;
-      border-radius: 24px;
-      font-size: 0.95em;
-      cursor: pointer;
+      border-radius: 20px;
       text-decoration: none;
-      display: inline-flex;
+      font-size: 0.9em;
+      display: flex;
       align-items: center;
-      transition: background 0.3s;
+      gap: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
     }
 
-    .button:hover {
-      background-color: #444;
-    }
-
-    .button span {
-      margin-left: 8px;
+    .button-group a:hover {
+      background-color: #555;
     }
   </style>
 </head>
 <body>
-  <div class="banner">
-    <h1>AI Justice for All</h1>
-    <div class="button-container">
-      <a class="button" href="docs/constitution.html"><span>📜</span> <span>Constitution</span></a>
-      <a class="button" href="docs/simulator.html"><span>🛠️</span> <span>AI Simulator</span></a>
-      <a class="button" href="docs/roadmap.html"><span>🗺️</span> <span>Roadmap</span></a>
-      <a class="button" href="docs/team.html"><span>👥</span> <span>Team</span></a>
-      <a class="button" href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki"><span>📚</span> <span>Wiki</span></a>
-      <a class="button" href="docs/join.html"><span>🌐</span> <span>Join</span></a>
-    </div>
+  <h1>AI Justice for All</h1>
+  <div class="button-group">
+    <a href="docs/constitution.html">📜 Constitution</a>
+    <a href="docs/simulator.html">🛠️ AI Simulator</a>
+    <a href="docs/roadmap.html">🗺️ Roadmap</a>
+    <a href="docs/team.html">👥 Team</a>
+    <a href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki" target="_blank">📚 Wiki</a>
+    <a href="docs/join.html">📝 Join</a>
   </div>
 </body>
 </html>
