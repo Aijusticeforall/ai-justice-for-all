@@ -4,11 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Justice for All</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     body, html {
       margin: 0;
       padding: 0;
-      font-family: sans-serif;
+      font-family: 'Inter', sans-serif;
       height: 100%;
       background: #000;
     }
@@ -26,7 +27,7 @@
     }
     .button-container {
       display: flex;
-      gap: 10px;
+      gap: 16px;
       margin-top: 100px;
       z-index: 2;
     }
@@ -34,27 +35,48 @@
       position: relative;
     }
     .dropbtn {
-      background-color: transparent;
-      border: 1px solid white;
-      color: white;
-      padding: 10px 16px;
-      border-radius: 20px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 30px;
       cursor: pointer;
       font-size: 16px;
+      backdrop-filter: blur(8px);
+      transition: background 0.3s;
+    }
+    .dropbtn:hover {
+      background-color: rgba(0, 255, 204, 0.2);
     }
     .dropdown-content {
       display: none;
       position: absolute;
-      top: 45px;
-      background-color: rgba(0, 0, 0, 0.9);
+      top: 52px;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.85);
       color: white;
       padding: 20px;
       border-radius: 12px;
-      min-width: 250px;
+      min-width: 300px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .dropdown-content p {
+      margin-bottom: 12px;
+      font-size: 14.5px;
+      line-height: 1.5em;
     }
     .dropdown-content a {
-      color: #00bfff;
+      color: #00ffc8;
+      font-weight: 600;
       text-decoration: none;
+    }
+    .dropdown-content a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -64,43 +86,42 @@
       <div class="dropdown">
         <button class="dropbtn" onclick="toggleDropdown(this)">📜 Constitution</button>
         <div class="dropdown-content">
-          <p><strong>“We don’t replace justice. We purify it.”</strong></p>
-          <p>The AI Justice Constitution defines our core values and principles. All contributors agree to this framework.</p>
+          <p>This is the soul of our mission — a living document that commits every contributor to ethical, incorruptible, and truth-driven justice design.</p>
           <a href="constitution.html">Read full Constitution</a>
         </div>
       </div>
       <div class="dropdown">
         <button class="dropbtn" onclick="toggleDropdown(this)">🧪 AI Simulator</button>
         <div class="dropdown-content">
-          <p>Our AI Simulator is a Phase 2 concept designed to test morally intelligent verdicts using simulated cases.</p>
+          <p>Explore our Phase 2 simulation engine — where ethical AI logic meets real-world justice cases to test truth, intent, and fairness.</p>
           <a href="simulator.html">Explore Simulator</a>
         </div>
       </div>
       <div class="dropdown">
         <button class="dropbtn" onclick="toggleDropdown(this)">📅 Roadmap</button>
         <div class="dropdown-content">
-          <p>We are rolling out development in 3 Phases, beginning with decentralized documentation, simulation, and proofs.</p>
+          <p>We’re not building overnight. See the timeline of how our justice system will evolve — from concept to global testing and adoption.</p>
           <a href="roadmap.html">See Roadmap</a>
         </div>
       </div>
       <div class="dropdown">
         <button class="dropbtn" onclick="toggleDropdown(this)">🧑‍🤝‍🧑 Team</button>
         <div class="dropdown-content">
-          <p>Meet the contributors, visionaries, and supporters helping shape AI Justice For All.</p>
+          <p>Meet the founders, developers, thinkers, and silent warriors working behind the scenes to build justice that truly sees.</p>
           <a href="contributors.html">Meet the Team</a>
         </div>
       </div>
       <div class="dropdown">
         <button class="dropbtn" onclick="toggleDropdown(this)">📝 Wiki</button>
         <div class="dropdown-content">
-          <p>Access our full documentation, simulation pages, and community notes.</p>
+          <p>Dive into our complete documentation. Architecture, vision, simulator logic, and phase breakdowns — all in one place.</p>
           <a href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki" target="_blank">Full Wiki</a>
         </div>
       </div>
       <div class="dropdown">
         <button class="dropbtn" onclick="toggleDropdown(this)">🧠 Join</button>
         <div class="dropdown-content">
-          <p>Want to contribute? Sign the digital Founder's Constitution and submit the form.</p>
+          <p>Ready to contribute? Sign the Constitution, add your voice, and become part of the team rethinking justice from the ground up.</p>
           <a href="join.html">Join the Project</a>
         </div>
       </div>
