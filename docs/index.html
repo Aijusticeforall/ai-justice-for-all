@@ -5,37 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AI Justice for All</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body, html {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #000;
-      color: white;
       height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: black;
     }
 
     .hero {
-      background: url("ai-girl-banner.png") no-repeat center center;
+      position: relative;
+      background-image: url("ai-girl-banner.png");
       background-size: cover;
+      background-position: center;
       height: 100vh;
       width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      position: relative;
     }
 
     .button-group {
       position: absolute;
-      bottom: 160px; /* Adjust this number to fine-tune vertical placement */
-      right: 160px;  /* Adjust this number to align under "Justice for All" */
+      top: 56%;
+      left: 55%;
+      transform: translate(-50%, -50%);
       display: flex;
-      gap: 12px;
+      gap: 14px;
       flex-wrap: wrap;
     }
 
@@ -45,11 +38,11 @@
       padding: 10px 20px;
       border-radius: 20px;
       text-decoration: none;
-      font-size: 0.9em;
+      font-size: 14px;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: background 0.3s;
+      transition: background 0.3s ease;
     }
 
     .button:hover {
@@ -62,9 +55,9 @@
 
     @media (max-width: 768px) {
       .button-group {
-        bottom: 60px;
-        right: 50%;
-        transform: translateX(50%);
+        top: 80%;
+        left: 50%;
+        transform: translateX(-50%);
         justify-content: center;
       }
     }
