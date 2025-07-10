@@ -5,64 +5,80 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Justice for All</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
       padding: 0;
       background-image: url('ai-girl-banner.png');
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
       height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
       font-family: "Segoe UI", sans-serif;
       color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       text-align: center;
     }
-
+    .content {
+      margin-left: 45%;
+      text-align: left;
+    }
     h1 {
       font-size: 4em;
-      margin-bottom: 30px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+      margin-bottom: 40px;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
     }
-
-    .button-group {
+    .buttons {
       display: flex;
-      gap: 20px;
+      gap: 16px;
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: flex-start;
     }
-
-    .button-group a {
-      padding: 10px 20px;
-      background-color: #333;
+    .buttons a {
+      background-color: #2e2e2e;
       color: white;
-      border-radius: 20px;
+      padding: 10px 20px;
+      border-radius: 999px;
       text-decoration: none;
       font-size: 0.9em;
       display: flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: background 0.3s ease;
     }
-
-    .button-group a:hover {
-      background-color: #555;
+    .buttons a:hover {
+      background-color: #444;
+    }
+    @media (max-width: 768px) {
+      .content {
+        margin-left: 0;
+        align-items: center;
+      }
+      h1 {
+        text-align: center;
+      }
+      .buttons {
+        justify-content: center;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>AI Justice for All</h1>
-  <div class="button-group">
-    <a href="docs/constitution.html">📜 Constitution</a>
-    <a href="docs/simulator.html">🛠️ AI Simulator</a>
-    <a href="docs/roadmap.html">🗺️ Roadmap</a>
-    <a href="docs/team.html">👥 Team</a>
-    <a href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki" target="_blank">📚 Wiki</a>
-    <a href="docs/join.html">📝 Join</a>
+  <div class="content">
+    <h1>AI Justice for All</h1>
+    <div class="buttons">
+      <a href="docs/constitution.html">📜 Constitution</a>
+      <a href="docs/simulator.html">🛠️ AI Simulator</a>
+      <a href="docs/roadmap.html">🗺️ Roadmap</a>
+      <a href="docs/team.html">👥 Team</a>
+      <a href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki" target="_blank">📚 Wiki</a>
+      <a href="docs/join.html">📝 Join</a>
+    </div>
   </div>
 </body>
 </html>
