@@ -8,149 +8,130 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #0c111a;
+      background-color: #0c0f12;
       color: white;
     }
 
     .hero {
+      position: relative;
+      height: 100vh;
       background-image: url('ai-girl-banner.png');
       background-size: cover;
       background-position: center;
-      height: 100vh;
-      position: relative;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
+      text-align: center;
     }
 
-    .button-row {
-      position: absolute;
-      bottom: 40px;
+    .hero h1 {
+      font-size: 4rem;
+      margin: 0;
+      color: white;
+      text-shadow: 0 0 10px rgba(0,0,0,0.6);
+    }
+
+    .button-container {
+      margin-top: 30px;
       display: flex;
-      gap: 1rem;
       flex-wrap: wrap;
       justify-content: center;
+      gap: 15px;
     }
 
-    .button-row button {
-      background: transparent;
-      border: 2px solid white;
+    .dropdown-button {
+      background-color: rgba(255,255,255,0.1);
       color: white;
-      padding: 0.6rem 1.2rem;
-      font-size: 1rem;
-      border-radius: 6px;
+      padding: 15px 25px;
+      font-size: 16px;
+      border: 2px solid white;
+      border-radius: 50px;
       cursor: pointer;
-      transition: background 0.3s, color 0.3s;
+      transition: background-color 0.3s ease;
     }
 
-    .button-row button:hover {
-      background: white;
-      color: black;
+    .dropdown-button:hover {
+      background-color: rgba(255,255,255,0.25);
     }
 
-    .content-section {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 0 1.5rem;
-    }
-
-    .dropdown {
+    .dropdown-content {
       display: none;
-      padding: 1rem;
-      border-top: 1px solid #333;
-      animation: fadeIn 0.4s ease;
+      padding: 20px;
+      background-color: #111;
+      border-top: 1px solid #444;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .dropdown.open .dropdown-content {
+      display: block;
     }
 
-    iframe {
-      width: 100%;
-      height: 600px;
-      border: none;
+    .section {
+      padding: 30px;
+      max-width: 900px;
+      margin: auto;
     }
 
-    @media (max-width: 768px) {
-      .button-row {
-        flex-direction: column;
-        bottom: 20px;
-      }
-
-      .button-row button {
-        width: 100%;
-      }
+    a {
+      color: #4dd3ff;
     }
   </style>
 </head>
 <body>
 
   <div class="hero">
-    <div class="button-row">
-      <button onclick="toggleSection('constitution')">📜 Founder’s Constitution</button>
-      <button onclick="toggleSection('simulator')">🧪 AI Simulator</button>
-      <button onclick="toggleSection('roadmap')">📅 Roadmap</button>
-      <button onclick="toggleSection('team')">🧑‍🤝‍🧑 Team</button>
-      <button onclick="toggleSection('wiki')">📝 Wiki</button>
-      <button onclick="toggleSection('join')">👥 Join</button>
-    </div>
-  </div>
-
-  <div class="content-section">
-    <div id="constitution" class="dropdown">
-      <p><strong>“We don’t replace justice. We purify it.”</strong></p>
-      <p>AI Justice For All is a global initiative to build a morally intelligent AI engine that detects injustice, bias, and manipulation — and proposes ethically sound verdicts.</p>
-      <ul>
-        <li>✅ Human intent & context simulation</li>
-        <li>✅ Truth-checking & ethical logic verification</li>
-        <li>✅ A future-proof, incorruptible justice engine</li>
-      </ul>
-      <p><a href="https://www.notion.so/AI-Justice-For-All-228217b278f180a480f6e8f6ed622a78" target="_blank">🔗 View full document on Notion</a></p>
-    </div>
-
-    <div id="simulator" class="dropdown">
-      <p>The Phase 2 AI Simulator allows us to run complex legal, moral, and ethical cases through a transparent AI engine that factors in human intent, context, impact, and proportionality.</p>
-      <p>It is designed to simulate AI-based verdicts using ethical reasoning trees, making the justice process auditable and bias-checked.</p>
-    </div>
-
-    <div id="roadmap" class="dropdown">
-      <p>📅 <strong>Phase 2–4 Timeline (Coming Soon)</strong></p>
-      <ul>
-        <li>Prototype simulator launch</li>
-        <li>Community simulation sessions</li>
-        <li>Transparency engine testing</li>
-        <li>Integration partnerships with legal orgs</li>
-      </ul>
-    </div>
-
-    <div id="team" class="dropdown">
-      <p>We are forming a global team of engineers, ethicists, legal professionals, survivors, and visionary thinkers.</p>
-      <p>If you’re passionate about restoring trust in justice — we invite you to join.</p>
-    </div>
-
-    <div id="wiki" class="dropdown">
-      <p>📝 Visit our full documentation and technical wiki here:</p>
-      <p><a href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki" target="_blank">🔗 GitHub Wiki</a></p>
-    </div>
-
-    <div id="join" class="dropdown">
-      <p>👥 Join the project by filling in this contributor form:</p>
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSex1VuDmMNZuA__gunaEUrIFYR-D3Zxp8AZReY4hKSORzACAw/viewform?embedded=true">Loading…</iframe>
+    <h1>AI Justice for All</h1>
+    <div class="button-container">
+      <div class="dropdown">
+        <button class="dropdown-button" onclick="toggleDropdown(this)">📜 Constitution</button>
+        <div class="dropdown-content">
+          <p><strong>“We don’t replace justice. We purify it.”</strong></p>
+          <p>The AI Justice Constitution defines our core values and principles. All contributors agree to this framework.</p>
+          <a href="https://www.notion.so/AI-Justice-For-All-228217b278f180a480f6e8f6ed622a78?pvs=4" target="_blank">Read full Constitution</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropdown-button" onclick="toggleDropdown(this)">🧪 AI Simulator</button>
+        <div class="dropdown-content">
+          <p>Our AI Simulator is a Phase 2 concept designed to test morally intelligent verdicts using simulated cases.</p>
+          <a href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki/Phase-2:-Justice-Engine-Simulation-Concepts" target="_blank">Explore Simulator</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropdown-button" onclick="toggleDropdown(this)">📅 Roadmap</button>
+        <div class="dropdown-content">
+          <p>We are rolling out development in 3 Phases, beginning with decentralized documentation, simulation, and proofs.</p>
+          <a href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki/Roadmap" target="_blank">See Roadmap</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropdown-button" onclick="toggleDropdown(this)">🧑‍🤝‍🧑 Team</button>
+        <div class="dropdown-content">
+          <p>The project is led by Lars G Stahl, with open collaboration from developers, ethicists, and volunteers worldwide.</p>
+          <a href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki/Team-&-Contributors" target="_blank">Meet the Team</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropdown-button" onclick="toggleDropdown(this)">📝 Wiki</button>
+        <div class="dropdown-content">
+          <p>All technical and philosophical documentation is stored in our GitHub Wiki.</p>
+          <a href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki" target="_blank">Visit Wiki</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropdown-button" onclick="toggleDropdown(this)">👥 Join</button>
+        <div class="dropdown-content">
+          <p>Sign the Founder’s Constitution and help us build AI for justice.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSex1VuDmMNZuA__gunaEUrIFYR-D3Zxp8AZReY4hKSORzACAw/viewform" target="_blank">Join Now</a>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
-    function toggleSection(id) {
-      const sections = document.querySelectorAll('.dropdown');
-      sections.forEach(section => {
-        if (section.id === id) {
-          section.style.display = section.style.display === 'block' ? 'none' : 'block';
-        } else {
-          section.style.display = 'none';
-        }
-      });
+    function toggleDropdown(button) {
+      const dropdown = button.parentElement;
+      dropdown.classList.toggle('open');
     }
   </script>
 
