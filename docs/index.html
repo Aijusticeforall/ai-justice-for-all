@@ -2,138 +2,107 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Justice for All</title>
   <style>
-    body {
+    body, html {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #0c0f12;
-      color: white;
+      padding: 0;
+      font-family: Arial, sans-serif;
     }
-
-    .hero {
-      position: relative;
-      height: 100vh;
-      background-image: url('ai-girl-banner.png');
+    .banner {
+      background: url('ai-girl-banner.png') no-repeat center center;
       background-size: cover;
-      background-position: center;
+      height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 4rem;
-      margin: 0;
+      align-items: center;
       color: white;
-      text-shadow: 0 0 10px rgba(0,0,0,0.6);
+      text-align: center;
+      position: relative;
     }
-
-    .button-container {
-      margin-top: 30px;
+    .button-group {
+      margin-top: 20px;
       display: flex;
+      gap: 10px;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 15px;
     }
-
-    .dropdown-button {
-      background-color: rgba(255,255,255,0.1);
+    .dropbtn {
+      background-color: rgba(255, 255, 255, 0.15);
       color: white;
-      padding: 15px 25px;
-      font-size: 16px;
-      border: 2px solid white;
-      border-radius: 50px;
+      border: none;
+      padding: 14px 20px;
+      font-size: 18px;
+      border-radius: 8px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: background 0.3s;
     }
-
-    .dropdown-button:hover {
-      background-color: rgba(255,255,255,0.25);
+    .dropbtn:hover {
+      background-color: rgba(255, 255, 255, 0.3);
     }
-
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
     .dropdown-content {
       display: none;
-      padding: 20px;
-      background-color: #111;
-      border-top: 1px solid #444;
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.85);
+      color: white;
+      min-width: 300px;
+      padding: 16px;
+      border-radius: 8px;
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
     }
-
-    .dropdown.open .dropdown-content {
+    .dropdown.active .dropdown-content {
       display: block;
-    }
-
-    .section {
-      padding: 30px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    a {
-      color: #4dd3ff;
     }
   </style>
 </head>
 <body>
-
-  <div class="hero">
-    <h1>AI Justice for All</h1>
-    <div class="button-container">
+  <div class="banner">
+    <div class="button-group">
       <div class="dropdown">
-        <button class="dropdown-button" onclick="toggleDropdown(this)">📜 Constitution</button>
-        <div class="dropdown-content">
-          <p><strong>“We don’t replace justice. We purify it.”</strong></p>
-          <p>The AI Justice Constitution defines our core values and principles. All contributors agree to this framework.</p>
-          <a href="https://www.notion.so/AI-Justice-For-All-228217b278f180a480f6e8f6ed622a78?pvs=4" target="_blank">Read full Constitution</a>
-        </div>
+        <button class="dropbtn" onclick="toggleDropdown(this)">📜 Constitution</button>
+        <div class="dropdown-content">Link to: <a href="https://github.com/Aijusticeforall/ai-justice-for-all/blob/main/AI_Justice_For_All_by_Lars_G_Stahl.txt" target="_blank">Founder's Constitution</a></div>
       </div>
       <div class="dropdown">
-        <button class="dropdown-button" onclick="toggleDropdown(this)">🧪 AI Simulator</button>
-        <div class="dropdown-content">
-          <p>Our AI Simulator is a Phase 2 concept designed to test morally intelligent verdicts using simulated cases.</p>
-          <a href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki/Phase-2:-Justice-Engine-Simulation-Concepts" target="_blank">Explore Simulator</a>
-        </div>
+        <button class="dropbtn" onclick="toggleDropdown(this)">🧪 Simulator</button>
+        <div class="dropdown-content">Visit our <a href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki/Phase-2%3A-Simulator" target="_blank">AI Simulator (Phase 2)</a> concept.</div>
       </div>
       <div class="dropdown">
-        <button class="dropdown-button" onclick="toggleDropdown(this)">📅 Roadmap</button>
-        <div class="dropdown-content">
-          <p>We are rolling out development in 3 Phases, beginning with decentralized documentation, simulation, and proofs.</p>
-          <a href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki/Roadmap" target="_blank">See Roadmap</a>
-        </div>
+        <button class="dropbtn" onclick="toggleDropdown(this)">📅 Roadmap</button>
+        <div class="dropdown-content">Read the <a href="https://github.com/Aijusticeforall/ai-justice-for-all/blob/main/ROADMAP.md" target="_blank">full roadmap</a> of the project.</div>
       </div>
       <div class="dropdown">
-        <button class="dropdown-button" onclick="toggleDropdown(this)">🧑‍🤝‍🧑 Team</button>
-        <div class="dropdown-content">
-          <p>The project is led by Lars G Stahl, with open collaboration from developers, ethicists, and volunteers worldwide.</p>
-          <a href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki/Team-&-Contributors" target="_blank">Meet the Team</a>
-        </div>
+        <button class="dropbtn" onclick="toggleDropdown(this)">🧑‍🤝‍🧑 Team</button>
+        <div class="dropdown-content">Meet the <a href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki/Contributors" target="_blank">contributors</a> and join the effort.</div>
       </div>
       <div class="dropdown">
-        <button class="dropdown-button" onclick="toggleDropdown(this)">📝 Wiki</button>
-        <div class="dropdown-content">
-          <p>All technical and philosophical documentation is stored in our GitHub Wiki.</p>
-          <a href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki" target="_blank">Visit Wiki</a>
-        </div>
+        <button class="dropbtn" onclick="toggleDropdown(this)">📝 Wiki</button>
+        <div class="dropdown-content">Explore the <a href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki" target="_blank">complete GitHub Wiki</a>.</div>
       </div>
       <div class="dropdown">
-        <button class="dropdown-button" onclick="toggleDropdown(this)">👥 Join</button>
-        <div class="dropdown-content">
-          <p>Sign the Founder’s Constitution and help us build AI for justice.</p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSex1VuDmMNZuA__gunaEUrIFYR-D3Zxp8AZReY4hKSORzACAw/viewform" target="_blank">Join Now</a>
-        </div>
+        <button class="dropbtn" onclick="toggleDropdown(this)">👥 Join</button>
+        <div class="dropdown-content">Fill out the <a href="https://docs.google.com/forms/d/e/1FAIpQLSex1VuDmMNZuA__gunaEUrIFYR-D3Zxp8AZReY4hKSORzACAw/viewform" target="_blank">contributor form</a>.</div>
       </div>
     </div>
   </div>
-
   <script>
     function toggleDropdown(button) {
-      const dropdown = button.parentElement;
-      dropdown.classList.toggle('open');
+      const dropdowns = document.querySelectorAll('.dropdown');
+      dropdowns.forEach(d => {
+        if (d.querySelector('button') !== button) {
+          d.classList.remove('active');
+        }
+      });
+      button.parentElement.classList.toggle('active');
     }
   </script>
-
 </body>
 </html>
