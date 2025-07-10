@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+# Generate the full HTML index file as described with the glowing button and pop-up included
+
+index_html = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -49,52 +51,47 @@
       background-color: #5a3f2d;
     }
 
-    .glow-button {
-      position: absolute;
-      top: 40%;
-      left: 20%;
-      transform: translate(-50%, -50%);
-      background-color: #222;
-      color: white;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
-      animation: pulse 2s infinite;
+    .emoji {
+      font-size: 1em;
     }
 
-    @keyframes pulse {
-      0% { box-shadow: 0 0 5px rgba(0,255,255,0.5); }
-      50% { box-shadow: 0 0 20px rgba(0,255,255,1); }
-      100% { box-shadow: 0 0 5px rgba(0,255,255,0.5); }
+    .glow-button {
+      position: absolute;
+      top: 43%;
+      left: 24%;
+      transform: translate(-50%, -50%);
+      padding: 10px 14px;
+      background-color: #00ffcc;
+      color: #000;
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 15px #00ffcc;
+      transition: background 0.3s ease;
+      z-index: 2;
+    }
+
+    .glow-button:hover {
+      background-color: #00ddb3;
+      box-shadow: 0 0 25px #00ffcc;
     }
 
     .popup {
       position: absolute;
-      top: 42%;
-      left: 30%;
-      transform: translateX(-50%);
-      background: white;
-      color: black;
-      padding: 1.5rem;
+      top: 43%;
+      left: 15%;
+      background-color: rgba(20, 20, 20, 0.85);
+      color: #fff;
+      padding: 15px 20px;
       border-radius: 10px;
-      max-width: 300px;
+      max-width: 260px;
       display: none;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-      z-index: 10;
-      text-align: center;
-    }
-
-    .popup a {
-      display: inline-block;
-      margin-top: 1rem;
-      background-color: #2d2d2d;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      text-decoration: none;
+      font-size: 14px;
+      line-height: 1.4;
+      backdrop-filter: blur(3px);
+      z-index: 1;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
     }
 
     @media (max-width: 768px) {
@@ -103,17 +100,6 @@
         left: 50%;
         transform: translateX(-50%);
         justify-content: center;
-      }
-
-      .glow-button {
-        top: 38%;
-        left: 50%;
-      }
-
-      .popup {
-        top: 44%;
-        left: 50%;
-        transform: translateX(-50%);
       }
     }
   </style>
@@ -128,25 +114,29 @@
       <a href="wiki.html" class="button"><span class="emoji">📚</span> Wiki</a>
       <a href="join.html" class="button"><span class="emoji">🧠</span> Join</a>
     </div>
-
-    <button class="glow-button" onclick="togglePopup()"></button>
-
-    <div class="popup" id="popup">
-      <strong>JusticeLite Prototype</strong><br>
-      A simple preview of future AI justice tools.<br>
-      <a href="simulator.html">Launch Simulator</a>
+    <button class="glow-button" onclick="togglePopup()">⚖️ JusticeLite</button>
+    <div id="popup" class="popup">
+      A simplified AI tool to simulate verdicts, offer rights-based recommendations, and explore how justice could respond to real situations. [Try it in Simulator]
     </div>
-
-    <audio id="breathSound" src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Breathing.ogg"></audio>
   </div>
 
   <script>
     function togglePopup() {
-      const popup = document.getElementById('popup');
-      const audio = document.getElementById('breathSound');
-      popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+      const popup = document.getElementById("popup");
+      popup.style.display = popup.style.display === "block" ? "none" : "block";
+
+      const audio = new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_3a1c8d0d6d.mp3?filename=breathing-sound-ambient-21268.mp3");
+      audio.volume = 0.6;
       audio.play();
     }
   </script>
 </body>
 </html>
+"""
+
+# Save to file
+index_path = "/mnt/data/index_aijustice_complete.html"
+with open(index_path, "w", encoding="utf-8") as f:
+    f.write(index_html)
+
+index_path
