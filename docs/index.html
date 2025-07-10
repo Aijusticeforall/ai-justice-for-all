@@ -5,65 +5,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Justice for All</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
-      padding: 0;
-      background: url('ai-girl-banner.png') no-repeat center center fixed;
-      background-size: cover;
-      font-family: "Segoe UI", sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #000;
+      color: white;
     }
 
-    .buttons {
-      margin-bottom: 100px;
+    .hero {
+      background: url('https://i.postimg.cc/3xBrZrPr/AI-Justice-Banner-Woman.jpg') no-repeat center center;
+      background-size: cover;
+      height: 100vh;
       display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 4em;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .button-row {
+      margin-top: 40px;
+      display: flex;
+      gap: 20px;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 16px;
     }
 
-    .buttons a {
-      background-color: #2f2c2c;
+    .button {
+      background-color: #3a2e27;
       color: white;
-      padding: 10px 20px;
-      border-radius: 24px;
+      padding: 12px 24px;
+      border-radius: 30px;
       text-decoration: none;
-      font-size: 0.9rem;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+      font-size: 0.9em;
       display: flex;
       align-items: center;
       gap: 8px;
-      transition: background-color 0.3s ease;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.4);
     }
 
-    .buttons a:hover {
-      background-color: #444;
+    .button:hover {
+      background-color: #5e4535;
     }
 
-    @media (max-width: 768px) {
-      .buttons {
-        flex-direction: column;
-        align-items: center;
-        gap: 12px;
-      }
+    .emoji {
+      font-size: 1.2em;
     }
   </style>
 </head>
 <body>
-  <div class="buttons">
-    <a href="docs/constitution.html">📜 Constitution</a>
-    <a href="docs/simulator.html">🛠️ AI Simulator</a>
-    <a href="docs/roadmap.html">🗺️ Roadmap</a>
-    <a href="docs/team.html">👥 Team</a>
-    <a href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki" target="_blank">📚 Wiki</a>
-    <a href="docs/join.html">💡 Join</a>
-  </div>
+  <section class="hero">
+    <h1>AI Justice for All</h1>
+    <div class="button-row">
+      <a class="button" href="docs/constitution.html"><span class="emoji">📜</span>Constitution</a>
+      <a class="button" href="docs/simulator.html"><span class="emoji">🛠️</span>AI Simulator</a>
+      <a class="button" href="docs/roadmap.html"><span class="emoji">🗺️</span>Roadmap</a>
+      <a class="button" href="docs/team.html"><span class="emoji">👥</span>Team</a>
+      <a class="button" href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki"><span class="emoji">📚</span>Wiki</a>
+      <a class="button" href="docs/join.html"><span class="emoji">🌐</span>Join</a>
+    </div>
+  </section>
 </body>
 </html>
