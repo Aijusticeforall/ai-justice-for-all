@@ -3,80 +3,71 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contributors & Team – AI Justice For All</title>
+  <title>Contributors & Team | AI Justice For All</title>
   <style>
     body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #111;
-      color: #eee;
-      font-family: 'Segoe UI', sans-serif;
+      color: #ddd;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       padding: 40px 20px;
-      max-width: 960px;
-      margin: auto;
-      line-height: 1.6;
     }
     h1 {
       color: orange;
-      text-align: center;
-      font-size: 2.2rem;
-      margin-bottom: 0.5em;
+      font-size: 2em;
+      margin-bottom: 10px;
     }
-    h1::before {
-      content: "🧑‍🤝‍🧑 ";
+    h1 span {
+      margin-right: 10px;
     }
-    p {
-      font-size: 1.05rem;
-      margin-bottom: 1em;
-      color: #ccc;
+    p, li {
+      font-size: 1.1em;
+      line-height: 1.6em;
+      max-width: 700px;
+      text-align: left;
     }
     ul {
-      padding-left: 20px;
-      margin-bottom: 1.5em;
+      margin-bottom: 30px;
     }
-    li {
-      margin-bottom: 0.6em;
+    .highlight {
+      font-weight: bold;
+      color: #fff;
     }
-    .link {
-      color: #00f0ff;
+    a {
+      color: #00e6c3;
       text-decoration: none;
     }
-    .link:hover {
+    a:hover {
       text-decoration: underline;
     }
-    .back-link {
-      display: flex;
-      align-items: center;
-      margin-top: 2em;
-      color: #0ff;
-      font-size: 0.95rem;
+    .back {
+      margin-top: 40px;
+      font-size: 0.95em;
     }
-    .back-link::before {
-      content: "🔙";
-      margin-right: 8px;
+    .back a {
+      color: #73f;
     }
   </style>
 </head>
 <body>
-  <h1>Contributors & Team</h1>
+  <h1><span>🧑‍🤝‍🧑</span>Contributors & Team</h1>
 
   <p>These are the early supporters and contributors helping bring <strong>AI Justice For All</strong> to life:</p>
 
   <ul>
-    <li><strong>Lars G Stahl</strong> – Founder & Visionary</li>
-    <li><strong>Open Collaborators</strong> – Ethicists, coders, lawyers, thinkers</li>
-    <li><strong>Anonymous Signers</strong> – Constitution supporters</li>
+    <li><span class="highlight">Lars G Stahl</span> – Founder & Visionary</li>
+    <li><span class="highlight">Open Collaborators</span> – Ethicists, coders, lawyers, thinkers</li>
+    <li><span class="highlight">Anonymous Signers</span> – Constitution supporters</li>
   </ul>
 
-  <p>
-    This project is <strong>open-source and community-led</strong>. 
-    We invite everyone committed to truth and justice to join.
-  </p>
+  <p>This project is open-source and community-led. We invite everyone committed to truth and justice to join and contribute at any level — whether by signing the Constitution, helping code the simulator, or spreading awareness.</p>
 
-  <p>
-    <a href="https://github.com/Aijusticeforall/ai-justice-for-all/graphs/contributors" class="link" target="_blank">
-      🔗 View full GitHub Contributors List
-    </a>
-  </p>
+  <p><a href="https://github.com/Aijusticeforall/ai-justice-for-all/graphs/contributors" target="_blank">🔗 View full GitHub Contributors List</a></p>
 
-  <a href="index.html" class="back-link">Back to Main Page</a>
+  <div class="back">
+    <a href="index.html">🔙 Back to Main Page</a>
+  </div>
 </body>
 </html>
