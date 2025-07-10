@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Justice for All</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -14,9 +18,8 @@
     }
 
     .hero {
-      background-image: url('https://raw.githubusercontent.com/Aijusticeforall/ai-justice-for-all/main/docs/banner.jpg');
+      background: url('ai-girl-banner.png') no-repeat center center;
       background-size: cover;
-      background-position: center;
       height: 100vh;
       display: flex;
       flex-direction: column;
@@ -25,24 +28,24 @@
     }
 
     .button-row {
-      margin-bottom: 60px;
+      margin-bottom: 90px;
       display: flex;
-      gap: 20px;
       flex-wrap: wrap;
+      gap: 16px;
       justify-content: center;
     }
 
     .button {
       background-color: #3a2e27;
       color: white;
-      padding: 10px 22px;
+      padding: 10px 20px;
       border-radius: 25px;
       text-decoration: none;
-      font-size: 0.9em;
+      font-size: 0.9rem;
       display: flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 1px 1px 5px rgba(0,0,0,0.4);
+      box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
       transition: background-color 0.3s ease;
     }
 
@@ -50,20 +53,23 @@
       background-color: #5e4535;
     }
 
-    .emoji {
-      font-size: 1em;
+    @media (max-width: 768px) {
+      .button-row {
+        flex-direction: column;
+        gap: 12px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="hero">
     <div class="button-row">
-      <a class="button" href="docs/constitution.html"><span class="emoji">📜</span>Constitution</a>
-      <a class="button" href="docs/simulator.html"><span class="emoji">🛠️</span>AI Simulator</a>
-      <a class="button" href="docs/roadmap.html"><span class="emoji">🗺️</span>Roadmap</a>
-      <a class="button" href="docs/team.html"><span class="emoji">👥</span>Team</a>
-      <a class="button" href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki"><span class="emoji">📚</span>Wiki</a>
-      <a class="button" href="docs/join.html"><span class="emoji">🌐</span>Join</a>
+      <a class="button" href="docs/constitution.html">📜 Constitution</a>
+      <a class="button" href="docs/simulator.html">🛠️ AI Simulator</a>
+      <a class="button" href="docs/roadmap.html">🗺️ Roadmap</a>
+      <a class="button" href="docs/team.html">👥 Team</a>
+      <a class="button" href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki">📚 Wiki</a>
+      <a class="button" href="docs/join.html">🌐 Join</a>
     </div>
   </div>
 </body>
