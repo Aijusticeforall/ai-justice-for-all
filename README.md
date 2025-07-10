@@ -1,4 +1,4 @@
-![AI Justice For All Banner](https://github.com/Aijusticeforall/ai-justice-for-all/raw/main/Banner.png)
+🚀 **Live Site:** [AI Justice For All Landing Page](https://aijusticeforall.github.io/ai-justice-for-all/)
 
 # 🧠 AI Justice For All  
 **Morally intelligent justice — powered by AI, for every human being.**  
