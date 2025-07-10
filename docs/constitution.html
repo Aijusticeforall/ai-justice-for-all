@@ -3,62 +3,82 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Justice Founder’s Constitution</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <title>AI Justice Founder's Constitution</title>
   <style>
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: #0e0e11;
-      color: #e2e8f0;
       margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      min-height: 100vh;
-      padding-top: 60px;
-    }
-    .container {
-      background: #1a1a1d;
-      border-radius: 16px;
       padding: 40px;
+      background-color: #11151c;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .container {
       max-width: 800px;
-      width: 90%;
+      text-align: center;
+      background-color: #1a1f2b;
+      padding: 40px;
+      border-radius: 20px;
       box-shadow: 0 0 20px rgba(0,0,0,0.4);
     }
+
     h1 {
-      color: #00ffae;
-      font-size: 2.2em;
+      color: #00ffcc;
+      font-size: 32px;
       margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
     }
+
     h2 {
-      margin-top: 40px;
-      font-size: 1.5em;
-      color: #ffffff;
+      color: #fff;
+      font-size: 24px;
+      margin-top: 30px;
     }
-    p, li {
-      font-size: 1.05em;
-      line-height: 1.7em;
+
+    p {
+      color: #ccc;
+      line-height: 1.7;
+      margin-bottom: 25px;
     }
-    .back-link {
-      margin-top: 50px;
+
+    ul {
+      text-align: left;
+      margin-left: 0;
+      padding-left: 20px;
+      margin-bottom: 30px;
+    }
+
+    li {
+      margin-bottom: 12px;
+    }
+
+    a.back {
       display: inline-block;
-      font-size: 1em;
-      color: #00ffae;
+      margin-top: 30px;
+      color: #00ffcc;
       text-decoration: none;
+      font-weight: bold;
+      transition: color 0.2s;
     }
-    .back-link:hover {
-      text-decoration: underline;
+
+    a.back:hover {
+      color: #66ffe0;
+    }
+
+    .emoji {
+      font-size: 1.4em;
+      margin-right: 6px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>🧠 AI Justice Founder’s Constitution</h1>
-    <p><strong>“We don’t replace justice. We purify it.”</strong></p>
+    <h1><span class="emoji">🧠</span>AI Justice Founder's Constitution</h1>
+    <p><strong>"We don’t replace justice. We purify it."</strong></p>
+
     <p>The AI Justice Constitution defines our core values and principles. All contributors agree to this framework before participating.</p>
 
     <h2>Core Principles</h2>
@@ -78,7 +98,7 @@
       <li>Respect diverse human experiences and legal traditions</li>
     </ul>
 
-    <a class="back-link" href="/ai-justice-for-all/">🔙 Back to Main Page</a>
+    <a href="/ai-justice-for-all/" class="back">🔙 Back to Main Page</a>
   </div>
 </body>
 </html>
