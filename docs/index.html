@@ -10,27 +10,22 @@
       font-family: 'Segoe UI', sans-serif;
       background-color: #000;
       color: white;
+      overflow-x: hidden;
     }
 
     .hero {
-      background: url('https://i.postimg.cc/3xBrZrPr/AI-Justice-Banner-Woman.jpg') no-repeat center center;
+      background-image: url('https://raw.githubusercontent.com/Aijusticeforall/ai-justice-for-all/main/docs/banner.jpg');
       background-size: cover;
+      background-position: center;
       height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-end;
       align-items: center;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 4em;
-      font-weight: 700;
-      margin: 0;
     }
 
     .button-row {
-      margin-top: 40px;
+      margin-bottom: 60px;
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
@@ -40,14 +35,15 @@
     .button {
       background-color: #3a2e27;
       color: white;
-      padding: 12px 24px;
-      border-radius: 30px;
+      padding: 10px 22px;
+      border-radius: 25px;
       text-decoration: none;
       font-size: 0.9em;
       display: flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 2px 2px 10px rgba(0,0,0,0.4);
+      box-shadow: 1px 1px 5px rgba(0,0,0,0.4);
+      transition: background-color 0.3s ease;
     }
 
     .button:hover {
@@ -55,13 +51,12 @@
     }
 
     .emoji {
-      font-size: 1.2em;
+      font-size: 1em;
     }
   </style>
 </head>
 <body>
-  <section class="hero">
-    <h1>AI Justice for All</h1>
+  <div class="hero">
     <div class="button-row">
       <a class="button" href="docs/constitution.html"><span class="emoji">📜</span>Constitution</a>
       <a class="button" href="docs/simulator.html"><span class="emoji">🛠️</span>AI Simulator</a>
@@ -70,6 +65,6 @@
       <a class="button" href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki"><span class="emoji">📚</span>Wiki</a>
       <a class="button" href="docs/join.html"><span class="emoji">🌐</span>Join</a>
     </div>
-  </section>
+  </div>
 </body>
 </html>
