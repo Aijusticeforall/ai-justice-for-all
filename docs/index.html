@@ -16,29 +16,22 @@
       background-position: center;
       height: 100vh;
       font-family: "Segoe UI", sans-serif;
-      color: white;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      text-align: center;
+      justify-content: flex-end;
+      align-items: center;
+      padding-bottom: 120px;
     }
-    .content {
-      margin-left: 45%;
-      text-align: left;
-    }
-    h1 {
-      font-size: 4em;
-      margin-bottom: 40px;
-      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
-    }
+
     .buttons {
       display: flex;
       gap: 16px;
       flex-wrap: wrap;
-      justify-content: flex-start;
+      justify-content: center;
     }
+
     .buttons a {
-      background-color: #2e2e2e;
+      background-color: #3a2e28;
       color: white;
       padding: 10px 20px;
       border-radius: 999px;
@@ -47,38 +40,32 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
       transition: background 0.3s ease;
     }
+
     .buttons a:hover {
-      background-color: #444;
+      background-color: #5a463d;
     }
+
     @media (max-width: 768px) {
-      .content {
-        margin-left: 0;
-        align-items: center;
-      }
-      h1 {
-        text-align: center;
+      body {
+        padding-bottom: 80px;
       }
       .buttons {
-        justify-content: center;
-        text-align: center;
+        gap: 12px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="content">
-    <h1>AI Justice for All</h1>
-    <div class="buttons">
-      <a href="docs/constitution.html">📜 Constitution</a>
-      <a href="docs/simulator.html">🛠️ AI Simulator</a>
-      <a href="docs/roadmap.html">🗺️ Roadmap</a>
-      <a href="docs/team.html">👥 Team</a>
-      <a href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki" target="_blank">📚 Wiki</a>
-      <a href="docs/join.html">📝 Join</a>
-    </div>
+  <div class="buttons">
+    <a href="docs/constitution.html">📜 Constitution</a>
+    <a href="docs/simulator.html">🛠️ AI Simulator</a>
+    <a href="docs/roadmap.html">🗺️ Roadmap</a>
+    <a href="docs/team.html">👥 Team</a>
+    <a href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki" target="_blank">📚 Wiki</a>
+    <a href="docs/join.html">📝 Join</a>
   </div>
 </body>
 </html>
