@@ -10,85 +10,145 @@
       font-family: 'Segoe UI', sans-serif;
       background-color: #0c111a;
       color: white;
-      overflow: hidden;
     }
 
     .container {
       position: relative;
-      width: 100vw;
+      width: 100%;
       height: 100vh;
       background-image: url('ai-girl-banner.png');
       background-size: cover;
       background-position: center;
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      padding-right: 5%;
-    }
-
-    .content {
-      background: rgba(0, 0, 0, 0.6);
-      padding: 40px;
-      border-radius: 16px;
-      text-align: left;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
     }
 
     h1 {
       font-size: 3em;
-      margin-bottom: 24px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 1rem 2rem;
+      border-radius: 1rem;
     }
 
-    .buttons {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
+    .section {
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
-    .button {
-      background-color: #1f2937;
-      padding: 14px 24px;
-      border: 1px solid #374151;
-      border-radius: 8px;
-      text-decoration: none;
+    .accordion {
+      margin: 0.5rem 0;
+      border: none;
+      background: none;
       color: white;
-      font-size: 1em;
+      font-size: 1.1rem;
+      font-weight: bold;
+      padding: 1rem 1.5rem;
+      text-align: left;
+      width: 100%;
+      cursor: pointer;
       transition: background 0.3s;
+      border-bottom: 1px solid #333;
     }
 
-    .button:hover {
-      background-color: #2563eb;
+    .accordion:hover {
+      background-color: #1f293780;
+    }
+
+    .panel {
+      padding: 0 1.5rem 1rem 1.5rem;
+      display: none;
+      border-bottom: 1px solid #333;
+    }
+
+    .show {
+      display: block;
+    }
+
+    a {
+      color: #60a5fa;
+      text-decoration: underline;
+    }
+
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
     }
 
     @media (max-width: 768px) {
-      .container {
-        justify-content: center;
-        padding: 20px;
-      }
-
-      .content {
-        padding: 20px;
-      }
-
       h1 {
         font-size: 2em;
       }
 
-      .buttons {
-        flex-direction: column;
-        gap: 12px;
+      .accordion {
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
+
   <div class="container">
-    <div class="content">
-      <h1>AI Justice for All</h1>
-      <div class="buttons">
-        <a href="https://www.notion.so/AI-Justice-For-All-228217b278f180a480f6e8f6ed622a78?openInBrowser" class="button" target="_blank">📄 Read the Mission</a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSex1VuDmMNZuA__gunaEUrIFYR-D3Zxp8AZReY4hKSORzACAw/viewform" class="button" target="_blank">👥 Join the Project</a>
-      </div>
+    <h1>AI Justice for All</h1>
+  </div>
+
+  <div class="section">
+    <button class="accordion">📜 Founder’s Constitution</button>
+    <div class="panel">
+      <p><strong>“We don’t replace justice. We purify it.”</strong></p>
+      <p>AI Justice For All is a global initiative to build a morally intelligent AI engine that detects injustice, bias, and manipulation — and proposes ethically sound verdicts. We aim to evolve justice, not replace it.</p>
+      <ul>
+        <li>✅ Human intent & context simulation</li>
+        <li>✅ Truth-checking & ethical logic verification</li>
+        <li>✅ A future-proof, incorruptible justice engine</li>
+      </ul>
+      <p>🔗 <a href="https://www.notion.so/AI-Justice-For-All-228217b278f180a480f6e8f6ed622a78" target="_blank">View full document on Notion</a></p>
+    </div>
+
+    <button class="accordion">🧪 AI Simulator (Phase 2)</button>
+    <div class="panel">
+      <p>The Phase 2 Simulator is the prototype of a morally intelligent system. It allows users to input real or hypothetical cases and get AI-generated, bias-checked verdicts based on intent, harm, and justice ethics.</p>
+      <p>Includes features like truth-layer logic trees, context weighting, and simulated moral perspectives.</p>
+    </div>
+
+    <button class="accordion">📅 Roadmap</button>
+    <div class="panel">
+      <p>Our timeline for Phase 2–4 will include simulator testing, ethical review collaboration, and progressive deployment to partner courts.</p>
+      <p><em>Coming soon...</em></p>
+    </div>
+
+    <button class="accordion">🧑‍🤝‍🧑 Team & Contributors</button>
+    <div class="panel">
+      <p>We're currently onboarding early collaborators, volunteers, and advisors.</p>
+      <p>Join us to shape the ethical AI justice future.</p>
+    </div>
+
+    <button class="accordion">📝 Full Wiki</button>
+    <div class="panel">
+      <p>All technical documentation, dev notes, and community contributions are housed in our public GitHub Wiki:</p>
+      <p>🔗 <a href="https://github.com/Aijusticeforall/ai-justice-for-all/wiki" target="_blank">Visit the Wiki</a></p>
+    </div>
+
+    <button class="accordion">👥 Join the Project</button>
+    <div class="panel">
+      <p>Fill out the contributor form below to join our initiative:</p>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSex1VuDmMNZuA__gunaEUrIFYR-D3Zxp8AZReY4hKSORzACAw/viewform?embedded=true">Loading…</iframe>
     </div>
   </div>
+
+  <script>
+    const accordions = document.querySelectorAll(".accordion");
+    accordions.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const panel = btn.nextElementSibling;
+        panel.classList.toggle("show");
+      });
+    });
+  </script>
+
 </body>
 </html>
