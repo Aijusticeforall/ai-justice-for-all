@@ -92,8 +92,8 @@
       border-radius: 14px;
       padding: 20px;
       width: 95%;
-      max-width: 500px;
-      height: 70vh;
+      max-width: 540px;
+      height: 72vh;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -172,6 +172,20 @@
       border-radius: 8px;
     }
 
+    .disclaimer {
+      font-size: 11px;
+      text-align: center;
+      color: #777;
+      margin-top: 5px;
+    }
+
+    select {
+      margin-bottom: 10px;
+      padding: 6px;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+
     @media (max-width: 768px) {
       .button-group {
         top: 80%;
@@ -200,12 +214,22 @@
     <!-- Chat Popup -->
     <div class="popup" id="popup" onclick="hidePopup(event)">
       <div class="chat-container" onclick="event.stopPropagation()">
+        <select id="caseType">
+          <option value="general">🔎 Select case type</option>
+          <option value="criminal">Criminal</option>
+          <option value="family">Family</option>
+          <option value="civil">Civil</option>
+          <option value="rights">Human Rights</option>
+        </select>
+
         <div id="chat-log" class="chat-log"></div>
 
         <form id="chat-form">
           <input type="text" id="user-input" placeholder="Ask a legal question..." autocomplete="off" required />
           <button type="submit">Send</button>
         </form>
+
+        <div class="disclaimer">🔒 Your question stays private and local</div>
 
         <div class="vision-toggle" onclick="toggleVision()">📘 What is this?</div>
         <div class="vision-box" id="vision-box">
@@ -248,16 +272,38 @@
       popup.style.display = 'none';
     }
 
-    const responses = [
-      "According to Article 8 of the ECHR, this could involve a breach of privacy rights.",
-      "This may be protected under the right to fair trial (Article 6, ECHR).",
-      "Freedom of expression may apply — see Article 10 of the European Convention.",
-      "Potential conflict with Article 3: prohibition of inhuman treatment."
-    ];
+    const responses = {
+      general: [
+        "According to Article 8 of the ECHR, this may involve privacy rights.",
+        "The AI notes Article 6 regarding fair trial concerns.",
+        "This could involve Article 10: Freedom of Expression."
+      ],
+      criminal: [
+        "Criminal law cases often involve Articles 5 and 6 of the ECHR.",
+        "Ensure rights to legal representation under Article 6.",
+        "Inhuman treatment (Article 3) must be evaluated."
+      ],
+      family: [
+        "Custody issues are covered under Article 8 — family life.",
+        "Parental rights fall within private and family life protections.",
+        "Article 8 is key for family-related disputes."
+      ],
+      civil: [
+        "Civil disputes may trigger Articles 6 (trial) and 1 (property).",
+        "Article 1 Protocol 1 protects property and possessions.",
+        "Right to effective remedy — Article 13 — may apply."
+      ],
+      rights: [
+        "Potential violation of Article 3: inhuman treatment.",
+        "Freedom of religion or belief — Article 9.",
+        "Discrimination concerns fall under Article 14."
+      ]
+    };
 
     const chatLog = document.getElementById("chat-log");
     const chatForm = document.getElementById("chat-form");
     const userInput = document.getElementById("user-input");
+    const caseType = document.getElementById("caseType");
 
     chatForm.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -276,8 +322,11 @@
 
       chatLog.scrollTop = chatLog.scrollHeight;
 
+      const type = caseType.value || 'general';
+
       setTimeout(() => {
-        botBubble.innerText = responses[Math.floor(Math.random() * responses.length)];
+        const list = responses[type] || responses.general;
+        botBubble.innerText = list[Math.floor(Math.random() * list.length)];
         chatLog.scrollTop = chatLog.scrollHeight;
       }, 1000);
     });
