@@ -124,9 +124,9 @@
 <body>
   <div class="hero">
     <!-- Glowing Forehead Button -->
-    <div class="glow-button" onclick="window.location.href='https://aijusticeforall.github.io/ai-justice-for-all/justice-lite-demo/'"></div>
+    <div class="glow-button" onclick="playAndRedirect()"></div>
 
-    <!-- Button Group -->
+    <!-- Navigation Buttons -->
     <div class="button-group">
       <a href="constitution.html" class="button"><span class="emoji">📜</span> Constitution</a>
 
@@ -144,5 +144,18 @@
       <a href="join.html" class="button"><span class="emoji">🧠</span> Join</a>
     </div>
   </div>
+
+  <!-- Sound and Script -->
+  <audio id="glowSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_06eb968559.mp3?filename=interface-click-124467.mp3" preload="auto"></audio>
+
+  <script>
+    function playAndRedirect() {
+      const sound = document.getElementById('glowSound');
+      sound.play();
+      setTimeout(() => {
+        window.location.href = 'https://aijusticeforall.github.io/ai-justice-for-all/justice-lite-demo/';
+      }, 200);
+    }
+  </script>
 </body>
 </html>
