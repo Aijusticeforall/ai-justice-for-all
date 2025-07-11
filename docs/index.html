@@ -11,6 +11,7 @@
       height: 100vh;
       font-family: 'Segoe UI', sans-serif;
       background-color: black;
+      overflow: hidden;
     }
 
     .hero {
@@ -30,7 +31,6 @@
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
-      z-index: 5;
     }
 
     .button {
@@ -54,38 +54,6 @@
       font-size: 1em;
     }
 
-    .dropdown {
-      position: relative;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      top: 110%;
-      left: 0;
-      background-color: #3c2b1c;
-      border-radius: 10px;
-      padding: 8px 0;
-      z-index: 99;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    }
-
-    .dropdown-content a {
-      display: block;
-      padding: 8px 20px;
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #5a3f2d;
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
     .glow-button {
       position: absolute;
       top: 31%;
@@ -106,6 +74,33 @@
       box-shadow: 0 0 35px #00ffff, 0 0 65px #00ffff;
     }
 
+    .chat-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(6px);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .chat-box {
+      background: #111;
+      color: #fff;
+      border-radius: 14px;
+      box-shadow: 0 0 20px #00ffff;
+      padding: 20px;
+      max-width: 90vw;
+      width: 500px;
+      max-height: 80vh;
+      overflow-y: auto;
+      font-size: 14px;
+    }
+
     @media (max-width: 768px) {
       .button-group {
         top: 80%;
@@ -118,43 +113,52 @@
         top: 50%;
         left: 50%;
       }
+
+      .chat-box {
+        width: 90vw;
+      }
     }
   </style>
 </head>
 <body>
   <div class="hero">
-    <!-- Glowing Forehead Button -->
-    <div class="glow-button" onclick="playAndRedirect()"></div>
+    <!-- Glow Button -->
+    <div class="glow-button" onclick="openChat(); playSound();"></div>
 
-    <!-- Navigation Buttons -->
+    <!-- Chat Popup -->
+    <div class="chat-overlay" id="chatOverlay" onclick="closeChat(event)">
+      <div class="chat-box" onclick="event.stopPropagation()">
+        <strong>JusticeLite AI:</strong><br><br>
+        Welcome to a demonstration of AI legal evaluation. Enter your scenario below and receive a simulation.<br><br>
+        (This is a prototype.)
+      </div>
+    </div>
+
+    <!-- Button Group -->
     <div class="button-group">
       <a href="constitution.html" class="button"><span class="emoji">📜</span> Constitution</a>
-
-      <div class="dropdown">
-        <a class="button"><span class="emoji">🛠️</span> AI Simulator ▾</a>
-        <div class="dropdown-content">
-          <a href="simulator.html">Simulator Overview</a>
-          <a href="justice-lite-demo/">Justice App</a>
-        </div>
-      </div>
-
+      <a href="simulator.html" class="button"><span class="emoji">🛠️</span> AI Simulator</a>
       <a href="roadmap.html" class="button"><span class="emoji">🗺️</span> Roadmap</a>
       <a href="team.html" class="button"><span class="emoji">👥</span> Team</a>
       <a href="wiki.html" class="button"><span class="emoji">📚</span> Wiki</a>
       <a href="join.html" class="button"><span class="emoji">🧠</span> Join</a>
     </div>
+
+    <!-- Sound Effect -->
+    <audio id="glowSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_06eb968559.mp3?filename=interface-click-124467.mp3" preload="auto"></audio>
   </div>
 
-  <!-- Sound and Script -->
-  <audio id="glowSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_06eb968559.mp3?filename=interface-click-124467.mp3" preload="auto"></audio>
-
   <script>
-    function playAndRedirect() {
+    function openChat() {
+      document.getElementById('chatOverlay').style.display = 'flex';
+    }
+    function closeChat(event) {
+      document.getElementById('chatOverlay').style.display = 'none';
+    }
+    function playSound() {
       const sound = document.getElementById('glowSound');
+      sound.currentTime = 0;
       sound.play();
-      setTimeout(() => {
-        window.location.href = 'https://aijusticeforall.github.io/ai-justice-for-all/justice-lite-demo/';
-      }, 200);
     }
   </script>
 </body>
