@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Justice For All</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      background: black url('ai-girl-banner.png') no-repeat center center fixed;
+      background-size: cover;
+      overflow: hidden;
+    }
+
+    .glow-button {
+      position: absolute;
+      top: 35%;
+      left: 25%;
+      transform: translate(-50%, -50%);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #00ffff 0%, #006666 70%);
+      box-shadow: 0 0 25px #00ffff, 0 0 50px #00ffff;
+      cursor: pointer;
+      transition: box-shadow 0.3s ease;
+      z-index: 10;
+    }
+
+    .glow-button:hover {
+      box-shadow: 0 0 35px #00ffff, 0 0 65px #00ffff;
+    }
+
+    .chat-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(5px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 99;
+    }
+
+    .chat-box {
+      background-color: #111;
+      border-radius: 12px;
+      padding: 20px;
+      width: 90%;
+      max-width: 500px;
+      color: white;
+      box-shadow: 0 0 10px #00ffff;
+    }
+
+    .chat-box h2 {
+      margin-top: 0;
+    }
+
+    .chat-log {
+      height: 200px;
+      overflow-y: auto;
+      border: 1px solid #555;
+      padding: 10px;
+      margin-bottom: 10px;
+      background: #000;
+    }
+
+    .chat-input {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .glow-button {
+        top: 50%;
+        left: 50%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="glow-button" onclick="toggleChat(); playSound();"></div>
+
+<div id="chatContainer" class="chat-container hidden" onclick="closeChat(event)">
+  <div class="chat-box" onclick="event.stopPropagation();">
+    <h2>JusticeLite AI</h2>
+    <div class="chat-log" id="chatLog">
+      <p><em>Welcome to JusticeLite. Please enter your legal scenario below.</em></p>
+    </div>
+    <input type="text" class="chat-input" id="chatInput" placeholder="Type your case..." onkeydown="handleKey(event)" />
+  </div>
+</div>
+
+<audio id="glowSound" src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Computer_beep_5.ogg"></audio>
+
+<script>
+  const chatContainer = document.getElementById('chatContainer');
+  const chatLog = document.getElementById('chatLog');
+  const chatInput = document.getElementById('chatInput');
+  const glowSound = document.getElementById('glowSound');
+
+  function toggleChat() {
+    chatContainer.classList.toggle('hidden');
+    chatInput.focus();
+  }
+
+  function closeChat(e) {
+    chatContainer.classList.add('hidden');
+  }
+
+  function handleKey(e) {
+    if (e.key === 'Enter' && chatInput.value.trim() !== '') {
+      const userText = chatInput.value;
+      appendMessage("👤 You", userText);
+      chatInput.value = '';
+      setTimeout(() => {
+        appendMessage("⚖️ JusticeLite", "This is a simulated legal evaluation based on your input.");
+      }, 500);
+    }
+  }
+
+  function appendMessage(sender, message) {
+    const msg = document.createElement('p');
+    msg.innerHTML = `<strong>${sender}:</strong> ${message}`;
+    chatLog.appendChild(msg);
+    chatLog.scrollTop = chatLog.scrollHeight;
+  }
+
+  function playSound() {
+    glowSound.play();
+  }
+</script>
+
+</body>
+</html>
