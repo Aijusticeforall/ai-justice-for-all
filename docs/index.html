@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Justice For All</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JusticeLite AI</title>
   <style>
     body, html {
       margin: 0;
@@ -13,6 +13,7 @@
       background-image: url("ai-girl-banner.png");
       background-size: cover;
       background-position: center;
+      overflow: hidden;
     }
 
     .glow-button {
@@ -29,7 +30,6 @@
       transition: box-shadow 0.3s ease;
       z-index: 10;
     }
-
     .glow-button:hover {
       box-shadow: 0 0 35px #00ffff, 0 0 65px #00ffff;
     }
@@ -41,86 +41,127 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-color: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(5px);
+      background-color: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
       z-index: 999;
       justify-content: center;
       align-items: center;
     }
 
     .chat-box {
-      background-color: rgba(0, 0, 0, 0.8);
-      border: 2px solid #00ffff;
-      border-radius: 10px;
+      background-color: #111;
+      color: white;
       width: 90%;
       max-width: 600px;
       padding: 20px;
-      color: white;
+      border-radius: 15px;
       box-shadow: 0 0 15px #00ffff;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
-    .chat-header {
-      font-weight: bold;
-      font-size: 16px;
-      margin-bottom: 10px;
+    .chat-box h3 {
+      margin-top: 0;
       color: #00ffff;
     }
 
-    .chat-input {
+    .chat-log {
+      max-height: 250px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .bubble {
+      background: #222;
+      padding: 10px 15px;
+      border-radius: 15px;
+      max-width: 85%;
+      word-wrap: break-word;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+    }
+
+    .user {
+      align-self: flex-end;
+      background-color: #004455;
+    }
+
+    .bot {
+      align-self: flex-start;
+      background-color: #333;
+    }
+
+    .chat-box textarea {
       width: 100%;
-      padding: 10px;
-      border-radius: 6px;
+      height: 60px;
       border: none;
-      margin-top: 10px;
+      border-radius: 10px;
+      padding: 10px;
       font-size: 14px;
+      resize: none;
+      outline: none;
     }
 
-    .chat-response {
-      margin-top: 15px;
-      font-size: 14px;
-      color: #ddd;
-    }
-
-    .chat-info {
-      margin-top: 20px;
+    .info-text {
+      text-align: center;
       font-size: 12px;
-      color: #888;
+      color: #aaa;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <div class="glow-button" onclick="togglePopup()"></div>
+  <div class="glow-button" id="glowBtn"></div>
 
-  <div class="popup" id="popup" onclick="closeOnBackground(event)">
-    <div class="chat-box">
-      <div class="chat-header">JusticeLite AI:</div>
-      <div id="chat-response" class="chat-response">Welcome to a demonstration of AI legal evaluation. Enter your scenario below and receive a simulation.</div>
-      <input type="text" id="user-input" class="chat-input" placeholder="Describe your case..." onkeypress="handleKeyPress(event)">
-      <div class="chat-info">(This is a prototype. The simulation is not legally binding.)</div>
+  <div class="popup" id="chatPopup">
+    <div class="chat-box" id="chatBox">
+      <h3>JusticeLite AI:</h3>
+      <div class="chat-log" id="chatLog">
+        <div class="bubble bot">Welcome to a demonstration of AI legal evaluation. Enter your scenario below and receive a simulation.</div>
+      </div>
+      <textarea id="userInput" placeholder="Type your scenario here..."></textarea>
+      <div class="info-text">(This is a prototype.)</div>
     </div>
   </div>
 
   <script>
-    function togglePopup() {
-      const popup = document.getElementById('popup');
-      popup.style.display = 'flex';
-    }
+    const glowBtn = document.getElementById("glowBtn");
+    const chatPopup = document.getElementById("chatPopup");
+    const chatBox = document.getElementById("chatBox");
+    const chatLog = document.getElementById("chatLog");
+    const userInput = document.getElementById("userInput");
 
-    function closeOnBackground(e) {
-      if (e.target.id === 'popup') {
-        document.getElementById('popup').style.display = 'none';
+    glowBtn.onclick = () => {
+      chatPopup.style.display = "flex";
+    };
+
+    chatPopup.onclick = (e) => {
+      if (!chatBox.contains(e.target)) {
+        chatPopup.style.display = "none";
       }
-    }
+    };
 
-    function handleKeyPress(e) {
-      if (e.key === 'Enter') {
-        const input = document.getElementById('user-input').value;
-        const responseBox = document.getElementById('chat-response');
-        if (input.trim()) {
-          responseBox.innerHTML = `<strong>Your Input:</strong> ${input}<br><br><strong>AI Response:</strong> This case would likely be evaluated under standard due process and human rights obligations. Further detail needed for precise simulation.`;
-          document.getElementById('user-input').value = '';
+    userInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        const userText = userInput.value.trim();
+        if (userText !== "") {
+          addMessage(userText, "user");
+          userInput.value = "";
+          setTimeout(() => addMessage("[Simulated AI response]", "bot"), 1000);
         }
       }
+    });
+
+    function addMessage(text, sender) {
+      const bubble = document.createElement("div");
+      bubble.classList.add("bubble", sender);
+      bubble.textContent = text;
+      chatLog.appendChild(bubble);
+      chatLog.scrollTop = chatLog.scrollHeight;
     }
   </script>
 </body>
