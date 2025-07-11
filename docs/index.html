@@ -45,127 +45,132 @@
       transition: background 0.3s ease;
     }
 
-  .glow-button:hover {
-  box-shadow: 0 0 35px #00ffff, 0 0 65px #00ffff;
-}
-
-.emoji {
-  font-size: 1em;
-}
-
-.glow-button {
-  position: absolute;
-  top: 31%;
-  left: 25%;
-  transform: translate(-50%, -50%);
-  transform-origin: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #00ffff 0%, #006666 70%);
-  box-shadow: 0 0 25px #00ffff, 0 0 50px #00ffff;
-  cursor: pointer;
-  transition: box-shadow 0.3s ease;
-  z-index: 10;
-}
-
-.popup {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(4px);
-  z-index: 999;
-  justify-content: center;
-  align-items: center;
-}
-
-    .chat-popup {
-      background-color: #202123;
-      width: 90%;
-      max-width: 720px;
-      height: 80vh;
-      border-radius: 12px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      position: relative;
+    .button:hover {
+      background-color: #5a3f2d;
     }
 
-    .close-btn {
+    .emoji {
+      font-size: 1em;
+    }
+
+    .glow-button {
       position: absolute;
-      top: 10px;
-      right: 15px;
-      background: none;
-      color: #fff;
-      font-size: 1.2rem;
-      border: none;
+      top: 31%;
+      left: 25%;
+      transform: translate(-50%, -50%);
+      transform-origin: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #00ffff 0%, #006666 70%);
+      box-shadow: 0 0 25px #00ffff, 0 0 50px #00ffff;
       cursor: pointer;
+      transition: box-shadow 0.3s ease;
       z-index: 10;
     }
 
-    #chatContainer {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      padding: 1rem;
-      overflow-y: auto;
+    .glow-button:hover {
+      box-shadow: 0 0 35px #00ffff, 0 0 65px #00ffff;
     }
 
-    .chat-bubble {
-      max-width: 80%;
-      margin: 0.5em auto;
-      padding: 1em;
-      border-radius: 10px;
-      line-height: 1.5em;
-      text-align: center;
-    }
-
-    .user { background-color: #4b90ff; }
-    .ai { background-color: #444654; }
-
-    #inputArea {
-      display: flex;
-      flex-direction: column;
-      padding: 1rem;
-      background-color: #2c2f35;
-      gap: 0.5rem;
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      z-index: 999;
+      justify-content: center;
       align-items: center;
     }
 
-    textarea, select, button {
-      font-size: 1rem;
-      border: none;
-      border-radius: 5px;
+    .chat-container {
+      background: #111;
+      border-radius: 14px;
+      padding: 20px;
+      width: 90%;
+      max-width: 400px;
+      height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 0 30px #00ffff;
     }
 
-    textarea {
-      width: 100%;
-      max-width: 660px;
-      padding: 1rem;
-      resize: none;
-      text-align: center;
-    }
-
-    select {
-      background: #343541;
+    .chat-log {
+      flex-grow: 1;
+      overflow-y: auto;
       color: #fff;
-      padding: 0.5rem;
-      width: 100%;
-      max-width: 660px;
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-right: 10px;
     }
 
-    button.send-btn {
-      background-color: #4b90ff;
+    .user-msg, .bot-msg {
+      max-width: 75%;
+      padding: 10px;
+      border-radius: 10px;
+      line-height: 1.4;
+    }
+
+    .user-msg {
+      background: #444;
+      align-self: flex-end;
       color: white;
-      padding: 0.75rem 1rem;
+    }
+
+    .bot-msg {
+      background: #006666;
+      align-self: flex-start;
+      color: #fff;
+    }
+
+    form {
+      display: flex;
+      margin-top: 10px;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      padding: 8px;
+      border-radius: 6px;
+      border: none;
+      margin-right: 8px;
+      font-size: 14px;
+    }
+
+    button {
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: none;
+      background: #00ffff;
+      color: #000;
+      font-weight: bold;
       cursor: pointer;
     }
 
-    button.send-btn:hover { background-color: #3f7ee6; }
+    .vision-toggle {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #00ffff;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .vision-box {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #ccc;
+      display: none;
+      background: #222;
+      padding: 10px;
+      border-radius: 8px;
+    }
 
     @media (max-width: 768px) {
       .button-group {
@@ -179,6 +184,11 @@
         top: 50%;
         left: 50%;
       }
+
+      .popup .chat-container {
+        width: 90%;
+        height: 75vh;
+      }
     }
   </style>
 </head>
@@ -187,22 +197,22 @@
     <!-- Glow Button -->
     <div class="glow-button" onclick="togglePopup(); playSound();"></div>
 
-    <!-- Popup with Chat -->
+    <!-- Chat Popup -->
     <div class="popup" id="popup">
-      <div class="chat-popup">
-        <button class="close-btn" onclick="togglePopup()">✖</button>
-        <div id="chatContainer">
-          <div class="chat-bubble ai">
-            Hello, I’m JusticeLite. Describe your legal situation, and I’ll provide a preliminary assessment based on human rights principles.
-          </div>
-        </div>
-        <div id="inputArea">
-          <select id="caseType">
-            <option value="eviction">🏠 Wrongful Eviction</option>
-            <option value="abuse">🚓 Police Abuse</option>
-          </select>
-          <textarea id="caseInput" rows="2" placeholder="Type your case here..."></textarea>
-          <button class="send-btn" onclick="generateResponse()">Send</button>
+      <div class="chat-container">
+        <div id="chat-log" class="chat-log"></div>
+
+        <form id="chat-form">
+          <input type="text" id="user-input" placeholder="Ask a legal question..." autocomplete="off" required />
+          <button type="submit">Send</button>
+        </form>
+
+        <div class="vision-toggle" onclick="toggleVision()">📘 What is this?</div>
+        <div class="vision-box" id="vision-box">
+          <strong>JusticeLite Demo</strong><br>
+          This prototype simulates how an AI legal assistant might respond to everyday questions. In a real system, it would analyze laws, treaties, and ethics to suggest fair solutions.
+          <br><br>
+          This is part of the larger "AI Justice for All" vision — building the world’s first unbiased, AI-powered justice engine for courts, governments, and the public.
         </div>
       </div>
     </div>
@@ -233,37 +243,43 @@
       sound.play();
     }
 
-    const chatContainer = document.getElementById("chatContainer");
-    const fakeResponses = {
-      eviction: {
-        verdict: "Your eviction likely violated your human rights due to lack of due process and notice.",
-        articles: ["Article 8 – Right to respect for private and family life", "Article 6 – Right to a fair trial"],
-        reasoning: "Your landlord failed to provide proper legal notice. Article 8 of the ECHR protects the home and private life. Without legal grounds or a court ruling, the eviction likely constitutes a breach."
-      },
-      abuse: {
-        verdict: "The police action likely amounted to degrading and unlawful treatment.",
-        articles: ["Article 3 – Prohibition of torture", "Article 13 – Right to an effective remedy"],
-        reasoning: "A forced strip search without legal justification or immediate risk violates Article 3. Absence of remedy implies breach of Article 13."
-      }
-    };
+    const responses = [
+      "According to Article 8 of the ECHR, this could involve a breach of privacy rights.",
+      "This may be protected under the right to fair trial (Article 6, ECHR).",
+      "Freedom of expression may apply — see Article 10 of the European Convention.",
+      "Potential conflict with Article 3: prohibition of inhuman treatment."
+    ];
 
-    function appendBubble(text, sender) {
-      const bubble = document.createElement("div");
-      bubble.className = `chat-bubble ${sender}`;
-      bubble.textContent = text;
-      chatContainer.appendChild(bubble);
-      chatContainer.scrollTop = chatContainer.scrollHeight;
-    }
+    const chatLog = document.getElementById("chat-log");
+    const chatForm = document.getElementById("chat-form");
+    const userInput = document.getElementById("user-input");
 
-    function generateResponse() {
-      const type = document.getElementById("caseType").value;
-      const userText = document.getElementById("caseInput").value.trim();
-      if (!userText) return;
-      appendBubble(userText, "user");
-      document.getElementById("caseInput").value = "";
-      const res = fakeResponses[type];
-      const responseText = `✅ Verdict: ${res.verdict}\n\n📜 ECHR Articles: ${res.articles.join(", ")}\n\n💬 Reasoning: ${res.reasoning}`;
-      setTimeout(() => appendBubble(responseText, "ai"), 600);
+    chatForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const message = userInput.value;
+      userInput.value = "";
+
+      const userBubble = document.createElement("div");
+      userBubble.className = "user-msg";
+      userBubble.innerText = message;
+      chatLog.appendChild(userBubble);
+
+      const botBubble = document.createElement("div");
+      botBubble.className = "bot-msg";
+      botBubble.innerText = "Typing...";
+      chatLog.appendChild(botBubble);
+
+      chatLog.scrollTop = chatLog.scrollHeight;
+
+      setTimeout(() => {
+        botBubble.innerText = responses[Math.floor(Math.random() * responses.length)];
+        chatLog.scrollTop = chatLog.scrollHeight;
+      }, 1000);
+    });
+
+    function toggleVision() {
+      const box = document.getElementById("vision-box");
+      box.style.display = box.style.display === "block" ? "none" : "block";
     }
   </script>
 </body>
