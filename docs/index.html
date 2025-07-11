@@ -1,114 +1,126 @@
+from zipfile import ZipFile
+from pathlib import Path
+
+# Updated HTML content for JusticeLite chat with smaller centered chat window and dismiss-on-outside-click
+enhanced_centered_html = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>JusticeLite Chat – Enhanced</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JusticeLite Chat</title>
   <style>
     * { box-sizing: border-box; }
-    body {
+    body, html {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: rgba(0, 0, 0, 0.8);
-      color: #ececf1;
+      padding: 0;
       height: 100vh;
+      background: url('ai-girl-banner.png') center/cover no-repeat;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      backdrop-filter: blur(4px);
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .chatbox {
+      background-color: #202123;
+      color: #ececf1;
+      width: 90%;
+      max-width: 600px;
+      height: 60%;
+      border-radius: 12px;
       display: flex;
       flex-direction: column;
+      overflow: hidden;
+      position: relative;
     }
-
-    header {
-      background-color: #202123;
+    .chat-header {
+      background-color: #111;
       padding: 1rem;
       text-align: center;
-      font-size: 1.2rem;
       font-weight: bold;
+      font-size: 1.1rem;
     }
-
-    #chatContainer {
+    .chat-content {
       flex: 1;
-      overflow-y: auto;
       padding: 1rem;
+      overflow-y: auto;
       display: flex;
       flex-direction: column;
     }
-
     .chat-bubble {
+      padding: 0.8rem;
+      margin-bottom: 0.8rem;
+      border-radius: 10px;
       max-width: 85%;
-      padding: 1em;
-      margin: 0.5rem;
-      border-radius: 15px;
-      white-space: pre-line;
-      line-height: 1.6;
-      font-size: 1rem;
+      line-height: 1.4;
     }
-
     .user {
       align-self: flex-end;
       background-color: #4b90ff;
-      color: white;
     }
-
     .ai {
       align-self: flex-start;
       background-color: #444654;
     }
-
     .typing {
-      align-self: flex-start;
-      background-color: #444654;
       font-style: italic;
+      opacity: 0.6;
     }
-
-    #inputArea {
+    .chat-input {
       display: flex;
-      background-color: #202123;
-      padding: 1rem;
       gap: 0.5rem;
+      padding: 1rem;
+      background-color: #111;
     }
-
-    select, textarea, button {
+    textarea, select, button {
       font-size: 1rem;
       border: none;
-      border-radius: 5px;
+      border-radius: 6px;
     }
-
     textarea {
       flex: 1;
-      padding: 1rem;
+      padding: 0.75rem;
       resize: none;
     }
-
     select {
-      background: #343541;
-      color: #fff;
       padding: 0.5rem;
+      background-color: #343541;
+      color: white;
     }
-
     button {
       background-color: #4b90ff;
       color: white;
       padding: 0.75rem 1rem;
       cursor: pointer;
     }
-
-    button:hover {
-      background-color: #3f7ee6;
-    }
+    button:hover { background-color: #3f7ee6; }
   </style>
 </head>
 <body>
-  <header>⚖️ JusticeLite Enhanced</header>
-  <div id="chatContainer">
-    <div class="chat-bubble ai">
-      Hello, I’m JusticeLite. Describe your legal situation, and I’ll provide a preliminary assessment based on human rights principles.
+  <div class="overlay" id="overlay" onclick="handleOutsideClick(event)">
+    <div class="chatbox" onclick="event.stopPropagation()">
+      <div class="chat-header">⚖️ JusticeLite AI Prototype</div>
+      <div class="chat-content" id="chatContainer">
+        <div class="chat-bubble ai">Hello, I’m JusticeLite. Describe your legal situation for an AI evaluation.</div>
+      </div>
+      <div class="chat-input">
+        <select id="caseType">
+          <option value="eviction">🏠 Wrongful Eviction</option>
+          <option value="abuse">🚓 Police Abuse</option>
+        </select>
+        <textarea id="caseInput" rows="2" placeholder="Type your case..."></textarea>
+        <button onclick="generateResponse()">Send</button>
+      </div>
     </div>
-  </div>
-  <div id="inputArea">
-    <select id="caseType">
-      <option value="eviction">🏠 Wrongful Eviction</option>
-      <option value="abuse">🚓 Police Abuse</option>
-    </select>
-    <textarea id="caseInput" rows="2" placeholder="Type your case here..."></textarea>
-    <button onclick="generateResponse()">Send</button>
   </div>
 
   <script>
@@ -117,12 +129,12 @@
       eviction: {
         verdict: "Your eviction likely violated your human rights due to lack of due process and notice.",
         articles: ["Article 8 – Right to respect for private and family life", "Article 6 – Right to a fair trial"],
-        reasoning: "Your landlord failed to provide proper legal notice. Article 8 of the ECHR protects the home and private life. Without legal grounds or a court ruling, the eviction likely constitutes a breach."
+        reasoning: "Your landlord failed to provide proper legal notice. Article 8 protects the home and private life. The eviction likely constitutes a breach."
       },
       abuse: {
         verdict: "The police action likely amounted to degrading and unlawful treatment.",
         articles: ["Article 3 – Prohibition of torture", "Article 13 – Right to an effective remedy"],
-        reasoning: "A forced strip search without legal justification or immediate risk violates Article 3. Absence of remedy implies breach of Article 13."
+        reasoning: "A forced strip search without justification violates Article 3. No remedy implies breach of Article 13."
       }
     };
 
@@ -136,25 +148,42 @@
 
     function generateResponse() {
       const type = document.getElementById("caseType").value;
-      const userText = document.getElementById("caseInput").value.trim();
+      const input = document.getElementById("caseInput");
+      const userText = input.value.trim();
       if (!userText) return;
       appendBubble(userText, "user");
-      document.getElementById("caseInput").value = "";
+      input.value = "";
 
       const typing = document.createElement("div");
-      typing.className = "chat-bubble typing";
-      typing.textContent = "▌▌▌";
+      typing.className = "chat-bubble ai typing";
+      typing.textContent = "JusticeLite is thinking...";
       chatContainer.appendChild(typing);
       chatContainer.scrollTop = chatContainer.scrollHeight;
 
       setTimeout(() => {
-        chatContainer.removeChild(typing);
+        typing.remove();
         const res = fakeResponses[type];
         const responseText = `✅ Verdict: ${res.verdict}\n\n📜 ECHR Articles: ${res.articles.join(", ")}\n\n💬 Reasoning: ${res.reasoning}`;
         appendBubble(responseText, "ai");
-      }, 1000);
+      }, 1200);
+    }
+
+    function handleOutsideClick(e) {
+      const overlay = document.getElementById("overlay");
+      overlay.style.display = "none";
     }
   </script>
 </body>
 </html>
 """
+
+# Save new HTML to file
+centered_path = Path("/mnt/data/index.html")
+centered_path.write_text(enhanced_centered_html)
+
+# Zip the result
+centered_zip = Path("/mnt/data/JusticeLite_Centered_UI.zip")
+with ZipFile(centered_zip, 'w') as zipf:
+    zipf.write(centered_path, arcname="index.html")
+
+centered_zip.name
