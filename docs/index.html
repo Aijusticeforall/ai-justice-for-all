@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI Justice for All</title>
+  <title>AI Justice For All</title>
   <style>
     body, html {
       margin: 0;
@@ -53,6 +53,38 @@
       font-size: 1em;
     }
 
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 110%;
+      left: 0;
+      background-color: #3c2b1c;
+      border-radius: 10px;
+      padding: 8px 0;
+      z-index: 99;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 8px 20px;
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #5a3f2d;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
     .glow-button {
       position: absolute;
       top: 31%;
@@ -73,119 +105,6 @@
       box-shadow: 0 0 35px #00ffff, 0 0 65px #00ffff;
     }
 
-    .popup {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(4px);
-      z-index: 999;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .chat-container {
-      background: #111;
-      border-radius: 14px;
-      padding: 20px;
-      width: 95%;
-      max-width: 540px;
-      height: 72vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      box-shadow: 0 0 30px #00ffff;
-    }
-
-    .chat-log {
-      flex-grow: 1;
-      overflow-y: auto;
-      color: #fff;
-      font-size: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      padding-right: 10px;
-    }
-
-    .user-msg, .bot-msg {
-      max-width: 75%;
-      padding: 10px;
-      border-radius: 10px;
-      line-height: 1.4;
-    }
-
-    .user-msg {
-      background: #444;
-      align-self: flex-end;
-      color: white;
-    }
-
-    .bot-msg {
-      background: #006666;
-      align-self: flex-start;
-      color: #fff;
-    }
-
-    form {
-      display: flex;
-      margin-top: 10px;
-    }
-
-    input[type="text"] {
-      flex: 1;
-      padding: 8px;
-      border-radius: 6px;
-      border: none;
-      margin-right: 8px;
-      font-size: 14px;
-    }
-
-    button {
-      padding: 8px 12px;
-      border-radius: 6px;
-      border: none;
-      background: #00ffff;
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .vision-toggle {
-      margin-top: 10px;
-      font-size: 13px;
-      color: #00ffff;
-      cursor: pointer;
-      text-align: center;
-    }
-
-    .vision-box {
-      margin-top: 10px;
-      font-size: 13px;
-      color: #ccc;
-      display: none;
-      background: #222;
-      padding: 10px;
-      border-radius: 8px;
-    }
-
-    .disclaimer {
-      font-size: 11px;
-      text-align: center;
-      color: #777;
-      margin-top: 5px;
-    }
-
-    select {
-      margin-bottom: 10px;
-      padding: 6px;
-      border-radius: 6px;
-      font-size: 13px;
-    }
-
     @media (max-width: 768px) {
       .button-group {
         top: 80%;
@@ -198,143 +117,31 @@
         top: 50%;
         left: 50%;
       }
-
-      .popup .chat-container {
-        width: 90%;
-        height: 75vh;
-      }
     }
   </style>
 </head>
 <body>
   <div class="hero">
     <!-- Glow Button -->
-    <div class="glow-button" onclick="togglePopup(); playSound();"></div>
-
-    <!-- Chat Popup -->
-    <div class="popup" id="popup" onclick="hidePopup(event)">
-      <div class="chat-container" onclick="event.stopPropagation()">
-        <select id="caseType">
-          <option value="general">🔎 Select case type</option>
-          <option value="criminal">Criminal</option>
-          <option value="family">Family</option>
-          <option value="civil">Civil</option>
-          <option value="rights">Human Rights</option>
-        </select>
-
-        <div id="chat-log" class="chat-log"></div>
-
-        <form id="chat-form">
-          <input type="text" id="user-input" placeholder="Ask a legal question..." autocomplete="off" required />
-          <button type="submit">Send</button>
-        </form>
-
-        <div class="disclaimer">🔒 Your question stays private and local</div>
-
-        <div class="vision-toggle" onclick="toggleVision()">📘 What is this?</div>
-        <div class="vision-box" id="vision-box">
-          <strong>JusticeLite Demo</strong><br>
-          This prototype simulates how an AI legal assistant might respond to everyday questions. In a real system, it would analyze laws, treaties, and ethics to suggest fair solutions.
-          <br><br>
-          This is part of the larger "AI Justice for All" vision — building the world’s first unbiased, AI-powered justice engine for courts, governments, and the public.
-        </div>
-      </div>
-    </div>
+    <div class="glow-button" onclick="window.location.href='justice-lite-demo/'"></div>
 
     <!-- Button Group -->
     <div class="button-group">
       <a href="constitution.html" class="button"><span class="emoji">📜</span> Constitution</a>
-      <a href="simulator.html" class="button"><span class="emoji">🛠️</span> AI Simulator</a>
+
+      <div class="dropdown">
+        <a class="button"><span class="emoji">🛠️</span> AI Simulator ▾</a>
+        <div class="dropdown-content">
+          <a href="simulator.html">Simulator Overview</a>
+          <a href="justice-lite-demo/">Justice App</a>
+        </div>
+      </div>
+
       <a href="roadmap.html" class="button"><span class="emoji">🗺️</span> Roadmap</a>
       <a href="team.html" class="button"><span class="emoji">👥</span> Team</a>
       <a href="wiki.html" class="button"><span class="emoji">📚</span> Wiki</a>
       <a href="join.html" class="button"><span class="emoji">🧠</span> Join</a>
     </div>
-
-    <!-- Breath Sound -->
-    <audio id="breathSound" src="https://cdn.pixabay.com/download/audio/2022/06/17/audio_eb50067937.mp3?filename=soft-breath-113772.mp3" preload="auto"></audio>
   </div>
-
-  <script>
-    function togglePopup() {
-      const popup = document.getElementById('popup');
-      popup.style.display = 'flex';
-    }
-
-    function playSound() {
-      const sound = document.getElementById('breathSound');
-      sound.currentTime = 0;
-      sound.play();
-    }
-
-    function hidePopup(event) {
-      const popup = document.getElementById('popup');
-      popup.style.display = 'none';
-    }
-
-    const responses = {
-      general: [
-        "According to Article 8 of the ECHR, this may involve privacy rights.",
-        "The AI notes Article 6 regarding fair trial concerns.",
-        "This could involve Article 10: Freedom of Expression."
-      ],
-      criminal: [
-        "Criminal law cases often involve Articles 5 and 6 of the ECHR.",
-        "Ensure rights to legal representation under Article 6.",
-        "Inhuman treatment (Article 3) must be evaluated."
-      ],
-      family: [
-        "Custody issues are covered under Article 8 — family life.",
-        "Parental rights fall within private and family life protections.",
-        "Article 8 is key for family-related disputes."
-      ],
-      civil: [
-        "Civil disputes may trigger Articles 6 (trial) and 1 (property).",
-        "Article 1 Protocol 1 protects property and possessions.",
-        "Right to effective remedy — Article 13 — may apply."
-      ],
-      rights: [
-        "Potential violation of Article 3: inhuman treatment.",
-        "Freedom of religion or belief — Article 9.",
-        "Discrimination concerns fall under Article 14."
-      ]
-    };
-
-    const chatLog = document.getElementById("chat-log");
-    const chatForm = document.getElementById("chat-form");
-    const userInput = document.getElementById("user-input");
-    const caseType = document.getElementById("caseType");
-
-    chatForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const message = userInput.value;
-      userInput.value = "";
-
-      const userBubble = document.createElement("div");
-      userBubble.className = "user-msg";
-      userBubble.innerText = message;
-      chatLog.appendChild(userBubble);
-
-      const botBubble = document.createElement("div");
-      botBubble.className = "bot-msg";
-      botBubble.innerText = "Typing...";
-      chatLog.appendChild(botBubble);
-
-      chatLog.scrollTop = chatLog.scrollHeight;
-
-      const type = caseType.value || 'general';
-
-      setTimeout(() => {
-        const list = responses[type] || responses.general;
-        botBubble.innerText = list[Math.floor(Math.random() * list.length)];
-        chatLog.scrollTop = chatLog.scrollHeight;
-      }, 1000);
-    });
-
-    function toggleVision() {
-      const box = document.getElementById("vision-box");
-      box.style.display = box.style.display === "block" ? "none" : "block";
-    }
-  </script>
 </body>
 </html>
