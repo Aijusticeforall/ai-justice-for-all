@@ -3,145 +3,116 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI Justice For All</title>
+  <title>JusticeLite Demo</title>
   <style>
-    body, html {
+    body {
       margin: 0;
       padding: 0;
-      height: 100vh;
       font-family: 'Segoe UI', sans-serif;
-      background-color: black;
-    }
-
-    .hero {
-      position: relative;
-      background-image: url("ai-girl-banner.png");
-      background-size: cover;
-      background-position: center;
-      height: 100vh;
-      width: 100%;
-    }
-
-    .button-group {
-      position: absolute;
-      top: 50%;
-      left: 68%;
-      transform: translateX(-30%);
+      background-color: #0a0a0a;
+      color: #fff;
       display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .button {
-      background-color: #3c2b1c;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 20px;
-      text-decoration: none;
-      font-size: 14px;
-      display: inline-flex;
+      flex-direction: column;
       align-items: center;
-      gap: 6px;
-      transition: background 0.3s ease;
+      height: 100vh;
     }
 
-    .button:hover {
-      background-color: #5a3f2d;
+    header {
+      padding: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #00ffff;
+      text-align: center;
     }
 
-    .emoji {
-      font-size: 1em;
+    .chat-container {
+      background-color: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 20px;
+      width: 90%;
+      max-width: 800px;
+      height: 70vh;
+      overflow-y: auto;
+      box-shadow: 0 0 20px #00ffff44;
     }
 
-    .dropdown {
-      position: relative;
+    .message {
+      margin-bottom: 16px;
+      line-height: 1.5;
     }
 
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      top: 110%;
-      left: 0;
-      background-color: #3c2b1c;
-      border-radius: 10px;
-      padding: 8px 0;
-      z-index: 99;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    .user {
+      color: #00ffff;
     }
 
-    .dropdown-content a {
-      display: block;
-      padding: 8px 20px;
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
+    .ai {
+      color: #ffffff;
     }
 
-    .dropdown-content a:hover {
-      background-color: #5a3f2d;
+    .input-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      width: 90%;
+      max-width: 800px;
     }
 
-    .dropdown:hover .dropdown-content {
-      display: block;
+    input {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      background-color: #222;
+      color: #fff;
+      outline: none;
     }
 
-    .glow-button {
-      position: absolute;
-      top: 31%;
-      left: 25%;
-      transform: translate(-50%, -50%);
-      transform-origin: center;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #00ffff 0%, #006666 70%);
-      box-shadow: 0 0 25px #00ffff, 0 0 50px #00ffff;
-      cursor: pointer;
-      transition: box-shadow 0.3s ease;
-      z-index: 10;
-    }
-
-    .glow-button:hover {
-      box-shadow: 0 0 35px #00ffff, 0 0 65px #00ffff;
-    }
-
-    @media (max-width: 768px) {
-      .button-group {
-        top: 80%;
-        left: 50%;
-        transform: translateX(-50%);
-        justify-content: center;
-      }
-
-      .glow-button {
-        top: 50%;
-        left: 50%;
-      }
+    input::placeholder {
+      color: #777;
     }
   </style>
 </head>
 <body>
-  <div class="hero">
-    <!-- Glow Button -->
-    <div class="glow-button" onclick="window.location.href='justice-lite-demo/'"></div>
+  <header>⚖️ JusticeLite – Legal Reasoning Demo</header>
 
-    <!-- Button Group -->
-    <div class="button-group">
-      <a href="constitution.html" class="button"><span class="emoji">📜</span> Constitution</a>
-
-      <div class="dropdown">
-        <a class="button"><span class="emoji">🛠️</span> AI Simulator ▾</a>
-        <div class="dropdown-content">
-          <a href="simulator.html">Simulator Overview</a>
-          <a href="justice-lite-demo/">Justice App</a>
-        </div>
-      </div>
-
-      <a href="roadmap.html" class="button"><span class="emoji">🗺️</span> Roadmap</a>
-      <a href="team.html" class="button"><span class="emoji">👥</span> Team</a>
-      <a href="wiki.html" class="button"><span class="emoji">📚</span> Wiki</a>
-      <a href="join.html" class="button"><span class="emoji">🧠</span> Join</a>
-    </div>
+  <div class="chat-container" id="chat">
+    <div class="message ai">Welcome to the JusticeLite Prototype. Type your case question below.</div>
   </div>
+
+  <div class="input-container">
+    <input type="text" id="userInput" placeholder="Enter a legal question or case..." onkeydown="handleKey(event)" />
+  </div>
+
+  <script>
+    function handleKey(event) {
+      if (event.key === "Enter") {
+        const input = document.getElementById("userInput");
+        const text = input.value.trim();
+        if (!text) return;
+
+        const chat = document.getElementById("chat");
+
+        const userMsg = document.createElement("div");
+        userMsg.className = "message user";
+        userMsg.textContent = "You: " + text;
+        chat.appendChild(userMsg);
+
+        const aiMsg = document.createElement("div");
+        aiMsg.className = "message ai";
+        aiMsg.textContent = "AI is evaluating...";
+        chat.appendChild(aiMsg);
+
+        chat.scrollTop = chat.scrollHeight;
+        input.value = "";
+
+        setTimeout(() => {
+          aiMsg.textContent = "AI: Based on your case, this could involve Articles 6 and 8 of the ECHR. Further legal interpretation would consider the proportionality and evidence provided.";
+          chat.scrollTop = chat.scrollHeight;
+        }, 1200);
+      }
+    }
+  </script>
 </body>
 </html>
