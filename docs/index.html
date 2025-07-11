@@ -1,174 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Justice for All</title>
   <style>
-    body {
+    body,
+    html {
       margin: 0;
-      font-family: sans-serif;
-      background: url('ai-girl-banner.png') no-repeat center center fixed;
+      padding: 0;
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: black;
+    }
+
+    .hero {
+      position: relative;
+      background-image: url("ai-girl-banner.png");
       background-size: cover;
-      color: white;
-      overflow-x: hidden;
+      background-position: center;
+      height: 100vh;
+      width: 100%;
     }
 
-    h1 {
-      font-size: 4rem;
-      text-align: center;
-      margin-top: 15vh;
-    }
-
-    .button-container {
+    .button-group {
+      position: absolute;
+      top: 50%;
+      left: 75%;
+      transform: translate(-50%, -50%);
       display: flex;
-      justify-content: center;
+      gap: 14px;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 2rem;
     }
 
-    .menu-button {
-      background: rgba(50, 50, 50, 0.7);
-      border: none;
-      border-radius: 999px;
-      padding: 10px 20px;
+    .button {
+      background-color: #3c2b1c;
       color: white;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
+      padding: 10px 20px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.3s ease;
     }
 
-    .menu-button:hover {
-      background: rgba(255, 255, 255, 0.2);
+    .button:hover {
+      background-color: #5a3f2d;
     }
 
     .glow-button {
       position: absolute;
-      left: 41%;
-      top: 33%;
+      top: 31%;
+      left: 25%;
       transform: translate(-50%, -50%);
-      background: rgba(0, 255, 255, 0.1);
-      border: 1px solid cyan;
-      color: white;
-      padding: 8px 16px;
-      border-radius: 999px;
-      box-shadow: 0 0 10px cyan, 0 0 20px cyan;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #00ffff 0%, #006666 70%);
+      box-shadow: 0 0 25px #00ffff, 0 0 50px #00ffff;
       cursor: pointer;
       z-index: 10;
-      font-size: 0.9rem;
     }
 
-    .chat-popup {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 40%;
-      max-width: 600px;
-      min-width: 300px;
-      background-color: rgba(10, 10, 10, 0.9);
-      border-radius: 12px;
-      padding: 20px;
+    .glow-button:hover {
+      box-shadow: 0 0 35px #00ffff, 0 0 65px #00ffff;
+    }
+
+    #chatOverlay {
       display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(8px);
+      background-color: rgba(0, 0, 0, 0.4);
+      justify-content: center;
+      align-items: center;
       z-index: 100;
-      box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
     }
 
-    .chat-popup textarea {
-      width: 100%;
-      height: 120px;
-      border-radius: 8px;
+    #chatBox {
+      width: 60%;
+      height: 70%;
+      background-color: #343541;
+      border-radius: 10px;
+      box-shadow: 0 0 25px #00ffff;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      color: #fff;
+    }
+
+    #chatHeader {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+
+    #chatHeader button {
+      background-color: #4b90ff;
+      color: white;
       border: none;
+      border-radius: 4px;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+    }
+
+    #chatMessages {
+      flex: 1;
+      overflow-y: auto;
+      margin-top: 50px;
+    }
+
+    #chatInputArea {
+      display: flex;
+      gap: 10px;
+      padding-top: 10px;
+    }
+
+    #chatInputArea textarea,
+    #chatInputArea select,
+    #chatInputArea button {
       padding: 10px;
-      font-size: 1rem;
+      border-radius: 5px;
+      border: none;
+      font-size: 14px;
+    }
+
+    #chatInputArea textarea {
+      flex: 1;
       resize: none;
     }
 
-    .chat-popup button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      background-color: cyan;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .explanation {
-      text-align: center;
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.75);
-    }
-
-    .close-chat {
-      position: absolute;
-      top: 10px;
-      right: 14px;
-      font-size: 1.2rem;
-      background: none;
+    #chatInputArea button {
+      background-color: #4b90ff;
       color: white;
-      border: none;
       cursor: pointer;
-    }
-
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2.5rem;
-        margin-top: 10vh;
-      }
-      .chat-popup {
-        width: 90%;
-      }
-      .glow-button {
-        left: 45%;
-        top: 30%;
-      }
     }
   </style>
 </head>
 <body>
-  <h1>AI Justice for All</h1>
+  <div class="hero">
+    <div class="glow-button" onclick="openChat();"></div>
 
-  <div class="button-container">
-    <button class="menu-button">📜 Constitution</button>
-    <button class="menu-button">⚖️ AI Simulator</button>
-    <button class="menu-button">🗺️ Roadmap</button>
-    <button class="menu-button">👥 Team</button>
-    <button class="menu-button">📚 Wiki</button>
-    <button class="menu-button">🙏 Join</button>
+    <div class="button-group">
+      <a href="constitution.html" class="button">📜 Constitution</a>
+      <a href="simulator.html" class="button">🛠️ Simulator</a>
+      <a href="roadmap.html" class="button">🗺️ Roadmap</a>
+      <a href="team.html" class="button">👥 Team</a>
+      <a href="wiki.html" class="button">📚 Wiki</a>
+      <a href="join.html" class="button">🧠 Join</a>
+    </div>
   </div>
 
-  <button class="glow-button" onclick="openChat()">🔮 Ask JusticeLite</button>
-
-  <div class="chat-popup" id="chatPopup">
-    <button class="close-chat" onclick="closeChat()">×</button>
-    <p>Hello, I’m JusticeLite. Describe your legal situation, and I’ll provide a preliminary assessment.</p>
-    <textarea placeholder="Type your case here..."></textarea>
-    <button>Send</button>
-  </div>
-
-  <div class="explanation">
-    JusticeLite offers early-stage legal guidance using human rights principles. Ideal for users seeking insight before contacting a lawyer or court.
+  <div id="chatOverlay" onclick="closeChat(event)">
+    <div id="chatBox" onclick="event.stopPropagation();">
+      <div id="chatHeader">
+        <button onclick="expandChat();">⬜</button>
+        <button onclick="closeChat(event);">✖</button>
+      </div>
+      <div id="chatMessages">JusticeLite: Hello, how can I help?</div>
+      <div id="chatInputArea">
+        <select>
+          <option>Case Type</option>
+        </select>
+        <textarea placeholder="Enter details..."></textarea>
+        <button>Send</button>
+      </div>
+      <div style="margin-top: 10px; font-size: 12px;">JusticeLite provides AI-driven legal insight based on human rights principles.</div>
+    </div>
   </div>
 
   <script>
-    const popup = document.getElementById('chatPopup');
-
     function openChat() {
-      popup.style.display = 'block';
+      document.getElementById('chatOverlay').style.display = 'flex';
     }
 
-    function closeChat() {
-      popup.style.display = 'none';
+    function closeChat(e) {
+      document.getElementById('chatOverlay').style.display = 'none';
     }
 
-    window.addEventListener('click', function (e) {
-      if (popup.style.display === 'block' && !popup.contains(e.target) && !e.target.classList.contains('glow-button')) {
-        popup.style.display = 'none';
-      }
-    });
+    function expandChat() {
+      const chatBox = document.getElementById('chatBox');
+      chatBox.style.width = chatBox.style.width === '90%' ? '60%' : '90%';
+    }
   </script>
 </body>
 </html>
