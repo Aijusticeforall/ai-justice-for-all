@@ -74,19 +74,101 @@
 
     .popup {
       display: none;
-      position: absolute;
-      top: 44%;
-      left: 25%;
-      transform: translateY(-50%);
-      background-color: rgba(20, 20, 20, 0.95);
-      color: #fff;
-      padding: 14px 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #00ffff;
-      width: 260px;
-      font-size: 14px;
-      z-index: 9;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
     }
+
+    .chat-popup {
+      background-color: #202123;
+      width: 90%;
+      max-width: 720px;
+      height: 80vh;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: none;
+      color: #fff;
+      font-size: 1.2rem;
+      border: none;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    #chatContainer {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      overflow-y: auto;
+    }
+
+    .chat-bubble {
+      max-width: 80%;
+      margin: 0.5em auto;
+      padding: 1em;
+      border-radius: 10px;
+      line-height: 1.5em;
+      text-align: center;
+    }
+
+    .user { background-color: #4b90ff; }
+    .ai { background-color: #444654; }
+
+    #inputArea {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      background-color: #2c2f35;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    textarea, select, button {
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+    }
+
+    textarea {
+      width: 100%;
+      max-width: 660px;
+      padding: 1rem;
+      resize: none;
+      text-align: center;
+    }
+
+    select {
+      background: #343541;
+      color: #fff;
+      padding: 0.5rem;
+      width: 100%;
+      max-width: 660px;
+    }
+
+    button.send-btn {
+      background-color: #4b90ff;
+      color: white;
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+    }
+
+    button.send-btn:hover { background-color: #3f7ee6; }
 
     @media (max-width: 768px) {
       .button-group {
@@ -100,11 +182,6 @@
         top: 50%;
         left: 50%;
       }
-
-      .popup {
-        left: 10%;
-        width: 80%;
-      }
     }
   </style>
 </head>
@@ -113,10 +190,24 @@
     <!-- Glow Button -->
     <div class="glow-button" onclick="togglePopup(); playSound();"></div>
 
-    <!-- Popup -->
+    <!-- Popup with Chat -->
     <div class="popup" id="popup">
-      ⚖️ <strong>JusticeLite Prototype</strong><br><br>
-      A live simulation model where you can explore AI-powered legal evaluations. Not final. Just the beginning.
+      <div class="chat-popup">
+        <button class="close-btn" onclick="togglePopup()">✖</button>
+        <div id="chatContainer">
+          <div class="chat-bubble ai">
+            Hello, I’m JusticeLite. Describe your legal situation, and I’ll provide a preliminary assessment based on human rights principles.
+          </div>
+        </div>
+        <div id="inputArea">
+          <select id="caseType">
+            <option value="eviction">🏠 Wrongful Eviction</option>
+            <option value="abuse">🚓 Police Abuse</option>
+          </select>
+          <textarea id="caseInput" rows="2" placeholder="Type your case here..."></textarea>
+          <button class="send-btn" onclick="generateResponse()">Send</button>
+        </div>
+      </div>
     </div>
 
     <!-- Button Group -->
@@ -136,13 +227,46 @@
   <script>
     function togglePopup() {
       const popup = document.getElementById('popup');
-      popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+      popup.style.display = popup.style.display === 'flex' ? 'none' : 'flex';
     }
 
     function playSound() {
       const sound = document.getElementById('breathSound');
       sound.currentTime = 0;
       sound.play();
+    }
+
+    const chatContainer = document.getElementById("chatContainer");
+    const fakeResponses = {
+      eviction: {
+        verdict: "Your eviction likely violated your human rights due to lack of due process and notice.",
+        articles: ["Article 8 – Right to respect for private and family life", "Article 6 – Right to a fair trial"],
+        reasoning: "Your landlord failed to provide proper legal notice. Article 8 of the ECHR protects the home and private life. Without legal grounds or a court ruling, the eviction likely constitutes a breach."
+      },
+      abuse: {
+        verdict: "The police action likely amounted to degrading and unlawful treatment.",
+        articles: ["Article 3 – Prohibition of torture", "Article 13 – Right to an effective remedy"],
+        reasoning: "A forced strip search without legal justification or immediate risk violates Article 3. Absence of remedy implies breach of Article 13."
+      }
+    };
+
+    function appendBubble(text, sender) {
+      const bubble = document.createElement("div");
+      bubble.className = `chat-bubble ${sender}`;
+      bubble.textContent = text;
+      chatContainer.appendChild(bubble);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    function generateResponse() {
+      const type = document.getElementById("caseType").value;
+      const userText = document.getElementById("caseInput").value.trim();
+      if (!userText) return;
+      appendBubble(userText, "user");
+      document.getElementById("caseInput").value = "";
+      const res = fakeResponses[type];
+      const responseText = `✅ Verdict: ${res.verdict}\n\n📜 ECHR Articles: ${res.articles.join(", ")}\n\n💬 Reasoning: ${res.reasoning}`;
+      setTimeout(() => appendBubble(responseText, "ai"), 600);
     }
   </script>
 </body>
