@@ -4,196 +4,193 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Justice for All</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
-      background: url('ai-girl-banner.png') no-repeat center center fixed;
-      background-size: cover;
       height: 100%;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
     }
-
-    .glow-button {
-      position: absolute;
-      top: 35%;
-      left: 42%;
-      transform: translate(-50%, -50%);
-      padding: 12px 20px;
-      font-size: 18px;
+    body {
+      background: url('docs/ai-girl-banner.png') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       color: white;
-      background-color: rgba(0, 255, 255, 0.2);
-      border: 2px solid cyan;
-      border-radius: 10px;
-      box-shadow: 0 0 20px cyan;
-      cursor: pointer;
-      z-index: 10;
+      text-align: center;
     }
-
-    .chat-container {
-      position: fixed;
-      top: 50%;
-      left: 50%;
+    h1 {
+      font-size: 4em;
+      margin-bottom: 20px;
+    }
+    .glow-btn {
+      position: absolute;
+      left: 44%;
+      top: 43%;
       transform: translate(-50%, -50%);
-      width: 480px;
-      height: 600px;
-      background-color: rgba(20, 20, 20, 0.96);
-      border-radius: 18px;
-      padding: 20px;
-      box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+      padding: 8px 18px;
+      background: #000;
+      color: #fff;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 10px #0ff;
+      font-weight: bold;
+      z-index: 5;
+    }
+    .nav-buttons {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .nav-buttons a {
+      padding: 6px 14px;
+      background: rgba(0,0,0,0.6);
+      border-radius: 15px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9em;
+    }
+    .chat-window {
       display: none;
       flex-direction: column;
-      justify-content: space-between;
-      z-index: 999;
+      position: fixed;
+      bottom: 5%;
+      right: 5%;
+      width: 360px;
+      height: 460px;
+      background: rgba(0,0,0,0.7);
+      border-radius: 20px;
+      padding: 15px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+      z-index: 10;
+      color: white;
     }
-
-    .chat-expanded {
-      width: 960px;
+    .chat-window.expanded {
+      width: 720px;
+      height: 460px;
     }
-
     .chat-header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      font-weight: bold;
-      color: white;
+      margin-bottom: 10px;
     }
-
-    .chat-body {
-      flex-grow: 1;
-      margin: 20px 0;
+    .chat-messages {
+      flex: 1;
       overflow-y: auto;
-      background-color: rgba(255, 255, 255, 0.05);
+      padding: 5px;
+      border: 1px solid #333;
       border-radius: 10px;
-      padding: 10px;
-      color: white;
+      background-color: rgba(255,255,255,0.05);
     }
-
     .chat-input {
+      margin-top: 10px;
       display: flex;
-      gap: 10px;
     }
-
     .chat-input input {
       flex: 1;
-      padding: 10px;
-      border-radius: 8px;
+      padding: 8px;
+      border-radius: 10px;
       border: none;
     }
-
     .chat-input button {
-      padding: 10px 15px;
-      border: none;
-      border-radius: 8px;
-      background-color: cyan;
-      color: black;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .window-controls {
-      display: flex;
-      gap: 10px;
-    }
-
-    .window-controls button {
-      width: 25px;
-      height: 25px;
-      background-color: #444;
-      border: 1px solid white;
-      color: white;
-      font-size: 14px;
-      border-radius: 3px;
-      cursor: pointer;
-    }
-
-    .chat-explanation {
-      margin-top: 8px;
-      color: #ccc;
-      font-size: 13px;
-      text-align: center;
-    }
-
-    .sidebar-buttons {
-      position: absolute;
-      top: 30%;
-      right: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .sidebar-buttons a {
       padding: 8px 12px;
-      background-color: rgba(255, 255, 255, 0.1);
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-size: 14px;
-      text-align: center;
-      transition: background-color 0.3s;
+      margin-left: 5px;
+      background-color: #0ff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
     }
-
-    .sidebar-buttons a:hover {
-      background-color: rgba(255, 255, 255, 0.25);
+    .explanation {
+      font-size: 0.9em;
+      color: #ccc;
+      margin-top: 10px;
+    }
+    .bubble {
+      background-color: #111;
+      border-radius: 20px;
+      padding: 8px 12px;
+      margin: 5px 0;
+      max-width: 90%;
+      align-self: flex-start;
+    }
+    .thinking {
+      font-style: italic;
+      color: #888;
     }
   </style>
 </head>
 <body>
+  <h1>AI Justice for All</h1>
+  <button class="glow-btn" onclick="toggleChat()">🔮 Ask JusticeLite</button>
 
-  <div class="glow-button" onclick="toggleChat()">🧠 Ask JusticeLite</div>
-
-  <div class="chat-container" id="chatBox">
-    <div class="chat-header">
-      JusticeLite
-      <div class="window-controls">
-        <button onclick="expandChat()">▭</button>
-        <button onclick="closeChat()">✖</button>
-      </div>
-    </div>
-    <div class="chat-body" id="chatBody">
-      Hello, I'm JusticeLite. Describe your legal situation, and I’ll provide a preliminary assessment.
-    </div>
-    <div class="chat-input">
-      <input type="text" placeholder="Type your case here..." />
-      <button>Send</button>
-    </div>
-    <div class="chat-explanation">
-      JusticeLite offers early-stage legal guidance using human rights principles. Ideal for users seeking insight before contacting a lawyer or court.
-    </div>
+  <div class="nav-buttons">
+    <a href="constitution.html">📜 Constitution</a>
+    <a href="simulator.html">⚖️ AI Simulator</a>
+    <a href="roadmap.html">🗺️ Roadmap</a>
+    <a href="team.html">👥 Team</a>
+    <a href="wiki.html">📚 Wiki</a>
+    <a href="join.html">🙌 Join</a>
   </div>
 
-  <div class="sidebar-buttons">
-    <a href="constitution.html">📜 Constitution</a>
-    <a href="simulator.html">🧪 Simulator</a>
-    <a href="roadmap.html">📍 Roadmap</a>
-    <a href="wiki.html">📚 Wiki</a>
-    <a href="team.html">👥 Team</a>
-    <a href="join.html">✍️ Join Us</a>
+  <div id="chatWindow" class="chat-window">
+    <div class="chat-header">
+      <strong>JusticeLite</strong>
+      <div>
+        <button onclick="expandChat()">🗖</button>
+        <button onclick="toggleChat()">✖</button>
+      </div>
+    </div>
+    <div class="chat-messages" id="messages">
+      <div class="bubble">Hello, I'm JusticeLite. How can I assist you today?</div>
+    </div>
+    <div class="chat-input">
+      <input id="userInput" type="text" placeholder="Ask your legal question..." onkeydown="if(event.key==='Enter'){sendMessage()}" />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+    <div class="explanation">
+      <p>This assistant is designed to simulate how AI can explain legal rights and ethical decisions clearly and fairly. For use in early testing by educators, researchers, and the public.</p>
+    </div>
   </div>
 
   <script>
-    const chatBox = document.getElementById("chatBox");
-
+    const chat = document.getElementById('chatWindow');
     function toggleChat() {
-      chatBox.classList.remove("chat-expanded");
-      chatBox.style.display = "flex";
+      chat.style.display = chat.style.display === 'flex' ? 'none' : 'flex';
     }
-
     function expandChat() {
-      chatBox.classList.toggle("chat-expanded");
+      chat.classList.toggle('expanded');
     }
+    function sendMessage() {
+      const input = document.getElementById('userInput');
+      const msg = input.value.trim();
+      if (msg) {
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        bubble.textContent = msg;
+        document.getElementById('messages').appendChild(bubble);
+        input.value = '';
 
-    function closeChat() {
-      chatBox.style.display = "none";
-    }
+        const thinking = document.createElement('div');
+        thinking.className = 'thinking';
+        thinking.textContent = 'JusticeLite is thinking...';
+        document.getElementById('messages').appendChild(thinking);
 
-    // Close chat when clicking outside
-    window.addEventListener("click", function(e) {
-      if (chatBox.style.display === "flex" && !chatBox.contains(e.target) && !e.target.classList.contains("glow-button")) {
-        closeChat();
+        setTimeout(() => {
+          thinking.remove();
+          const reply = document.createElement('div');
+          reply.className = 'bubble';
+          reply.textContent = 'This is a placeholder response.';
+          document.getElementById('messages').appendChild(reply);
+        }, 1500);
       }
-    });
+    }
   </script>
 </body>
 </html>
