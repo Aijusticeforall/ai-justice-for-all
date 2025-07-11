@@ -45,47 +45,43 @@
       transition: background 0.3s ease;
     }
 
-    .glow-button:hover {
-  transform: none !important;
+  .glow-button:hover {
   box-shadow: 0 0 35px #00ffff, 0 0 65px #00ffff;
 }
 
-    .emoji {
-      font-size: 1em;
-    }
+.emoji {
+  font-size: 1em;
+}
 
-  .glow-button {
+.glow-button {
   position: absolute;
   top: 31%;
   left: 25%;
   transform: translate(-50%, -50%);
-  transform-origin: center; /* This prevents button from shifting on hover */
+  transform-origin: center;
   width: 36px;
   height: 36px;
   border-radius: 50%;
   background: radial-gradient(circle, #00ffff 0%, #006666 70%);
   box-shadow: 0 0 25px #00ffff, 0 0 50px #00ffff;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: box-shadow 0.3s ease;
   z-index: 10;
 }
-    .glow-button:hover {
-      transform: scale(1.1);
-    }
 
-    .popup {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(4px);
-      z-index: 999;
-      justify-content: center;
-      align-items: center;
-    }
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+}
 
     .chat-popup {
       background-color: #202123;
