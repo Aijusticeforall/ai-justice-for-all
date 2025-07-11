@@ -91,8 +91,8 @@
       background: #111;
       border-radius: 14px;
       padding: 20px;
-      width: 90%;
-      max-width: 400px;
+      width: 95%;
+      max-width: 500px;
       height: 70vh;
       display: flex;
       flex-direction: column;
@@ -198,8 +198,8 @@
     <div class="glow-button" onclick="togglePopup(); playSound();"></div>
 
     <!-- Chat Popup -->
-    <div class="popup" id="popup">
-      <div class="chat-container">
+    <div class="popup" id="popup" onclick="hidePopup(event)">
+      <div class="chat-container" onclick="event.stopPropagation()">
         <div id="chat-log" class="chat-log"></div>
 
         <form id="chat-form">
@@ -234,13 +234,18 @@
   <script>
     function togglePopup() {
       const popup = document.getElementById('popup');
-      popup.style.display = popup.style.display === 'flex' ? 'none' : 'flex';
+      popup.style.display = 'flex';
     }
 
     function playSound() {
       const sound = document.getElementById('breathSound');
       sound.currentTime = 0;
       sound.play();
+    }
+
+    function hidePopup(event) {
+      const popup = document.getElementById('popup');
+      popup.style.display = 'none';
     }
 
     const responses = [
