@@ -1,10 +1,8 @@
-# Let's now rewrite the entire index.html with the restored original layout, floating popup chat, and all features.
-updated_index_html = '''
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Justice For All</title>
   <style>
     body, html {
@@ -12,9 +10,9 @@ updated_index_html = '''
       padding: 0;
       height: 100vh;
       font-family: 'Segoe UI', sans-serif;
-      background: black url('ai-girl-banner.png') no-repeat center center fixed;
+      background-image: url("ai-girl-banner.png");
       background-size: cover;
-      overflow: hidden;
+      background-position: center;
     }
 
     .glow-button {
@@ -22,7 +20,6 @@ updated_index_html = '''
       top: 31%;
       left: 25%;
       transform: translate(-50%, -50%);
-      transform-origin: center;
       width: 36px;
       height: 36px;
       border-radius: 50%;
@@ -37,69 +34,6 @@ updated_index_html = '''
       box-shadow: 0 0 35px #00ffff, 0 0 65px #00ffff;
     }
 
-    .button-group {
-      position: absolute;
-      top: 50%;
-      left: 68%;
-      transform: translateX(-30%);
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .button {
-      background-color: #3c2b1c;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 20px;
-      text-decoration: none;
-      font-size: 14px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: background 0.3s ease;
-    }
-
-    .button:hover {
-      background-color: #5a3f2d;
-    }
-
-    .emoji {
-      font-size: 1em;
-    }
-
-    .dropdown {
-      position: relative;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      top: 110%;
-      left: 0;
-      background-color: #3c2b1c;
-      border-radius: 10px;
-      padding: 8px 0;
-      z-index: 99;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    }
-
-    .dropdown-content a {
-      display: block;
-      padding: 8px 20px;
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #5a3f2d;
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
     .popup {
       display: none;
       position: fixed;
@@ -107,91 +41,87 @@ updated_index_html = '''
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-color: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(4px);
+      background-color: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(5px);
       z-index: 999;
       justify-content: center;
       align-items: center;
     }
 
-    .popup-content {
-      background-color: #1a1a1a;
-      padding: 20px;
+    .chat-box {
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 2px solid #00ffff;
       border-radius: 10px;
       width: 90%;
-      max-width: 500px;
+      max-width: 600px;
+      padding: 20px;
       color: white;
-      text-align: left;
-      box-shadow: 0 0 20px #00ffff;
+      box-shadow: 0 0 15px #00ffff;
     }
 
-    @media (max-width: 768px) {
-      .button-group {
-        top: 80%;
-        left: 50%;
-        transform: translateX(-50%);
-        justify-content: center;
-      }
+    .chat-header {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #00ffff;
+    }
 
-      .glow-button {
-        top: 50%;
-        left: 50%;
-      }
+    .chat-input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .chat-response {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #ddd;
+    }
+
+    .chat-info {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #888;
     }
   </style>
 </head>
 <body>
-  <div class="glow-button" onclick="togglePopup(); playSound();"></div>
+  <div class="glow-button" onclick="togglePopup()"></div>
 
-  <div class="button-group">
-    <a href="constitution.html" class="button"><span class="emoji">📜</span> Constitution</a>
-
-    <div class="dropdown">
-      <a class="button"><span class="emoji">🛠️</span> AI Simulator ▾</a>
-      <div class="dropdown-content">
-        <a href="simulator.html">Simulator Overview</a>
-        <a href="justice-lite-demo/">Justice App</a>
-      </div>
-    </div>
-
-    <a href="roadmap.html" class="button"><span class="emoji">🗺️</span> Roadmap</a>
-    <a href="team.html" class="button"><span class="emoji">👥</span> Team</a>
-    <a href="wiki.html" class="button"><span class="emoji">📚</span> Wiki</a>
-    <a href="join.html" class="button"><span class="emoji">🧠</span> Join</a>
-  </div>
-
-  <div class="popup" id="popup" onclick="closePopup(event)">
-    <div class="popup-content" onclick="event.stopPropagation();">
-      <strong>JusticeLite AI:</strong><br><br>
-      Welcome to a demonstration of AI legal evaluation. Enter your scenario below and receive a simulation.
-      <br><br>
-      (This is a prototype.)
+  <div class="popup" id="popup" onclick="closeOnBackground(event)">
+    <div class="chat-box">
+      <div class="chat-header">JusticeLite AI:</div>
+      <div id="chat-response" class="chat-response">Welcome to a demonstration of AI legal evaluation. Enter your scenario below and receive a simulation.</div>
+      <input type="text" id="user-input" class="chat-input" placeholder="Describe your case..." onkeypress="handleKeyPress(event)">
+      <div class="chat-info">(This is a prototype. The simulation is not legally binding.)</div>
     </div>
   </div>
-
-  <audio id="clickSound" src="breath-click.mp3" preload="auto"></audio>
 
   <script>
     function togglePopup() {
-      document.getElementById("popup").style.display = "flex";
+      const popup = document.getElementById('popup');
+      popup.style.display = 'flex';
     }
 
-    function closePopup(e) {
-      document.getElementById("popup").style.display = "none";
+    function closeOnBackground(e) {
+      if (e.target.id === 'popup') {
+        document.getElementById('popup').style.display = 'none';
+      }
     }
 
-    function playSound() {
-      const sound = document.getElementById("clickSound");
-      if (sound) sound.play();
+    function handleKeyPress(e) {
+      if (e.key === 'Enter') {
+        const input = document.getElementById('user-input').value;
+        const responseBox = document.getElementById('chat-response');
+        if (input.trim()) {
+          responseBox.innerHTML = `<strong>Your Input:</strong> ${input}<br><br><strong>AI Response:</strong> This case would likely be evaluated under standard due process and human rights obligations. Further detail needed for precise simulation.`;
+          document.getElementById('user-input').value = '';
+        }
+      }
     }
   </script>
 </body>
 </html>
-'''
-
-# Save this updated file back to disk for download or upload
-updated_path = "/mnt/data/final_index.html"
-with open(updated_path, "w", encoding="utf-8") as f:
-    f.write(updated_index_html)
-
-updated_path
