@@ -53,10 +53,12 @@ body, html {
   }
 }
 
-/* Optional: adjust forehead-button position on small screens */
+/* 👇 Mobile-specific glow button position for ai-girl-face.png */
 @media (max-width: 768px) {
   #forehead-button {
-    top: 38%;
-    left: 44.5%;
+    top: 36.8%;
+    left: 46%;
+    width: 40px;
+    height: 40px;
   }
 }
