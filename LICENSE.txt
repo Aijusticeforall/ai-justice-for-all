@@ -1,0 +1,21 @@
+Copyright (c) 2025 Lars G Stahl
+
+All rights reserved.
+
+This project, including its concept, architecture, simulation logic, data structures, and written materials, is proprietary and may not be copied, reused, modified, redistributed, or reverse-engineered in any form without express written permission from the creator.
+
+This repository is intended for demonstration and awareness purposes only.
+
+You may:
+- View and share links to public pages.
+- Use the JusticeLite demo in a read-only capacity.
+
+You may not:
+- Reuse, republish, or copy the content or code.
+- Build derivative works or competing applications.
+- Claim authorship of any part of the project.
+
+Any violations may result in legal action.
+
+For licensing or partnership requests, contact:
+📧 lars@peynet.se
