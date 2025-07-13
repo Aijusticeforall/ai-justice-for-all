@@ -1,90 +1,136 @@
-/* Reset + Base */
+/* Base Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   font-family: 'Segoe UI', sans-serif;
-  background-color: #111;
+  background: #111;
   color: #f5f5f5;
-  line-height: 1.6;
   overflow-x: hidden;
 }
 
-/* Landing Section */
+/* Container */
 .landing {
   text-align: center;
-  padding-top: 20px;
+  padding: 2rem 1rem;
+  position: relative;
 }
 
-.hero-banner {
+.landing h1 {
+  font-size: 2.5rem;
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 1.5rem;
+}
+
+.hero-image {
   position: relative;
-  width: 100%;
-  max-width: 100%;
+  height: 600px;
+  background: url('images/ai-girl-full.png') no-repeat center / cover;
+  border-radius: 12px;
   overflow: hidden;
 }
 
-.hero-banner img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Glowing Forehead Button */
+/* Forehead Glow Button */
 #forehead-button {
   position: absolute;
-  top: 43%;
-  left: 52%;
+  top: 43%; /* Adjust this % to fine-tune forehead placement */
+  left: 48.5%; /* Adjust left % to center perfectly */
   transform: translate(-50%, -50%);
   width: 60px;
   height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.9), rgba(0,212,255,0.6));
+  box-shadow:
+    0 0 15px 6px rgba(255, 255, 255, 0.6),
+    0 0 40px 10px rgba(0, 212, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   z-index: 10;
   animation: pulse 2s infinite;
 }
 
 #forehead-button img {
-  width: 100%;
-  height: auto;
-  border-radius: 50%;
-  box-shadow: 0 0 25px rgba(0, 173, 255, 0.6);
+  width: 36px;
+  height: 36px;
+  filter: drop-shadow(0 0 8px white);
 }
 
 @keyframes pulse {
-  0% {
-    transform: translate(-50%, -50%) scale(1);
-    box-shadow: 0 0 10px rgba(0, 173, 255, 0.4);
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.1);
-    box-shadow: 0 0 20px rgba(0, 173, 255, 0.6);
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-    box-shadow: 0 0 10px rgba(0, 173, 255, 0.4);
-  }
+  0% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.08); }
+  100% { transform: translate(-50%, -50%) scale(1); }
 }
 
 /* Info Section */
 .info-section {
-  padding: 2rem 1.5rem;
-  max-width: 800px;
-  margin: 0 auto;
+  margin-top: 2rem;
+  padding: 0 1rem;
 }
 
-.info-section h1 {
-  font-size: 2.5rem;
+.info-section h2 {
+  font-size: 1.6rem;
   color: orange;
-  margin-bottom: 10px;
-}
-
-.info-section .subtitle {
-  font-size: 1.2rem;
-  color: #ccc;
   margin-bottom: 1rem;
 }
 
-/* Popup Chat */
-.chat-popup {
-  position: fi
+.info-section p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #ccc;
+}
+
+/* Popup (Chat Box Placeholder) */
+#popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  color: white;
+  display: none;
+  z-index: 100;
+  padding: 20px;
+}
+
+/* Back button */
+.back-link {
+  margin-top: 30px;
+  font-size: 0.9rem;
+  display: block;
+  text-align: center;
+  color: #00e0c8;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+  .landing h1 {
+    font-size: 2rem;
+  }
+
+  .hero-image {
+    height: 400px;
+    background: url('images/ai-girl-face.png') no-repeat center / cover;
+  }
+
+  #forehead-button {
+    top: 44%;
+    left: 51%;
+  }
+}
