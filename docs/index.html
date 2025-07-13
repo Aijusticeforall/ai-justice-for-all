@@ -11,37 +11,42 @@
       box-sizing: border-box;
     }
 
-    html, body {
+    body, html {
+      width: 100%;
       height: 100%;
       overflow: hidden;
-      background-color: #000;
+      background-color: black;
     }
 
     .banner {
       position: relative;
-      width: 100%;
+      width: 100vw;
       height: 100vh;
+      overflow: hidden;
     }
 
     .hero-image {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center;
       display: block;
     }
 
     #forehead-button {
       position: absolute;
-      top: 39%; /* Adjust as needed */
-      left: 45.5%; /* Adjust as needed */
-      width: 48px;
-      height: 48px;
-      z-index: 10;
+      top: 42%;
+      left: 27.3%;
+      width: 40px;
+      height: 40px;
       cursor: pointer;
+      z-index: 10;
       border-radius: 50%;
-      box-shadow: 0 0 30px 12px rgba(255, 255, 255, 0.6);
-      animation: pulse 2s infinite;
+      box-shadow: 0 0 15px 8px rgba(255, 255, 255, 0.5);
+      transition: transform 0.3s ease;
+    }
+
+    #forehead-button:hover {
+      transform: scale(1.1);
     }
 
     #forehead-button img {
@@ -50,6 +55,57 @@
       border-radius: 50%;
     }
 
-    @keyframes pulse {
-      0% { box-shadow: 0 0 20px 8px rgba(255, 255, 255, 0.5); }
-      50% { box-shadow: 0 0 25px 12px rgba(0, 255, 255, 0.6); }
+    /* Mobile view */
+    @media (max-width: 767px) {
+      .hero-image {
+        object-position: right center;
+      }
+
+      #forehead-button {
+        top: 38%;
+        left: 42%;
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    #popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(10, 10, 10, 0.9);
+      padding: 30px;
+      border-radius: 12px;
+      z-index: 20;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+      display: none;
+      color: white;
+    }
+  </style>
+  <script>
+    function togglePopup() {
+      const popup = document.getElementById("popup");
+      popup.style.display = popup.style.display === "none" ? "block" : "none";
+    }
+  </script>
+</head>
+<body>
+  <div class="banner">
+    <picture>
+      <source srcset="images/ai-girl-face.png" media="(max-width: 767px)" />
+      <img src="images/ai-girl-full.png" alt="AI Justice" class="hero-image" />
+    </picture>
+
+    <div id="forehead-button" onclick="togglePopup()" title="Activate AI Justice">
+      <img src="images/scale-button.png" alt="Justice Button" />
+    </div>
+  </div>
+
+  <div id="popup">
+    <h2>Welcome to AI Justice Chat</h2>
+    <p>This is where the chat UI will go.</p>
+  </div>
+</body>
+</html>
