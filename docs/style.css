@@ -1,74 +1,69 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: #0a0a0a;
-  color: #fff;
+  background-color: #000;
+  color: white;
+  overflow-x: hidden;
 }
 
-.hero {
+.banner {
   position: relative;
+  width: 100%;
   height: 100vh;
-  background: url("images/ai-girl-full.png") center center / cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.hero-content {
-  background: rgba(0, 0, 0, 0.5);
-  padding: 40px;
-  border-radius: 12px;
-  backdrop-filter: blur(6px);
-}
-
-.hero h1 {
-  font-size: 3em;
-  margin: 0;
-}
-
-.hero p {
-  font-size: 1.1em;
-  margin: 10px 0 30px 0;
-}
-
-.glow-button {
-  padding: 12px 24px;
-  font-size: 1em;
-  background-color: #ffe600;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  box-shadow: 0 0 10px #ffe600, 0 0 40px #ffe600;
-  transition: all 0.3s ease;
-}
-
-.glow-button:hover {
-  box-shadow: 0 0 20px #ff0, 0 0 60px #ff0;
-  transform: scale(1.05);
-}
-
-.content {
-  padding: 60px 20px;
-  text-align: center;
-}
-
-.popup {
-  display: none;
-  position: fixed;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  height: 80%;
-  background: #fff;
-  z-index: 1000;
-  border-radius: 12px;
   overflow: hidden;
 }
 
-.popup iframe {
+.banner-img {
   width: 100%;
   height: 100%;
-  border: none;
+  object-fit: cover;
+}
+
+#forehead-button {
+  position: absolute;
+  top: 43%;
+  left: 38.2%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+#forehead-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+  0% { filter: drop-shadow(0 0 5px white); }
+  50% { filter: drop-shadow(0 0 15px cyan); }
+  100% { filter: drop-shadow(0 0 5px white); }
+}
+
+.popup-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.75);
+  border-radius: 16px;
+  padding: 30px;
+  text-align: center;
+  z-index: 9;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+}
+
+.cta-button {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 25px;
+  background-color: yellow;
+  border-radius: 30px;
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 0 10px yellow;
 }
