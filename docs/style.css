@@ -1,133 +1,56 @@
-/* Base Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
+  margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: #f9f9f9;
-  color: #222;
-  overflow-x: hidden;
+  background-color: #000;
+  color: #fff;
 }
 
-/* Landing */
-.landing {
-  text-align: center;
-  padding: 2rem 1rem;
-}
-
-.landing h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.subtitle {
-  font-size: 1rem;
-  color: #666;
-  margin-bottom: 2rem;
-}
-
-.hero-image {
+.hero {
   position: relative;
-  height: 300px;
-  background: url('ai-girl-banner.png') no-repeat center / cover;
+  height: 100vh;
+  width: 100%;
+  background: url("images/ai-girl-full.png") no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10vw;
 }
 
-#glowButton {
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, #fff, #ffd700, #f00);
+.hero-content {
+  text-align: left;
+  max-width: 500px;
+}
+
+.hero h1 {
+  font-size: 3em;
+  margin-bottom: 0.3em;
+}
+
+.glow-button {
+  background: #ffe600;
   border: none;
-  padding: 1rem;
-  border-radius: 50%;
-  box-shadow: 0 0 20px rgba(255, 255, 0, 0.6);
-  font-size: 2rem;
+  padding: 15px 30px;
+  border-radius: 30px;
+  color: #000;
+  font-weight: bold;
+  font-size: 1em;
+  box-shadow: 0 0 20px #ffe600;
   cursor: pointer;
 }
 
-/* Info Section */
-.info-section {
-  margin-top: 2rem;
-  padding: 0 1rem;
-}
-
-/* Chat UI */
-.chat-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: #fff;
-  display: none;
-  flex-direction: column;
-  z-index: 999;
-}
-
-.chat-header {
-  background: #222;
-  color: #fff;
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.chat-messages {
-  flex: 1;
-  padding: 1rem;
-  overflow-y: auto;
-}
-
-.message {
-  margin-bottom: 1rem;
-  padding: 0.75rem;
-  border-radius: 8px;
-  max-width: 90%;
-}
-
-.user {
-  background: #e6f2ff;
-  align-self: flex-end;
-}
-
-.bot {
-  background: #f0f0f0;
-  align-self: flex-start;
-}
-
-.chat-input-container {
-  display: flex;
-  padding: 1rem;
-  border-top: 1px solid #ddd;
-}
-
-.chat-input-container input {
-  flex: 1;
-  padding: 0.75rem;
-  font-size: 1rem;
-}
-
-.chat-input-container button {
-  margin-left: 0.5rem;
-  font-size: 1.2rem;
-  background: #222;
-  color: #fff;
-  padding: 0 1rem;
-  border: none;
-}
-
-/* Mobile Optimization */
-@media (max-width: 600px) {
-  .landing h1 {
-    font-size: 2rem;
+@media (max-width: 768px) {
+  .hero {
+    justify-content: center;
+    background: url("images/ai-girl-face.png") no-repeat center center/cover;
+    padding: 0 20px;
   }
 
-  .chat-header {
-    font-size: 1rem;
+  .hero-content {
+    text-align: center;
+    padding-top: 60%;
+  }
+
+  .hero h1 {
+    font-size: 2em;
   }
 }
