@@ -3,77 +3,126 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI Justice</title>
+  <title>AI Justice for All</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    html, body {
+    /* Full-screen Reset */
+    * {
       margin: 0;
       padding: 0;
-      height: 100%;
-      overflow: hidden;
-      font-family: 'Segoe UI', sans-serif;
-      background: #000;
+      box-sizing: border-box;
     }
 
-    .hero-image {
+    body, html {
+      height: 100%;
+      width: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      width: 100%;
       background: url('images/ai-girl-full.png') no-repeat center center;
       background-size: cover;
-      height: 100vh;
-      position: relative;
     }
 
-    /* Mobile override: show face version on narrow screens */
     @media (max-width: 768px) {
-      .hero-image {
-        background: url('images/ai-girl-face.png') no-repeat center center;
-        background-size: cover;
-      }
-
-      #forehead-button {
-        top: 36%;  /* Adjust for forehead on face image */
-        left: 47%;
-        width: 36px;
-        height: 36px;
+      .hero {
+        background-image: url('images/ai-girl-face.png');
       }
     }
 
+    .hero-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+      text-shadow: 0 0 6px rgba(0,0,0,0.5);
+    }
+
+    .hero-content h1 {
+      font-size: 3em;
+      font-weight: bold;
+      margin-bottom: 0.5em;
+    }
+
+    .hero-content p {
+      font-size: 1.2em;
+    }
+
+    /* Glowing Forehead Button */
     #forehead-button {
       position: absolute;
-      top: 42%;   /* Adjusted for full-body */
-      left: 31.5%;
-      width: 44px;
-      height: 44px;
+      top: 43%;
+      left: 34%;
+      transform: translate(-50%, -50%);
+      width: 32px;
+      height: 32px;
       cursor: pointer;
       z-index: 10;
-      animation: pulseGlow 2s infinite ease-in-out;
     }
 
     #forehead-button img {
       width: 100%;
-      height: auto;
-      filter: drop-shadow(0 0 10px white) drop-shadow(0 0 20px #00cfff);
+      height: 100%;
+      border-radius: 50%;
+      box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.6);
+      animation: pulse 2s infinite;
     }
 
-    @keyframes pulseGlow {
-      0% { transform: scale(1); opacity: 0.9; }
-      50% { transform: scale(1.15); opacity: 1; }
-      100% { transform: scale(1); opacity: 0.9; }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 10px rgba(255,255,255,0.6); }
+      50% { box-shadow: 0 0 20px rgba(255,255,255,1); }
+      100% { box-shadow: 0 0 10px rgba(255,255,255,0.6); }
+    }
+
+    /* Fade overlay */
+    #fade-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background: #000;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+      z-index: 999;
+      pointer-events: none;
     }
   </style>
 </head>
 <body>
-
-  <div class="hero-image">
-    <div id="forehead-button" title="AI Justice Activated">
-      <img src="images/scale-button.png" alt="Activate AI Justice" />
+  <div class="hero">
+    <div id="forehead-button" onclick="togglePopup()" title="Activate AI Justice">
+      <img src="images/scale-button.png" alt="AI Justice" />
+    </div>
+    <div class="hero-content">
+      <h1>AI Justice for All</h1>
+      <p>A smarter, unbiased legal assistant — built for all.</p>
     </div>
   </div>
 
-  <script>
-    setTimeout(() => {
-      window.location.href = "chat.html";
-    }, 2500);
-  </script>
+  <div id="fade-overlay"></div>
 
+  <script>
+    function togglePopup() {
+      const popup = document.getElementById("popup");
+      if (popup) {
+        popup.style.display = popup.style.display === "none" ? "block" : "none";
+      }
+    }
+
+    // Auto-load after fade
+    setTimeout(() => {
+      document.getElementById("fade-overlay").style.opacity = "1";
+      setTimeout(() => {
+        window.location.href = "chat.html";
+      }, 900);
+    }, 2000);
+  </script>
 </body>
 </html>
