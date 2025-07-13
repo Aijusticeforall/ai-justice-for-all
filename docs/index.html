@@ -3,19 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Justice</title>
+  <title>AI Justice for All</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="hero-section">
+  <div class="banner">
     <picture>
-      <source media="(max-width: 768px)" srcset="images/ai-girl-face.png" />
-      <img src="images/ai-girl-full.png" alt="AI Justice" class="hero-bg" />
+      <source srcset="images/ai-girl-face.png" media="(max-width: 767px)" />
+      <img src="images/ai-girl-full.png" alt="AI Justice" class="hero-image" />
     </picture>
 
-    <div id="forehead-button" onclick="window.location.href='chat.html'" title="Launch AI Justice">
-      <img src="images/scale-button.png" alt="Activate AI" />
+    <div class="title-text">
+      <h1>AI Justice for All</h1>
+      <p>A smarter, unbiased legal assistant — built for all.</p>
     </div>
+
+    <div id="forehead-button" onclick="togglePopup()" title="Activate AI Justice">
+      <img src="images/scale-button.png" alt="AI Justice" />
+    </div>
+  </div>
+
+  <div id="popup" style="display: none;">
+    <h2>Welcome to AI Justice Chat</h2>
+    <p>This is where the chat UI will go.</p>
   </div>
 </body>
 </html>
