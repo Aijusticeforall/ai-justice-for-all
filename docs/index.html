@@ -10,25 +10,26 @@
 </head>
 
 <body>
-  <div class="banner">
-    <img src="images/ai-girl-full.png" alt="AI Girl" class="banner-img" />
-    <div class="banner-text">
-      <h1 class="site-title">AI Justice for All</h1>
-      <p class="subtitle">Built by the AI Justice For All initiative.</p>
-      <button class="glow-button" onclick="openPopup()">✨ Try AI Justice</button>
+  <div class="hero">
+    <div class="hero-content">
+      <h1>AI Justice for All</h1>
+      <p>Built by the AI Justice For All initiative.</p>
+      <button class="glow-button" onclick="togglePopup()">⚖️ Try AI Justice</button>
     </div>
   </div>
 
-  <div class="main-content">
+  <div class="content">
     <h2>What is AI Justice?</h2>
-    <p>An AI-powered assistant that helps simulate and prepare legal cases, powered by logic and clarity — for all.</p>
+    <p>
+      An AI-powered assistant that helps simulate and prepare legal cases, powered by logic and clarity — for all.
+    </p>
   </div>
 
-  <div class="popup" id="chatPopup">
-    <div class="popup-content">
-      <iframe src="chat.html" title="AI Justice Chat"></iframe>
-    </div>
+  <div id="popup" class="popup">
+    <iframe src="chat.html"></iframe>
   </div>
+
+  <script src="script.js"></script>
 </body>
 
 </html>
