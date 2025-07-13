@@ -1,4 +1,3 @@
-function togglePopup() {
-  const popup = document.getElementById("popup");
-  popup.style.display = popup.style.display === "none" ? "block" : "none";
+function goToChat() {
+  window.location.href = 'chat.html';
 }
