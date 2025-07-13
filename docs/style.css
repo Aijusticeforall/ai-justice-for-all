@@ -1,56 +1,74 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #000;
+  background: #0a0a0a;
   color: #fff;
 }
 
 .hero {
   position: relative;
   height: 100vh;
-  width: 100%;
-  background: url("images/ai-girl-full.png") no-repeat center center/cover;
+  background: url("images/ai-girl-full.png") center center / cover no-repeat;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  padding-right: 10vw;
+  justify-content: center;
+  text-align: center;
 }
 
 .hero-content {
-  text-align: left;
-  max-width: 500px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 40px;
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
 }
 
 .hero h1 {
   font-size: 3em;
-  margin-bottom: 0.3em;
+  margin: 0;
+}
+
+.hero p {
+  font-size: 1.1em;
+  margin: 10px 0 30px 0;
 }
 
 .glow-button {
-  background: #ffe600;
-  border: none;
-  padding: 15px 30px;
-  border-radius: 30px;
-  color: #000;
-  font-weight: bold;
+  padding: 12px 24px;
   font-size: 1em;
-  box-shadow: 0 0 20px #ffe600;
+  background-color: #ffe600;
+  border: none;
+  border-radius: 30px;
   cursor: pointer;
+  box-shadow: 0 0 10px #ffe600, 0 0 40px #ffe600;
+  transition: all 0.3s ease;
 }
 
-@media (max-width: 768px) {
-  .hero {
-    justify-content: center;
-    background: url("images/ai-girl-face.png") no-repeat center center/cover;
-    padding: 0 20px;
-  }
+.glow-button:hover {
+  box-shadow: 0 0 20px #ff0, 0 0 60px #ff0;
+  transform: scale(1.05);
+}
 
-  .hero-content {
-    text-align: center;
-    padding-top: 60%;
-  }
+.content {
+  padding: 60px 20px;
+  text-align: center;
+}
 
-  .hero h1 {
-    font-size: 2em;
-  }
+.popup {
+  display: none;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 80%;
+  background: #fff;
+  z-index: 1000;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.popup iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
 }
