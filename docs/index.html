@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Justice for All</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
   <style>
     * {
       margin: 0;
@@ -14,12 +12,9 @@
     }
 
     html, body {
-      width: 100%;
       height: 100%;
       overflow: hidden;
-      background-color: #0a0a0a;
-      font-family: 'Segoe UI', sans-serif;
-      color: white;
+      background-color: #000;
     }
 
     .banner {
@@ -36,45 +31,17 @@
       display: block;
     }
 
-    .title-text {
-      position: absolute;
-      top: 55%;
-      left: 60%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      color: white;
-      z-index: 2;
-      max-width: 90%;
-    }
-
-    .title-text h1 {
-      font-size: 3rem;
-      font-weight: bold;
-      text-shadow: 0 0 12px #000;
-    }
-
-    .title-text p {
-      margin-top: 10px;
-      font-size: 1rem;
-      opacity: 0.9;
-      text-shadow: 0 0 8px #000;
-    }
-
     #forehead-button {
       position: absolute;
-      top: 250px; /* adjust as needed */
-      left: 480px; /* adjust as needed */
-      width: 44px;
-      height: 44px;
+      top: 39%; /* Adjust as needed */
+      left: 45.5%; /* Adjust as needed */
+      width: 48px;
+      height: 48px;
       z-index: 10;
       cursor: pointer;
       border-radius: 50%;
-      box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.5);
-      transition: transform 0.3s ease;
-    }
-
-    #forehead-button:hover {
-      transform: scale(1.1);
+      box-shadow: 0 0 30px 12px rgba(255, 255, 255, 0.6);
+      animation: pulse 2s infinite;
     }
 
     #forehead-button img {
@@ -83,54 +50,6 @@
       border-radius: 50%;
     }
 
-    #popup {
-      position: fixed;
-      top: 60%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(10, 10, 10, 0.85);
-      padding: 30px;
-      border-radius: 12px;
-      z-index: 20;
-      text-align: center;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
-      display: none;
-    }
-
-    /* Mobile responsive adjustments */
-    @media (max-width: 767px) {
-      .hero-image {
-        object-position: right center;
-      }
-
-      .title-text {
-        top: 80%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-
-      .title-text h1 {
-        font-size: 2rem;
-      }
-
-      .title-text p {
-        font-size: 0.95rem;
-      }
-
-      #forehead-button {
-        top: 390px;
-        left: 240px;
-        width: 38px;
-        height: 38px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="banner">
-    <picture>
-      <source srcset="images/ai-girl-face.png" media="(max-width: 767px)" />
-      <img src="images/ai-girl-full.png" alt="AI Justice" class="hero-image" />
-    </picture>
-
-    <
+    @keyframes pulse {
+      0% { box-shadow: 0 0 20px 8px rgba(255, 255, 255, 0.5); }
+      50% { box-shadow: 0 0 25px 12px rgba(0, 255, 255, 0.6); }
