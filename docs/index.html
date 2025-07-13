@@ -6,12 +6,13 @@
   <title>AI Justice</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    body, html {
+    html, body {
       margin: 0;
       padding: 0;
       height: 100%;
       overflow: hidden;
       font-family: 'Segoe UI', sans-serif;
+      background: #000;
     }
 
     .hero-image {
@@ -21,12 +22,27 @@
       position: relative;
     }
 
+    /* Mobile override: show face version on narrow screens */
+    @media (max-width: 768px) {
+      .hero-image {
+        background: url('images/ai-girl-face.png') no-repeat center center;
+        background-size: cover;
+      }
+
+      #forehead-button {
+        top: 36%;  /* Adjust for forehead on face image */
+        left: 47%;
+        width: 36px;
+        height: 36px;
+      }
+    }
+
     #forehead-button {
       position: absolute;
-      top: 42%;  /* Adjust vertically for forehead */
-      left: 31.5%;  /* Adjust horizontally for forehead */
-      width: 42px;
-      height: 42px;
+      top: 42%;   /* Adjusted for full-body */
+      left: 31.5%;
+      width: 44px;
+      height: 44px;
       cursor: pointer;
       z-index: 10;
       animation: pulseGlow 2s infinite ease-in-out;
@@ -35,7 +51,7 @@
     #forehead-button img {
       width: 100%;
       height: auto;
-      filter: drop-shadow(0 0 10px white) drop-shadow(0 0 15px #00cfff);
+      filter: drop-shadow(0 0 10px white) drop-shadow(0 0 20px #00cfff);
     }
 
     @keyframes pulseGlow {
@@ -43,58 +59,20 @@
       50% { transform: scale(1.15); opacity: 1; }
       100% { transform: scale(1); opacity: 0.9; }
     }
-
-    #popup {
-      display: none;
-      position: absolute;
-      top: 10%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0,0,0,0.85);
-      padding: 2rem;
-      border-radius: 10px;
-      color: white;
-      max-width: 90%;
-      text-align: center;
-      z-index: 100;
-      box-shadow: 0 0 30px rgba(0,0,0,0.6);
-    }
-
-    .back-link {
-      display: inline-block;
-      margin-top: 1.5rem;
-      color: #ccc;
-      text-decoration: none;
-    }
-
-    .back-link:hover {
-      color: #fff;
-      text-decoration: underline;
-    }
   </style>
 </head>
 <body>
 
-  <!-- Fullscreen Hero Image -->
   <div class="hero-image">
-    <!-- Glow Button on Forehead -->
-    <div id="forehead-button" onclick="togglePopup()" title="Activate AI Justice">
-      <img src="images/scale-button.png" alt="AI Justice" />
+    <div id="forehead-button" title="AI Justice Activated">
+      <img src="images/scale-button.png" alt="Activate AI Justice" />
     </div>
   </div>
 
-  <!-- Popup Chat Preview or Info -->
-  <div id="popup">
-    <h2>⚖️ Welcome to AI Justice</h2>
-    <p>This demo simulates legal reasoning powered by logic and fairness. Full system in development.</p>
-    <a href="index.html" class="back-link">🔙 Back to Home</a>
-  </div>
-
   <script>
-    function togglePopup() {
-      const popup = document.getElementById("popup");
-      popup.style.display = popup.style.display === "none" ? "block" : "none";
-    }
+    setTimeout(() => {
+      window.location.href = "chat.html";
+    }, 2500);
   </script>
 
 </body>
