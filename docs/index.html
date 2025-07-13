@@ -3,28 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI Justice for All</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <title>AI Justice</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Background banner -->
-  <div class="banner">
-    <img src="images/ai-girl-full.png" alt="AI Justice Banner" class="banner-img" />
-    
-    <!-- Glowing Forehead Button -->
-    <div id="forehead-button" onclick="togglePopup()" title="Activate AI Justice">
-      <img src="images/law-glow.png" alt="Activate AI" />
+  <!-- Landing Section -->
+  <div class="landing">
+    <div class="hero-banner">
+      <img src="images/ai-girl-full.png" alt="AI Justice Banner" />
+      
+      <!-- Glowing Scale Button on Forehead -->
+      <div id="forehead-button" onclick="togglePopup()" title="Activate AI Justice">
+        <img src="images/scale-button.png" alt="Activate Chat" />
+      </div>
     </div>
 
-    <!-- Centered Popup Card -->
-    <div class="popup-card" id="popup">
-      <h1>AI Justice for All</h1>
-      <p>Built by the AI Justice For All initiative.</p>
-      <a href="chat.html" class="cta-button">⚖ Try AI Justice</a>
+    <div class="info-section">
+      <h1>AI Justice</h1>
+      <p class="subtitle">Built by the AI Justice For All initiative</p>
+      <p>An AI-powered assistant to simulate and understand legal logic. Designed to help everyone — judges, lawyers, and the people — navigate justice clearly.</p>
     </div>
   </div>
 
+  <!-- Popup Chat -->
+  <div id="popup" class="chat-popup" style="display: none;">
+    <div class="chat-header">
+      <span>AI Justice ⚖️</span>
+      <button onclick="togglePopup()">✖</button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <!-- Messages appear here -->
+    </div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Ask your question...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script src="script.js"></script>
 </body>
 </html>
