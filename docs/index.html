@@ -2,25 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>AI Justice</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Justice for All</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="banner-container">
-    <picture>
-      <source media="(max-width: 600px)" srcset="images/ai-girl-face.png">
-      <img src="images/ai-girl-full.png" alt="AI Justice" class="banner-img">
-    </picture>
-    <div class="banner-overlay">
-      <h1>AI Justice</h1>
+  <div class="hero-section">
+    <img 
+      src="images/ai-girl-full.png" 
+      alt="AI Justice" 
+      class="hero-bg"
+    />
+
+    <div class="hero-text">
+      <h1>AI Justice for All</h1>
       <p>A smarter, unbiased legal assistant — built for all.</p>
-      <div id="forehead-button" onclick="goToChat()" title="Activate AI Justice">
-        <img src="images/scale-button.png" alt="Activate">
-      </div>
+    </div>
+
+    <div id="forehead-button" onclick="window.location.href='chat.html'" title="Launch AI Justice">
+      <img src="images/scale-button.png" alt="Activate" />
     </div>
   </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
