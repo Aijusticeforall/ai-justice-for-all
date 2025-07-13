@@ -8,40 +8,29 @@
 </head>
 <body>
 
-  <!-- Landing Section -->
-  <div class="landing">
-    <div class="hero-banner">
-      <img src="images/ai-girl-full.png" alt="AI Justice Banner" />
-      
-      <!-- Glowing Scale Button on Forehead -->
-      <div id="forehead-button" onclick="togglePopup()" title="Activate AI Justice">
-        <img src="images/scale-button.png" alt="Activate Chat" />
-      </div>
-    </div>
-
-    <div class="info-section">
+  <!-- Landing Fullscreen Banner -->
+  <div class="hero-image">
+    <div class="hero-overlay">
       <h1>AI Justice</h1>
-      <p class="subtitle">Built by the AI Justice For All initiative</p>
-      <p>An AI-powered assistant to simulate and understand legal logic. Designed to help everyone — judges, lawyers, and the people — navigate justice clearly.</p>
+      <p class="subtitle">A smarter, unbiased legal assistant — built for all.</p>
+      <div id="forehead-button" onclick="togglePopup()" title="Activate AI Justice">
+        <img src="images/scale-button.png" alt="AI Justice" />
+      </div>
     </div>
   </div>
 
   <!-- Popup Chat -->
-  <div id="popup" class="chat-popup" style="display: none;">
-    <div class="chat-header">
-      <span>AI Justice ⚖️</span>
-      <button onclick="togglePopup()">✖</button>
-    </div>
-    <div class="chat-messages" id="chatMessages">
-      <!-- Messages appear here -->
-    </div>
-    <div class="chat-input">
-      <input type="text" id="userInput" placeholder="Ask your question...">
-      <button onclick="sendMessage()">Send</button>
-    </div>
+  <div id="popup">
+    <h2>Welcome to AI Justice ⚖️</h2>
+    <p>This is your simulated legal assistant space. The full engine is in development.</p>
+    <a href="index.html" class="back-link">🔙 Back to Home</a>
   </div>
 
-  <!-- Script -->
-  <script src="script.js"></script>
+  <script>
+    function togglePopup() {
+      const popup = document.getElementById("popup");
+      popup.style.display = popup.style.display === "none" ? "block" : "none";
+    }
+  </script>
 </body>
 </html>
