@@ -19,37 +19,14 @@
       background-size: cover;
       height: 100vh;
       position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-align: center;
-    }
-
-    .hero-overlay {
-      background: rgba(0, 0, 0, 0.3);
-      padding: 2rem 3rem;
-      border-radius: 20px;
-      backdrop-filter: blur(6px);
-    }
-
-    .hero-overlay h1 {
-      font-size: 3rem;
-      margin: 0;
-    }
-
-    .hero-overlay p.subtitle {
-      font-size: 1.2rem;
-      margin: 0.5rem 0 2rem;
-      opacity: 0.85;
     }
 
     #forehead-button {
       position: absolute;
-      top: 45%;
-      left: 38.5%;
-      width: 40px;
-      height: 40px;
+      top: 42%;  /* Adjust vertically for forehead */
+      left: 31.5%;  /* Adjust horizontally for forehead */
+      width: 42px;
+      height: 42px;
       cursor: pointer;
       z-index: 10;
       animation: pulseGlow 2s infinite ease-in-out;
@@ -73,7 +50,7 @@
       top: 10%;
       left: 50%;
       transform: translateX(-50%);
-      background: #111;
+      background: rgba(0,0,0,0.85);
       padding: 2rem;
       border-radius: 10px;
       color: white;
@@ -98,18 +75,15 @@
 </head>
 <body>
 
-  <!-- Banner Image -->
+  <!-- Fullscreen Hero Image -->
   <div class="hero-image">
-    <div class="hero-overlay">
-      <h1>AI Justice</h1>
-      <p class="subtitle">A smarter, unbiased legal assistant — built for all.</p>
-    </div>
+    <!-- Glow Button on Forehead -->
     <div id="forehead-button" onclick="togglePopup()" title="Activate AI Justice">
       <img src="images/scale-button.png" alt="AI Justice" />
     </div>
   </div>
 
-  <!-- Popup Panel -->
+  <!-- Popup Chat Preview or Info -->
   <div id="popup">
     <h2>⚖️ Welcome to AI Justice</h2>
     <p>This demo simulates legal reasoning powered by logic and fairness. Full system in development.</p>
