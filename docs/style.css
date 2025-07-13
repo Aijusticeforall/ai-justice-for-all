@@ -1,75 +1,75 @@
-/* Reset */
-* { margin:0; padding:0; box-sizing:border-box; }
-body, html { width:100%; height:100%; overflow:hidden; }
-
-/* Banner */
-.banner-container {
-  position:relative;
-  width:100%;
-  height:100vh;
-  overflow:hidden;
-}
-.banner-img {
-  object-fit:cover;
-  width:100%;
-  height:100%;
-  display:block;
-}
-.banner-overlay {
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  background:rgba(0,0,0,0.3);
-}
-.banner-overlay h1 {
-  font-size:3rem;
-  color:#fff;
-  margin-bottom:0.5rem;
-}
-.banner-overlay p {
-  font-size:1.2rem;
-  color:#ddd;
-  margin-bottom:2rem;
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
 }
 
-/* Forehead button */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2;
+  color: white;
+  text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+}
+
 #forehead-button {
-  position:absolute;
-  width:80px;
-  height:80px;
-  cursor:pointer;
-  top:50%;
-  left:55%;
-  transform:translate(-50%, -50%);
-  animation: pulse 2s infinite;
+  position: absolute;
+  top: 38%;
+  left: 26%;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffffcc, #0ff0ff40, transparent);
+  z-index: 3;
+  cursor: pointer;
+  animation: pulse 2s infinite ease-in-out;
 }
+
 #forehead-button img {
-  display:block;
-  width:100%;
-  height:100%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
-/* Pulse effect */
 @keyframes pulse {
-  0%,100% { box-shadow:0 0 20px rgba(255,255,255,0.6); }
-  50% { box-shadow:0 0 40px rgba(255,255,255,0.9); }
-}
-
-/* Mobile tweaks */
-@media (max-width:600px) {
-  .banner-overlay h1 { font-size:2rem; }
-  .banner-overlay p { font-size:1rem;}
-  #forehead-button {
-    width:60px;
-    height:60px;
-    left:50%;
-    top:45%;
+  0% {
+    box-shadow: 0 0 10px #fff, 0 0 20px #00ffffaa, 0 0 30px #00ffff88;
+  }
+  50% {
+    box-shadow: 0 0 20px #fff, 0 0 40px #00ffffcc, 0 0 60px #00ffffaa;
+  }
+  100% {
+    box-shadow: 0 0 10px #fff, 0 0 20px #00ffffaa, 0 0 30px #00ffff88;
   }
 }
