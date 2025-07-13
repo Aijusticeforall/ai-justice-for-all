@@ -3,7 +3,7 @@ body, html {
   padding: 0;
   overflow: hidden;
   font-family: 'Segoe UI', sans-serif;
-  color: white;
+  background-color: black;
 }
 
 .hero-section {
@@ -23,35 +23,15 @@ body, html {
   z-index: 0;
 }
 
-.hero-text {
-  position: absolute;
-  top: 50%;
-  left: 55%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 2;
-  color: white;
-  text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
-}
-
-.hero-text h1 {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
-}
-
-.hero-text p {
-  font-size: 1.2rem;
-}
-
 #forehead-button {
   position: absolute;
-  top: 38%;
-  left: 26%;
+  top: 37.5%;
+  left: 25.3%;
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: radial-gradient(circle, #ffffffcc, #0ff0ff40, transparent);
-  z-index: 3;
+  background: radial-gradient(circle, #ffffffcc, #00ffff66, transparent);
+  z-index: 2;
   cursor: pointer;
   animation: pulse 2s infinite ease-in-out;
 }
