@@ -4,6 +4,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   font-family: 'Segoe UI', sans-serif;
   background: #f9f9f9;
@@ -16,20 +17,24 @@ body {
   text-align: center;
   padding: 2rem 1rem;
 }
+
 .landing h1 {
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
 }
+
 .subtitle {
   font-size: 1rem;
   color: #666;
   margin-bottom: 2rem;
 }
+
 .hero-image {
   position: relative;
   height: 300px;
   background: url('ai-girl-banner.png') no-repeat center / cover;
 }
+
 #glowButton {
   position: absolute;
   top: 45%;
@@ -43,6 +48,8 @@ body {
   font-size: 2rem;
   cursor: pointer;
 }
+
+/* Info Section */
 .info-section {
   margin-top: 2rem;
   padding: 0 1rem;
@@ -60,6 +67,7 @@ body {
   flex-direction: column;
   z-index: 999;
 }
+
 .chat-header {
   background: #222;
   color: #fff;
@@ -68,35 +76,42 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+
 .chat-messages {
   flex: 1;
   padding: 1rem;
   overflow-y: auto;
 }
-.chat-messages .message {
+
+.message {
   margin-bottom: 1rem;
   padding: 0.75rem;
   border-radius: 8px;
   max-width: 90%;
 }
+
 .user {
   background: #e6f2ff;
   align-self: flex-end;
 }
+
 .bot {
   background: #f0f0f0;
   align-self: flex-start;
 }
+
 .chat-input-container {
   display: flex;
   padding: 1rem;
   border-top: 1px solid #ddd;
 }
+
 .chat-input-container input {
   flex: 1;
   padding: 0.75rem;
   font-size: 1rem;
 }
+
 .chat-input-container button {
   margin-left: 0.5rem;
   font-size: 1.2rem;
@@ -111,6 +126,7 @@ body {
   .landing h1 {
     font-size: 2rem;
   }
+
   .chat-header {
     font-size: 1rem;
   }
