@@ -3,37 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI Justice</title>
+  <title>AI Justice for All</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <!-- Landing Page -->
-  <div class="landing">
-    <h1>AI Justice</h1>
-    <p class="subtitle">Built by the AI Justice For All initiative.</p>
-    <div class="hero-image">
-      <button id="glowButton">⚖️</button>
-    </div>
-    <div class="info-section">
-      <h2>What is AI Justice?</h2>
-      <p>An AI-powered assistant that helps simulate and prepare legal cases, powered by logic and clarity — for all.</p>
+  <div class="hero">
+    <div class="hero-content">
+      <h1>AI Justice for All</h1>
+      <button class="glow-button" onclick="location.href='chat.html'">⚖️ Try AI Justice</button>
     </div>
   </div>
-
-  <!-- Chat UI -->
-  <div class="chat-overlay" id="chatOverlay">
-    <div class="chat-header">
-      <span>AI Justice ⚖️</span>
-      <button id="closeChat">✖</button>
-    </div>
-    <div class="chat-messages" id="chatMessages"></div>
-    <div class="chat-input-container">
-      <input type="text" id="userInput" placeholder="Type your case or question..." autocomplete="off"/>
-      <button id="sendBtn">➤</button>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
