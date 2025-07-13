@@ -31,6 +31,7 @@
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
+      justify-content: center;
     }
 
     .button {
@@ -44,6 +45,9 @@
       align-items: center;
       gap: 6px;
       transition: background 0.3s ease;
+      white-space: nowrap;
+      min-width: 100px;
+      text-align: center;
     }
 
     .button:hover {
@@ -83,8 +87,9 @@
     }
 
     #chatBox {
-      width: 60%;
-      height: 70%;
+      width: 90%;
+      max-width: 600px;
+      height: 90%;
       background-color: #343541;
       border-radius: 10px;
       box-shadow: 0 0 25px #00ffff;
@@ -145,6 +150,28 @@
       color: white;
       cursor: pointer;
     }
+
+    @media (max-width: 768px) {
+      .button-group {
+        top: 60%;
+        left: 50%;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .button {
+        font-size: 16px;
+        padding: 12px 24px;
+        min-width: 200px;
+      }
+
+      #chatBox {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        max-width: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -152,6 +179,7 @@
     <div class="glow-button" onclick="openChat();"></div>
 
     <div class="button-group">
+      <a href="summary.html" class="button">📄 Overview</a>
       <a href="constitution.html" class="button">📜 Constitution</a>
       <a href="simulator.html" class="button">🛠️ Simulator</a>
       <a href="roadmap.html" class="button">🗺️ Roadmap</a>
@@ -190,7 +218,7 @@
 
     function expandChat() {
       const chatBox = document.getElementById('chatBox');
-      chatBox.style.width = chatBox.style.width === '90%' ? '60%' : '90%';
+      chatBox.style.width = chatBox.style.width === '100%' ? '90%' : '100%';
     }
   </script>
 </body>
