@@ -25,37 +25,15 @@ body {
   display: block;
 }
 
-.title-text {
-  position: absolute;
-  top: 50%;
-  left: 60%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: white;
-  z-index: 2;
-}
-
-.title-text h1 {
-  font-size: 3rem;
-  font-weight: bold;
-  text-shadow: 0 0 10px #000;
-}
-
-.title-text p {
-  margin-top: 10px;
-  font-size: 1rem;
-  opacity: 0.8;
-  text-shadow: 0 0 8px #000;
-}
-
+/* Glow Button (desktop) */
 #forehead-button {
   position: absolute;
   top: 46%;
   left: 24.5%;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
+  width: 42px;
+  height: 42px;
   z-index: 10;
+  cursor: pointer;
   border-radius: 50%;
   box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.6);
   transition: transform 0.3s ease;
@@ -71,28 +49,7 @@ body {
   border-radius: 50%;
 }
 
-/* 📱 Mobile (adjust button position for small screens) */
-@media (max-width: 767px) {
-  .title-text {
-    top: 80%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
-
-  .title-text h1 {
-    font-size: 2rem;
-  }
-
-  #forehead-button {
-    top: 520px;
-    left: 240px;
-    width: 40px;
-    height: 40px;
-  }
-}
-
-/* Popup UI placeholder */
+/* Popup Chat Box */
 #popup {
   position: fixed;
   top: 60%;
@@ -104,4 +61,20 @@ body {
   z-index: 20;
   text-align: center;
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+  display: none;
+}
+
+/* Mobile layout */
+@media (max-width: 767px) {
+  .hero-image {
+    object-position: right center;
+  }
+
+  #forehead-button {
+    top: 36%;
+    left: 40%;
+    width: 36px;
+    height: 36px;
+    box-shadow: 0 0 16px 8px rgba(255, 255, 255, 0.5);
+  }
 }
