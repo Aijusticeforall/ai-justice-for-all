@@ -8,13 +8,11 @@
 </head>
 <body>
   <div class="hero-section">
-    <img 
-      src="images/ai-girl-full.png" 
-      alt="AI Justice" 
-      class="hero-bg"
-    />
+    <picture>
+      <source media="(max-width: 768px)" srcset="images/ai-girl-face.png" />
+      <img src="images/ai-girl-full.png" alt="AI Justice" class="hero-bg" />
+    </picture>
 
-    <!-- ONLY the glow button now -->
     <div id="forehead-button" onclick="window.location.href='chat.html'" title="Launch AI Justice">
       <img src="images/scale-button.png" alt="Activate AI" />
     </div>
