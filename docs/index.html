@@ -1,35 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AI Justice for All</title>
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
-
 <body>
-  <div class="hero">
-    <div class="hero-content">
+
+  <!-- Background banner -->
+  <div class="banner">
+    <img src="images/ai-girl-full.png" alt="AI Justice Banner" class="banner-img" />
+    
+    <!-- Glowing Forehead Button -->
+    <div id="forehead-button" onclick="togglePopup()" title="Activate AI Justice">
+      <img src="images/law-glow.png" alt="Activate AI" />
+    </div>
+
+    <!-- Centered Popup Card -->
+    <div class="popup-card" id="popup">
       <h1>AI Justice for All</h1>
       <p>Built by the AI Justice For All initiative.</p>
-      <button class="glow-button" onclick="togglePopup()">⚖️ Try AI Justice</button>
+      <a href="chat.html" class="cta-button">⚖ Try AI Justice</a>
     </div>
   </div>
 
-  <div class="content">
-    <h2>What is AI Justice?</h2>
-    <p>
-      An AI-powered assistant that helps simulate and prepare legal cases, powered by logic and clarity — for all.
-    </p>
-  </div>
-
-  <div id="popup" class="popup">
-    <iframe src="chat.html"></iframe>
-  </div>
-
-  <script src="script.js"></script>
 </body>
-
 </html>
