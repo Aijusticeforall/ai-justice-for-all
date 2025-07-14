@@ -1,30 +1,29 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Justice Chat</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="chat-layout">
   <div class="sidebar" id="sidebar">
     <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
-    <ul>
-      <li><button onclick="newChat()">+ New Chat</button></li>
-    </ul>
+    <div class="sidebar-content">
+      <h3>Saved Chats</h3>
+      <ul id="chat-list"></ul>
+      <button onclick="startNewChat()">+ New Chat</button>
+    </div>
   </div>
 
-  <div class="chat-container">
+  <div class="chat-main">
     <div class="chat-header">
-      <span>Chat</span>
-      <button onclick="goBack()" class="back-btn">← Back</button>
+      <span>AI Justice</span>
+      <button onclick="goBack()" class="back-btn">←</button>
     </div>
-    <div class="chat-messages" id="chat-messages">
-      <!-- Messages will appear here -->
-    </div>
-    <div class="chat-input">
-      <input type="text" id="chat-box" placeholder="Message AI Justice..." />
+    <div class="chat-messages" id="chat-messages"></div>
+    <div class="chat-input-bar">
+      <input type="text" id="chat-box" placeholder="Message AI Justice..." onkeydown="handleKey(event)" />
       <button onclick="sendMessage()">➤</button>
     </div>
   </div>
