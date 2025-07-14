@@ -1,78 +1,53 @@
-/* General Reset */
-body, html {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #000;
-  color: white;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Justice for All</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-.fullscreen {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
+<div id="landing">
+  <div id="glow-button" title="Enter Chat"></div>
+  <div class="title-text">AI Justice for All</div>
+</div>
 
-.ai-girl {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
+<div id="chat-app" class="hidden">
+  <div id="sidebar">
+    <button id="new-chat">+ New Chat</button>
+    <ul id="chat-history"></ul>
+  </div>
 
-.title-text {
-  position: absolute;
-  top: 45%;
-  left: 58%;
-  transform: translate(-50%, -50%);
-  font-size: 2.8em;
-  z-index: 2;
-}
+  <div id="chat-container">
+    <div id="top-bar">
+      <button id="toggle-sidebar">☰</button>
+      <h1>Chat</h1>
+      <button id="back-home">↩️</button>
+    </div>
+    <div id="chat-messages"></div>
+    <form id="chat-form">
+      <textarea id="chat-input" placeholder="Send a message..." rows="1"></textarea>
+      <button type="submit" id="send-btn">➤</button>
+    </form>
+  </div>
+</div>
 
-.glow-btn {
-  position: absolute;
-  top: 38%;
-  left: 54%;
-  width: 15px;
-  height: 15px;
-  background-color: blue;
-  border-radius: 50%;
-  box-shadow: 0 0 18px 8px rgba(0, 0, 255, 0.6);
-  cursor: pointer;
-  z-index: 3;
-}
+<script>
+  const glowBtn = document.getElementById("glow-button");
+  const landing = document.getElementById("landing");
+  const chatApp = document.getElementById("chat-app");
+  const backHome = document.getElementById("back-home");
 
-.chat-frame {
-  width: 100vw;
-  height: 100vh;
-  border: none;
-  display: block;
-}
+  glowBtn.addEventListener("click", () => {
+    landing.classList.add("hidden");
+    chatApp.classList.remove("hidden");
+  });
 
-.back-btn {
-  position: fixed;
-  top: 14px;
-  left: 14px;
-  z-index: 1000;
-  background: #222;
-  color: white;
-  padding: 6px 10px;
-  font-size: 14px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  opacity: 0.6;
-}
-
-.back-btn:hover {
-  opacity: 1;
-}
-
-.hidden {
-  display: none;
-}
+  backHome.addEventListener("click", () => {
+    chatApp.classList.add("hidden");
+    landing.classList.remove("hidden");
+  });
+</script>
+</body>
+</html>
