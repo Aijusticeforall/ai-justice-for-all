@@ -6,12 +6,12 @@
   <title>AI Justice Chat</title>
   <style>
     :root {
-      --bg-color: #343541;
-      --ai-bubble: #444654;
+      --bg-color: #202123;
+      --ai-bubble: #3C3F4A;
       --user-bubble: #2e81fc;
-      --text-color: #ececf1;
+      --text-color: #dcdcdc;
       --input-bg: #40414f;
-      --sidebar-bg: #202123;
+      --sidebar-bg: #1e1e20;
       --highlight: #4aa3ff;
     }
 
@@ -149,13 +149,43 @@
 
     .chat-input {
       display: flex;
-      padding: 12px;
-      border-top: 1px solid #555;
-      background: var(--input-bg);
+      padding: 16px;
+      background: var(--bg-color);
       width: 100%;
+      justify-content: center;
+    }
+
+    .input-wrapper {
+      display: flex;
+      align-items: center;
+      background: var(--input-bg);
+      border-radius: 24px;
+      padding: 10px 16px;
       max-width: 700px;
-      margin: 0 auto;
-      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .input-wrapper textarea {
+      flex: 1;
+      resize: none;
+      border: none;
+      padding: 10px;
+      border-radius: 20px;
+      font-size: 16px;
+      background: transparent;
+      color: var(--text-color);
+      outline: none;
+      max-height: 120px;
+      overflow-y: auto;
+    }
+
+    .input-wrapper button {
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: var(--highlight);
+      cursor: pointer;
+      padding-left: 10px;
     }
 
     .bubble {
@@ -182,29 +212,6 @@
       color: white;
     }
 
-    .chat-input textarea {
-      flex: 1;
-      resize: none;
-      border: none;
-      padding: 10px 12px;
-      border-radius: 12px;
-      font-size: 15px;
-      background: #555;
-      color: white;
-      outline: none;
-      max-height: 120px;
-      overflow-y: auto;
-    }
-
-    .chat-input button {
-      background: none;
-      border: none;
-      font-size: 20px;
-      color: var(--highlight);
-      cursor: pointer;
-      padding-left: 10px;
-    }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(5px); }
       to { opacity: 1; transform: translateY(0); }
@@ -216,7 +223,8 @@
       }
 
       .chat-input,
-      .chat-messages {
+      .chat-messages,
+      .input-wrapper {
         padding: 12px;
         margin: 0;
         max-width: 100%;
@@ -235,7 +243,7 @@
       <button onclick="newChat()">+ New Chat</button>
       <div class="chat-list" id="chatList"></div>
     </div>
-    <div class="chat-area">
+    <div class="chat-area" onclick="handleTap(event)">
       <div class="chat-header">
         <button class="hamburger" onclick="toggleSidebar()">☰</button>
         <span>Chat</span>
@@ -246,8 +254,10 @@
           <div class="bubble ai">Thanks for your message, I'm AI Justice.</div>
         </div>
         <div class="chat-input">
-          <textarea id="chatInput" rows="1" placeholder="Send a message..."></textarea>
-          <button onclick="sendMessage()">&#9658;</button>
+          <div class="input-wrapper">
+            <textarea id="chatInput" rows="1" placeholder="Send a message..."></textarea>
+            <button onclick="sendMessage()">&#9658;</button>
+          </div>
         </div>
       </div>
     </div>
@@ -269,6 +279,14 @@
 
     function toggleSidebar() {
       sidebar.style.display = sidebar.style.display === 'none' ? 'flex' : 'none';
+    }
+
+    function handleTap(e) {
+      if (window.innerWidth < 768 && sidebar.style.display === 'flex') {
+        if (!e.target.closest('.sidebar')) {
+          sidebar.style.display = 'none';
+        }
+      }
     }
 
     function sendMessage() {
