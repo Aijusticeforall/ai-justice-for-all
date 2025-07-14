@@ -5,12 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Justice Chat</title>
   <style>
+    :root {
+      --bg-color: #343541;
+      --ai-bubble: #444654;
+      --user-bubble: #2e81fc;
+      --text-color: #ececf1;
+      --input-bg: #40414f;
+    }
+
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #ffffff;
+      background: var(--bg-color);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      color: var(--text-color);
       overflow: hidden;
     }
 
@@ -35,7 +44,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: #ffffff;
+      background: var(--bg-color);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -68,31 +77,35 @@
     }
 
     .bubble.ai {
-      background-color: #f7f7f8;
+      background-color: var(--ai-bubble);
       align-self: flex-start;
       border-radius: 20px 20px 20px 6px;
+      color: var(--text-color);
     }
 
     .bubble.user {
-      background-color: #d1eaff;
+      background-color: var(--user-bubble);
       align-self: flex-end;
       border-radius: 20px 20px 6px 20px;
+      color: white;
     }
 
     .chat-input {
       display: flex;
-      padding: 10px;
-      border-top: 1px solid #e0e0e0;
-      background: #ffffff;
+      padding: 12px;
+      border-top: 1px solid #555;
+      background: var(--input-bg);
     }
 
     .chat-input textarea {
       flex: 1;
       resize: none;
-      border: 1px solid #ccc;
+      border: none;
       padding: 10px 12px;
-      border-radius: 16px;
+      border-radius: 12px;
       font-size: 15px;
+      background: #555;
+      color: white;
       outline: none;
       max-height: 120px;
       overflow-y: auto;
@@ -102,7 +115,7 @@
       background: none;
       border: none;
       font-size: 20px;
-      color: #0077ff;
+      color: #4aa3ff;
       cursor: pointer;
       padding-left: 10px;
     }
