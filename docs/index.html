@@ -14,7 +14,7 @@
     }
 
     body {
-      background-color: #0a0a0a;
+      background-color: #000;
       color: white;
       font-family: 'Segoe UI', sans-serif;
       overflow: hidden;
@@ -36,14 +36,14 @@
 
     #forehead-button {
       position: absolute;
-      top: 230px; /* 1cm up from original ~260px */
-      left: 540px; /* 1cm right from original ~520px */
+      top: calc(260px + 4cm); /* PC: moved down 4cm */
+      left: calc(520px + 2cm); /* PC: moved right 2cm */
       width: 42px;
       height: 42px;
       z-index: 10;
       cursor: pointer;
       border-radius: 50%;
-      box-shadow: 0 0 25px 10px rgba(255, 255, 255, 0.7);
+      box-shadow: 0 0 25px 10px rgba(255, 255, 255, 0.8);
       transition: transform 0.3s ease;
     }
 
@@ -64,8 +64,8 @@
       }
 
       #forehead-button {
-        top: 325px; /* 0.5cm down from original ~320px */
-        left: 124px; /* 0.2cm right from original ~120px */
+        top: calc(320px - 2cm);  /* Mobile: moved up 2cm */
+        left: calc(120px - 3cm + 0.2cm); /* Mobile: moved left 3cm and right 0.2cm = net -2.8cm */
         width: 36px;
         height: 36px;
       }
@@ -82,6 +82,7 @@
       z-index: 20;
       text-align: center;
       box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+      display: none;
     }
   </style>
 </head>
@@ -97,7 +98,7 @@
     </div>
   </div>
 
-  <div id="popup" style="display: none;">
+  <div id="popup">
     <h2>Welcome to AI Justice Chat</h2>
     <p>This is where the chat UI will go.</p>
   </div>
