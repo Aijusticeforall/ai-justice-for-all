@@ -1,0 +1,64 @@
+
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: black;
+}
+
+.fullscreen {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.ai-girl {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.glow-btn {
+  position: absolute;
+  top: 40%;
+  left: 18%;
+  width: 18px;
+  height: 18px;
+  background-color: #00f;
+  border-radius: 50%;
+  box-shadow: 0 0 12px 6px rgba(0, 136, 255, 0.8);
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.chat-frame {
+  width: 100vw;
+  height: 100vh;
+  border: none;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .ai-girl {
+    content: url('ai-girl-face.png');
+  }
+  .glow-btn {
+    top: 43%;
+    left: 22%;
+  }
+}
