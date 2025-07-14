@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="chat-layout">
+  <div class="sidebar" id="sidebar">
+    <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+    <ul>
+      <li><button onclick="newChat()">+ New Chat</button></li>
+    </ul>
+  </div>
+
+  <div class="chat-container">
+    <div class="chat-header">
+      <span>Chat</span>
+      <button onclick="goBack()" class="back-btn">← Back</button>
+    </div>
+    <div class="chat-messages" id="chat-messages">
+      <!-- Messages will appear here -->
+    </div>
+    <div class="chat-input">
+      <input type="text" id="chat-box" placeholder="Message AI Justice..." />
+      <button onclick="sendMessage()">➤</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
