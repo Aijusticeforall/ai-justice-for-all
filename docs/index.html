@@ -3,34 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Justice for All</title>
+  <title>AI Justice Chat</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     body {
-      background-color: #000;
-      color: white;
       font-family: 'Segoe UI', sans-serif;
+      background: #000;
+      color: #fff;
+      height: 100vh;
       overflow: hidden;
     }
 
     .banner {
-      position: relative;
+      position: fixed;
       width: 100%;
-      height: 100vh;
-      overflow: hidden;
+      height: 100%;
+      z-index: 1;
     }
 
     .hero-image {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
     }
 
     #forehead-button {
@@ -39,15 +39,10 @@
       left: calc(520px + 2cm);
       width: 42px;
       height: 42px;
-      z-index: 10;
       cursor: pointer;
       border-radius: 50%;
       box-shadow: 0 0 25px 10px rgba(255, 255, 255, 0.8);
-      transition: transform 0.3s ease;
-    }
-
-    #forehead-button:hover {
-      transform: scale(1.1);
+      z-index: 5;
     }
 
     #forehead-button img {
@@ -56,66 +51,74 @@
       border-radius: 50%;
     }
 
-    @media (max-width: 767px) {
-      .hero-image {
-        object-position: right center;
-      }
-
-      #forehead-button {
-        top: calc(320px - 2cm);
-        left: calc(120px - 3cm + 0.2cm);
-        width: 36px;
-        height: 36px;
-      }
-    }
-
-    #chat-container {
+    .chat-container {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100vh;
-      background: rgba(10, 10, 10, 0.96);
-      display: none;
+      display: flex;
       flex-direction: column;
-      z-index: 999;
+      align-items: center;
+      justify-content: flex-end;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(6px);
+      z-index: 10;
+      display: none;
     }
 
-    #chat-header {
-      padding: 1rem;
-      background: #121212;
-      text-align: center;
-      font-size: 1.2rem;
-      border-bottom: 1px solid #333;
-    }
-
-    #chat-box {
+    .messages {
       flex: 1;
+      width: 100%;
+      max-width: 750px;
       padding: 1rem;
       overflow-y: auto;
     }
 
-    #chat-input {
+    .message {
+      background: #222;
+      padding: 10px 14px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      max-width: 85%;
+      line-height: 1.4;
+    }
+
+    .user-message {
+      align-self: flex-end;
+      background: #2d74da;
+    }
+
+    .ai-message {
+      align-self: flex-start;
+      background: #333;
+    }
+
+    .input-bar {
+      width: 100%;
+      max-width: 750px;
       display: flex;
-      border-top: 1px solid #333;
+      padding: 10px;
       background: #111;
+      border-top: 1px solid #444;
     }
 
-    #chat-input textarea {
+    .input-bar input {
       flex: 1;
-      padding: 0.8rem;
-      background: #000;
-      color: white;
+      padding: 10px;
       border: none;
-      resize: none;
-      font-size: 1rem;
+      border-radius: 20px;
+      background: #222;
+      color: white;
     }
 
-    #chat-input button {
-      padding: 0.8rem 1.2rem;
-      background: #08f;
-      color: white;
+    .input-bar button {
+      margin-left: 10px;
+      padding: 10px 16px;
       border: none;
+      border-radius: 20px;
+      background: #2d74da;
+      color: white;
       cursor: pointer;
     }
   </style>
@@ -126,46 +129,50 @@
       <source srcset="ai-girl-face.png" media="(max-width: 767px)" />
       <img src="ai-girl-full.png" alt="AI Justice" class="hero-image" />
     </picture>
-
-    <div id="forehead-button" onclick="toggleChat()" title="Activate AI Justice">
+    <div id="forehead-button" onclick="toggleChat()">
       <img src="scale-button.png" alt="AI Justice" />
     </div>
   </div>
 
-  <div id="chat-container">
-    <div id="chat-header">AI Justice</div>
-    <div id="chat-box"></div>
-    <div id="chat-input">
-      <textarea placeholder="Ask AI Justice anything..."></textarea>
+  <div id="chat" class="chat-container">
+    <div class="messages" id="messages"></div>
+    <div class="input-bar">
+      <input type="text" id="userInput" placeholder="Ask AI Justice anything..." />
       <button onclick="sendMessage()">Send</button>
     </div>
   </div>
 
   <script>
+    let firstMessage = true;
+
     function toggleChat() {
-      const chat = document.getElementById('chat-container');
+      const chat = document.getElementById('chat');
       chat.style.display = chat.style.display === 'flex' ? 'none' : 'flex';
     }
 
     function sendMessage() {
-      const input = document.querySelector('#chat-input textarea');
-      const box = document.getElementById('chat-box');
-      const msg = input.value.trim();
-      if (!msg) return;
+      const input = document.getElementById('userInput');
+      const text = input.value.trim();
+      if (!text) return;
 
-      const userMsg = document.createElement('div');
-      userMsg.textContent = msg;
-      userMsg.style.margin = '1rem 0';
-      box.appendChild(userMsg);
+      const messages = document.getElementById('messages');
+
+      const userBubble = document.createElement('div');
+      userBubble.className = 'message user-message';
+      userBubble.textContent = text;
+      messages.appendChild(userBubble);
 
       input.value = '';
-      // Placeholder AI response
-      const aiMsg = document.createElement('div');
-      aiMsg.textContent = 'Processing your request...';
-      aiMsg.style.color = '#0af';
-      aiMsg.style.margin = '1rem 0';
-      box.appendChild(aiMsg);
-      box.scrollTop = box.scrollHeight;
+      messages.scrollTop = messages.scrollHeight;
+
+      if (firstMessage) {
+        const aiBubble = document.createElement('div');
+        aiBubble.className = 'message ai-message';
+        aiBubble.textContent = "Thanks for your message, I'm AI Justice.";
+        messages.appendChild(aiBubble);
+        messages.scrollTop = messages.scrollHeight;
+        firstMessage = false;
+      }
     }
   </script>
 </body>
