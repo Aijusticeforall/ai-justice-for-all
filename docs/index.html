@@ -1,3 +1,7 @@
+# Create final version of index.html using responsive images (ai-girl-face.png for mobile, ai-girl-full.png for desktop)
+# And ensure glowing button is over the right position (we'll use CSS media queries to reposition it)
+
+responsive_html = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,10 +9,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Justice Chat</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    #ai-girl {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    #glow-button {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: #00f;
+      border-radius: 50%;
+      box-shadow: 0 0 20px 5px #00f;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+    /* Position for desktop (full girl) */
+    @media (min-width: 768px) {
+      #glow-button {
+        top: 38%;
+        left: 52%;
+      }
+    }
+    /* Position for mobile (face only) */
+    @media (max-width: 767px) {
+      #glow-button {
+        top: 42%;
+        left: 54%;
+      }
+    }
+  </style>
 </head>
 <body>
   <div id="landing">
-    <img src="ai-girl-placeholder.jpg" alt="AI Girl" id="ai-girl" />
+    <picture>
+      <source media="(max-width: 767px)" srcset="ai-girl-face.png" />
+      <img src="ai-girl-full.png" alt="AI Girl" id="ai-girl" />
+    </picture>
     <div id="glow-button"></div>
   </div>
 
@@ -33,5 +71,15 @@
   </div>
 
   <script src="script.js"></script>
+  <script>
+    document.getElementById("glow-button").addEventListener("click", () => {
+      document.getElementById("landing").classList.add("hidden");
+      document.getElementById("chat-app").classList.remove("hidden");
+    });
+    document.getElementById("back-home").addEventListener("click", () => {
+      document.getElementById("landing").classList.remove("hidden");
+      document.getElementById("chat-app").classList.add("hidden");
+    });
+  </script>
 </body>
 </html>
