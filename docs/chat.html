@@ -2,32 +2,152 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Justice Chat</title>
   <link rel="stylesheet" href="style.css" />
-</head>
-<body class="chat-layout">
-  <div class="sidebar" id="sidebar">
-    <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
-    <div class="sidebar-content">
-      <h3>Saved Chats</h3>
-      <ul id="chat-list"></ul>
-      <button onclick="startNewChat()">+ New Chat</button>
-    </div>
-  </div>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #fff;
+      display: flex;
+      height: 100vh;
+    }
 
-  <div class="chat-main">
-    <div class="chat-header">
-      <span>AI Justice</span>
-      <button onclick="goBack()" class="back-btn">←</button>
+    .sidebar {
+      width: 260px;
+      background-color: #1e1e1e;
+      padding: 16px;
+      box-sizing: border-box;
+    }
+
+    .sidebar h3 {
+      margin: 0 0 1rem;
+    }
+
+    .sidebar button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 8px;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .top-bar {
+      height: 50px;
+      background-color: #1e1e1e;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      box-sizing: border-box;
+    }
+
+    .chat-window {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .input-bar {
+      display: flex;
+      padding: 10px;
+      background-color: #1e1e1e;
+    }
+
+    .input-bar input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      margin-right: 10px;
+      font-size: 1em;
+    }
+
+    .input-bar button {
+      padding: 0 16px;
+      border: none;
+      border-radius: 6px;
+      background-color: #007bff;
+      color: white;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    @media screen and (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+      }
+
+      .main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .top-bar {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h3>Saved Chats</h3>
+    <button onclick="newChat()">+ New Chat</button>
+  </div>
+  <div class="main">
+    <div class="top-bar">
+      <div><strong>AI Justice</strong></div>
+      <button onclick="goBack()">← Back</button>
     </div>
-    <div class="chat-messages" id="chat-messages"></div>
-    <div class="chat-input-bar">
-      <input type="text" id="chat-box" placeholder="Message AI Justice..." onkeydown="handleKey(event)" />
+    <div class="chat-window" id="chatWindow">
+      <!-- Messages go here -->
+    </div>
+    <div class="input-bar">
+      <input type="text" id="userInput" placeholder="Message AI Justice..." />
       <button onclick="sendMessage()">➤</button>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    function goBack() {
+      window.location.href = "index.html";
+    }
+
+    function newChat() {
+      document.getElementById("chatWindow").innerHTML = '';
+      document.getElementById("userInput").value = '';
+    }
+
+    function sendMessage() {
+      const input = document.getElementById("userInput");
+      const chat = document.getElementById("chatWindow");
+      if (!input.value.trim()) return;
+      const message = document.createElement("div");
+      message.textContent = "You: " + input.value;
+      message.style.marginBottom = "12px";
+      chat.appendChild(message);
+      input.value = "";
+      chat.scrollTop = chat.scrollHeight;
+    }
+  </script>
 </body>
 </html>
