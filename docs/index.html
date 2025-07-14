@@ -5,7 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Justice for All</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
+  <script>
+    function togglePopup() {
+      const popup = document.getElementById("popup");
+      popup.style.display = popup.style.display === "none" ? "block" : "none";
+    }
+  </script>
   <style>
     * {
       margin: 0;
@@ -34,39 +39,16 @@
       display: block;
     }
 
-    .title-text {
-      position: absolute;
-      top: 45%;
-      left: 65%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      color: white;
-      z-index: 2;
-    }
-
-    .title-text h1 {
-      font-size: 3rem;
-      font-weight: bold;
-      text-shadow: 0 0 10px #000;
-    }
-
-    .title-text p {
-      margin-top: 10px;
-      font-size: 1rem;
-      opacity: 0.8;
-      text-shadow: 0 0 8px #000;
-    }
-
     #forehead-button {
       position: absolute;
-      top: 60%;
-      left: 52%;
+      top: 340px;
+      left: 560px;
       width: 42px;
       height: 42px;
       z-index: 10;
       cursor: pointer;
       border-radius: 50%;
-      box-shadow: 0 0 20px 8px rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.8);
       transition: transform 0.3s ease;
     }
 
@@ -80,28 +62,15 @@
       border-radius: 50%;
     }
 
+    /* Mobile adjustments */
     @media (max-width: 767px) {
       .hero-image {
         object-position: right center;
       }
 
-      .title-text {
-        top: 80%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-
-      .title-text h1 {
-        font-size: 2rem;
-      }
-
-      .title-text p {
-        font-size: 0.9rem;
-      }
-
       #forehead-button {
-        top: 52%;
-        left: 36%;
+        top: 180px;
+        left: 80px;
         width: 36px;
         height: 36px;
       }
@@ -109,69 +78,16 @@
 
     #popup {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(10, 10, 10, 0.95);
-      backdrop-filter: blur(4px);
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(10, 10, 10, 0.85);
+      padding: 30px;
+      border-radius: 12px;
       z-index: 20;
-      display: none;
-      flex-direction: column;
-    }
-
-    #popup header {
-      padding: 16px;
-      background: #111;
       text-align: center;
-      font-weight: bold;
-      border-bottom: 1px solid #333;
-    }
-
-    #chat-container {
-      flex: 1;
-      padding: 16px;
-      overflow-y: auto;
-    }
-
-    .message {
-      margin-bottom: 12px;
-      max-width: 80%;
-      padding: 12px;
-      border-radius: 10px;
-      line-height: 1.4;
-    }
-
-    .user {
-      background-color: #3a3a3a;
-      align-self: flex-end;
-    }
-
-    .bot {
-      background-color: #1e1e1e;
-      align-self: flex-start;
-    }
-
-    #input-container {
-      display: flex;
-      border-top: 1px solid #333;
-    }
-
-    #input-container input {
-      flex: 1;
-      padding: 12px;
-      background: #000;
-      color: white;
-      border: none;
-    }
-
-    #input-container button {
-      padding: 0 20px;
-      background: #00e0c8;
-      border: none;
-      color: black;
-      font-weight: bold;
-      cursor: pointer;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+      display: none;
     }
   </style>
 </head>
@@ -182,56 +98,14 @@
       <img src="images/ai-girl-full.png" alt="AI Justice" class="hero-image" />
     </picture>
 
-    <div class="title-text">
-      <h1>AI Justice for All</h1>
-      <p>A smarter, unbiased legal assistant — built for all.</p>
-    </div>
-
     <div id="forehead-button" onclick="togglePopup()" title="Activate AI Justice">
       <img src="images/scale-button.png" alt="AI Justice" />
     </div>
   </div>
 
   <div id="popup">
-    <header>🔐 AI Justice Chat</header>
-    <div id="chat-container">
-      <div class="message bot">Hello. How can I help you today?</div>
-    </div>
-    <div id="input-container">
-      <input type="text" id="user-input" placeholder="Type your message..." />
-      <button onclick="sendMessage()">Send</button>
-    </div>
+    <h2>Welcome to AI Justice Chat</h2>
+    <p>This is where the chat UI will go.</p>
   </div>
-
-  <script>
-    function togglePopup() {
-      const popup = document.getElementById("popup");
-      popup.style.display = popup.style.display === "none" ? "flex" : "none";
-    }
-
-    function sendMessage() {
-      const input = document.getElementById("user-input");
-      const text = input.value.trim();
-      if (!text) return;
-
-      const chatContainer = document.getElementById("chat-container");
-      const userMsg = document.createElement("div");
-      userMsg.className = "message user";
-      userMsg.textContent = text;
-      chatContainer.appendChild(userMsg);
-
-      const botMsg = document.createElement("div");
-      botMsg.className = "message bot";
-      botMsg.textContent = "Thinking...";
-      chatContainer.appendChild(botMsg);
-
-      input.value = "";
-      chatContainer.scrollTop = chatContainer.scrollHeight;
-
-      setTimeout(() => {
-        botMsg.textContent = "This is a simulated response.";
-      }, 800);
-    }
-  </script>
 </body>
 </html>
