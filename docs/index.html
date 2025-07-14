@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Justice for All</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
   <style>
     * {
       margin: 0;
@@ -11,19 +13,17 @@
       box-sizing: border-box;
     }
 
-    html, body {
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
+    body {
       background-color: #000;
+      color: white;
       font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
     }
 
     .banner {
       position: relative;
-      height: 100vh;
       width: 100%;
-      background-color: #111; /* fallback */
+      height: 100vh;
     }
 
     .hero-image {
@@ -35,15 +35,15 @@
 
     #forehead-button {
       position: absolute;
-      top: 38%;
-      left: 18.3%;
-      width: 38px;
-      height: 38px;
+      top: 42%;
+      left: 20.7%;
+      width: 40px;
+      height: 40px;
       z-index: 10;
       cursor: pointer;
       border-radius: 50%;
-      box-shadow: 0 0 25px 12px rgba(255, 255, 255, 0.6);
-      transition: transform 0.2s ease-in-out;
+      box-shadow: 0 0 25px 12px rgba(0, 255, 255, 0.6);
+      transition: transform 0.3s ease;
     }
 
     #forehead-button:hover {
@@ -56,36 +56,46 @@
       border-radius: 50%;
     }
 
+    /* Mobile adjustments */
     @media (max-width: 767px) {
-      .hero-image {
-        object-position: center center;
-      }
-
       #forehead-button {
-        top: 28.5%;
-        left: 38.7%;
-        width: 34px;
-        height: 34px;
+        top: 41.5%;
+        left: 41%;
+        width: 38px;
+        height: 38px;
       }
+    }
+
+    #popup {
+      position: fixed;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.85);
+      padding: 30px;
+      border-radius: 12px;
+      z-index: 20;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+      display: none;
     }
   </style>
 </head>
 <body>
   <div class="banner">
     <picture>
-      <source srcset="images/ai-girl-face.png" media="(max-width: 767px)" />
-      <img src="images/ai-girl-full.png" alt="AI Justice" class="hero-image" />
+      <source srcset="ai-girl-face.png" media="(max-width: 767px)" />
+      <img src="ai-girl-full.png" alt="AI Justice" class="hero-image" />
     </picture>
 
     <div id="forehead-button" onclick="togglePopup()" title="Activate AI Justice">
-      <img src="images/scale-button.png" alt="Activate" />
+      <img src="scale-button.png" alt="AI Justice Button" />
     </div>
   </div>
 
-  <script>
-    function togglePopup() {
-      alert("AI Justice will launch here.");
-    }
-  </script>
+  <div id="popup">
+    <h2>Welcome to AI Justice Chat</h2>
+    <p>This is where the chat UI will go.</p>
+  </div>
 </body>
 </html>
