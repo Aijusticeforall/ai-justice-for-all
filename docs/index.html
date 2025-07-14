@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Justice Chat</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="landing">
+    <img src="ai-girl-placeholder.jpg" alt="AI Girl" id="ai-girl" />
+    <div id="glow-button"></div>
+  </div>
+
+  <div id="chat-app" class="hidden">
+    <div id="sidebar">
+      <button id="new-chat">+ New Chat</button>
+      <ul id="chat-history"></ul>
+    </div>
+
+    <div id="chat-container">
+      <div id="top-bar">
+        <button id="toggle-sidebar">☰</button>
+        <h1>Chat</h1>
+        <button id="back-home">↩️</button>
+      </div>
+      <div id="chat-messages"></div>
+      <form id="chat-form">
+        <textarea id="chat-input" placeholder="Send a message..." rows="1"></textarea>
+        <button type="submit" id="send-btn">➤</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
