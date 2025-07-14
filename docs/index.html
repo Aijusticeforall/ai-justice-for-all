@@ -6,44 +6,54 @@
   <title>AI Justice Chat</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    #ai-girl {
-      width: 100%;
-      height: auto;
-      display: block;
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: black;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
+
+    #landing {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background-image: url('ai-girl-full.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
     #glow-button {
       position: absolute;
-      width: 30px;
-      height: 30px;
-      background: #00f;
+      top: 39%;
+      left: 57%;
+      width: 26px;
+      height: 26px;
+      background: #00aaff;
       border-radius: 50%;
-      box-shadow: 0 0 20px 5px #00f;
+      box-shadow: 0 0 18px 6px rgba(0, 153, 255, 0.8);
       cursor: pointer;
-      transition: all 0.2s ease-in-out;
+      transition: transform 0.2s ease-in-out;
     }
-    /* Position for desktop (full girl) */
-    @media (min-width: 768px) {
-      #glow-button {
-        top: 38%;
-        left: 52%;
-      }
+
+    #glow-button:hover {
+      transform: scale(1.1);
     }
-    /* Position for mobile (face only) */
-    @media (max-width: 767px) {
-      #glow-button {
-        top: 42%;
-        left: 54%;
-      }
+
+    .hidden {
+      display: none;
+    }
+
+    #chat-app {
+      display: flex;
+      height: 100vh;
     }
   </style>
 </head>
 <body>
   <div id="landing">
-    <picture>
-      <source media="(max-width: 767px)" srcset="ai-girl-face.png" />
-      <img src="ai-girl-full.png" alt="AI Girl" id="ai-girl" />
-    </picture>
-    <div id="glow-button"></div>
+    <div id="glow-button" title="Enter Chat"></div>
   </div>
 
   <div id="chat-app" class="hidden">
@@ -72,6 +82,7 @@
       document.getElementById("landing").classList.add("hidden");
       document.getElementById("chat-app").classList.remove("hidden");
     });
+
     document.getElementById("back-home").addEventListener("click", () => {
       document.getElementById("landing").classList.remove("hidden");
       document.getElementById("chat-app").classList.add("hidden");
