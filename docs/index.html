@@ -4,13 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Justice for All</title>
-  <link rel="stylesheet" href="style.css" />
-  <script>
-    function togglePopup() {
-      const popup = document.getElementById("popup");
-      popup.style.display = popup.style.display === "none" ? "block" : "none";
-    }
-  </script>
   <style>
     * {
       margin: 0;
@@ -19,7 +12,7 @@
     }
 
     body {
-      background-color: #0a0a0a;
+      background-color: #000;
       color: white;
       font-family: 'Segoe UI', sans-serif;
       overflow: hidden;
@@ -27,9 +20,8 @@
 
     .banner {
       position: relative;
-      width: 100%;
+      width: 100vw;
       height: 100vh;
-      overflow: hidden;
     }
 
     .hero-image {
@@ -41,14 +33,14 @@
 
     #forehead-button {
       position: absolute;
-      top: 340px;
-      left: 560px;
+      top: calc(50% + 120px); /* default desktop: adjust down */
+      left: calc(50% + 100px); /* default desktop: adjust right */
       width: 42px;
       height: 42px;
       z-index: 10;
       cursor: pointer;
       border-radius: 50%;
-      box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.8);
+      box-shadow: 0 0 20px 8px rgba(0, 255, 255, 0.4);
       transition: transform 0.3s ease;
     }
 
@@ -62,34 +54,44 @@
       border-radius: 50%;
     }
 
-    /* Mobile adjustments */
+    #popup {
+      position: fixed;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(20, 20, 20, 0.85);
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      z-index: 99;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+      display: none;
+    }
+
+    #popup h2 {
+      margin-bottom: 8px;
+    }
+
+    /* Mobile tweaks */
     @media (max-width: 767px) {
       .hero-image {
         object-position: right center;
       }
 
       #forehead-button {
-        top: 180px;
-        left: 80px;
+        top: calc(50% - 20px);  /* move up on mobile */
+        left: calc(50% - 60px); /* move left on mobile */
         width: 36px;
         height: 36px;
       }
     }
-
-    #popup {
-      position: fixed;
-      top: 60%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(10, 10, 10, 0.85);
-      padding: 30px;
-      border-radius: 12px;
-      z-index: 20;
-      text-align: center;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
-      display: none;
-    }
   </style>
+  <script>
+    function togglePopup() {
+      const popup = document.getElementById("popup");
+      popup.style.display = popup.style.display === "none" ? "block" : "none";
+    }
+  </script>
 </head>
 <body>
   <div class="banner">
@@ -99,7 +101,7 @@
     </picture>
 
     <div id="forehead-button" onclick="togglePopup()" title="Activate AI Justice">
-      <img src="images/scale-button.png" alt="AI Justice" />
+      <img src="images/scale-button.png" alt="Activate" />
     </div>
   </div>
 
