@@ -14,7 +14,7 @@
     }
 
     body {
-      background-color: #000;
+      background-color: #0a0a0a;
       color: white;
       font-family: 'Segoe UI', sans-serif;
       overflow: hidden;
@@ -24,6 +24,7 @@
       position: relative;
       width: 100%;
       height: 100vh;
+      overflow: hidden;
     }
 
     .hero-image {
@@ -35,14 +36,14 @@
 
     #forehead-button {
       position: absolute;
-      top: calc(42% - 3cm);
-      left: 20.7%;
-      width: 40px;
-      height: 40px;
+      top: 230px; /* 1cm up from original ~260px */
+      left: 540px; /* 1cm right from original ~520px */
+      width: 42px;
+      height: 42px;
       z-index: 10;
       cursor: pointer;
       border-radius: 50%;
-      box-shadow: 0 0 25px 12px rgba(0, 255, 255, 0.6);
+      box-shadow: 0 0 25px 10px rgba(255, 255, 255, 0.7);
       transition: transform 0.3s ease;
     }
 
@@ -58,11 +59,15 @@
 
     /* Mobile adjustments */
     @media (max-width: 767px) {
+      .hero-image {
+        object-position: right center;
+      }
+
       #forehead-button {
-        top: calc(41.5% - 3cm);
-        left: calc(41% - 4cm);
-        width: 38px;
-        height: 38px;
+        top: 325px; /* 0.5cm down from original ~320px */
+        left: 124px; /* 0.2cm right from original ~120px */
+        width: 36px;
+        height: 36px;
       }
     }
 
@@ -71,13 +76,12 @@
       top: 60%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(0, 0, 0, 0.85);
+      background: rgba(10, 10, 10, 0.85);
       padding: 30px;
       border-radius: 12px;
       z-index: 20;
       text-align: center;
       box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
-      display: none;
     }
   </style>
 </head>
@@ -89,11 +93,11 @@
     </picture>
 
     <div id="forehead-button" onclick="togglePopup()" title="Activate AI Justice">
-      <img src="scale-button.png" alt="AI Justice Button" />
+      <img src="scale-button.png" alt="AI Justice" />
     </div>
   </div>
 
-  <div id="popup">
+  <div id="popup" style="display: none;">
     <h2>Welcome to AI Justice Chat</h2>
     <p>This is where the chat UI will go.</p>
   </div>
