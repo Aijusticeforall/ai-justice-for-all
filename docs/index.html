@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Justice Chat</title>
   <style>
     :root {
@@ -11,16 +11,23 @@
       --user-bubble: #2e81fc;
       --text-color: #ececf1;
       --input-bg: #40414f;
+      --sidebar-bg: #202123;
+      --highlight: #4aa3ff;
     }
 
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      background: var(--bg-color);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-      color: var(--text-color);
       overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    }
+
+    .homepage {
+      width: 100vw;
+      height: 100vh;
+      background: url('ai-girl-banner.png') center/cover no-repeat;
+      position: relative;
     }
 
     .glow-button {
@@ -39,6 +46,7 @@
     }
 
     .chat-overlay {
+      display: none;
       position: fixed;
       top: 0;
       left: 0;
@@ -46,14 +54,76 @@
       height: 100vh;
       background: var(--bg-color);
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      flex-direction: row;
       z-index: 1000;
-      display: none;
     }
 
     .chat-overlay.active {
       display: flex;
+    }
+
+    .sidebar {
+      width: 260px;
+      background: var(--sidebar-bg);
+      border-right: 1px solid #2d2e33;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sidebar h2 {
+      margin-top: 0;
+      font-size: 16px;
+      color: #aaa;
+    }
+
+    .sidebar button {
+      padding: 10px;
+      border: none;
+      background: #35363a;
+      color: var(--text-color);
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .chat-list {
+      flex: 1;
+      overflow-y: auto;
+      margin-top: 10px;
+    }
+
+    .chat-list div {
+      padding: 8px;
+      background: #35363a;
+      margin-bottom: 5px;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .chat-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .chat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      background: var(--input-bg);
+      border-bottom: 1px solid #2d2e33;
+    }
+
+    .hamburger {
+      font-size: 20px;
+      background: none;
+      color: white;
+      border: none;
+      cursor: pointer;
     }
 
     .chat-messages {
@@ -115,7 +185,7 @@
       background: none;
       border: none;
       font-size: 20px;
-      color: #4aa3ff;
+      color: var(--highlight);
       cursor: pointer;
       padding-left: 10px;
     }
@@ -126,34 +196,55 @@
     }
 
     @media screen and (max-width: 768px) {
-      .chat-input textarea {
-        font-size: 16px;
+      .sidebar {
+        display: none;
       }
     }
   </style>
 </head>
 <body>
-  <button class="glow-button" onclick="openChat()"></button>
+  <div class="homepage" id="homepage">
+    <button class="glow-button" onclick="enterChat()"></button>
+  </div>
 
   <div class="chat-overlay" id="chatOverlay">
-    <div class="chat-messages" id="chatMessages">
-      <div class="bubble ai">Thanks for your message, I'm AI Justice.</div>
+    <div class="sidebar" id="sidebar">
+      <h2>AI Justice</h2>
+      <button onclick="newChat()">+ New Chat</button>
+      <div class="chat-list" id="chatList"></div>
     </div>
-    <div class="chat-input">
-      <textarea id="chatInput" rows="1" placeholder="Send a message..."></textarea>
-      <button onclick="sendMessage()">&#9658;</button>
+    <div class="chat-area">
+      <div class="chat-header">
+        <button class="hamburger" onclick="toggleSidebar()">☰</button>
+        <span>Chat</span>
+        <div></div>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="bubble ai">Thanks for your message, I'm AI Justice.</div>
+      </div>
+      <div class="chat-input">
+        <textarea id="chatInput" rows="1" placeholder="Send a message..."></textarea>
+        <button onclick="sendMessage()">&#9658;</button>
+      </div>
     </div>
   </div>
 
   <script>
+    const homepage = document.getElementById('homepage');
     const chatOverlay = document.getElementById('chatOverlay');
     const chatMessages = document.getElementById('chatMessages');
     const chatInput = document.getElementById('chatInput');
-    const glowButton = document.querySelector('.glow-button');
+    const chatList = document.getElementById('chatList');
+    const sidebar = document.getElementById('sidebar');
 
-    function openChat() {
+    function enterChat() {
+      homepage.style.display = 'none';
       chatOverlay.classList.add('active');
-      glowButton.style.display = 'none';
+      loadChats();
+    }
+
+    function toggleSidebar() {
+      sidebar.style.display = sidebar.style.display === 'none' ? 'flex' : 'none';
     }
 
     function sendMessage() {
@@ -162,7 +253,11 @@
         addMessage('user', msg);
         chatInput.value = '';
         chatInput.style.height = 'auto';
-        setTimeout(() => addMessage('ai', simulateResponse(msg)), 700);
+        setTimeout(() => {
+          const reply = simulateResponse(msg);
+          addMessage('ai', reply);
+          saveChat(msg, reply);
+        }, 700);
       }
     }
 
@@ -176,6 +271,38 @@
 
     function simulateResponse(msg) {
       return "You said: " + msg;
+    }
+
+    function saveChat(userMsg, aiReply) {
+      const existing = JSON.parse(localStorage.getItem('chats') || '[]');
+      existing.push({ title: userMsg.slice(0, 20), userMsg, aiReply });
+      localStorage.setItem('chats', JSON.stringify(existing));
+      loadChats();
+    }
+
+    function loadChats() {
+      const existing = JSON.parse(localStorage.getItem('chats') || '[]');
+      chatList.innerHTML = '';
+      existing.forEach((chat, index) => {
+        const div = document.createElement('div');
+        div.textContent = chat.title;
+        div.onclick = () => loadChat(index);
+        chatList.appendChild(div);
+      });
+    }
+
+    function loadChat(index) {
+      const existing = JSON.parse(localStorage.getItem('chats') || '[]');
+      if (existing[index]) {
+        chatMessages.innerHTML = '';
+        addMessage('user', existing[index].userMsg);
+        addMessage('ai', existing[index].aiReply);
+      }
+    }
+
+    function newChat() {
+      chatMessages.innerHTML = '';
+      addMessage('ai', "Thanks for your message, I'm AI Justice.");
     }
 
     chatInput.addEventListener('input', () => {
