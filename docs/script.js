@@ -1,9 +1,16 @@
-function enterChat() {
-  document.getElementById('landing').classList.add('hidden');
-  document.getElementById('chat-section').classList.remove('hidden');
-}
+function openChat() {
+  const chatFrame = document.createElement("iframe");
+  chatFrame.src = "chat.html";
+  chatFrame.className = "chat-frame";
+  chatFrame.allow = "clipboard-write; microphone;";
+  document.body.appendChild(chatFrame);
 
-function returnHome() {
-  document.getElementById('chat-section').classList.add('hidden');
-  document.getElementById('landing').classList.remove('hidden');
+  const backBtn = document.createElement("button");
+  backBtn.innerText = "←";
+  backBtn.className = "back-btn";
+  backBtn.onclick = () => {
+    chatFrame.remove();
+    backBtn.remove();
+  };
+  document.body.appendChild(backBtn);
 }
