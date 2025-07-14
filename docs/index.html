@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Justice for All</title>
   <link rel="stylesheet" href="style.css" />
   <script src="script.js" defer></script>
@@ -13,11 +13,10 @@
       box-sizing: border-box;
     }
 
-    html, body {
-      height: 100%;
+    body {
       background-color: #000;
-      font-family: 'Segoe UI', sans-serif;
       color: white;
+      font-family: 'Segoe UI', sans-serif;
       overflow: hidden;
     }
 
@@ -37,8 +36,8 @@
 
     #forehead-button {
       position: absolute;
-      top: calc(260px + 4cm); 
-      left: calc(520px + 2cm); 
+      top: calc(260px + 4cm); /* PC position */
+      left: calc(520px + 2cm);
       width: 42px;
       height: 42px;
       z-index: 10;
@@ -58,180 +57,30 @@
       border-radius: 50%;
     }
 
-    #popup {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: #1e1e2f;
-      display: none;
-      flex-direction: column;
-    }
-
-    #chat-header {
-      display: flex;
-      align-items: center;
-      height: 48px;
-      padding: 0 12px;
-      background-color: #111;
-    }
-
-    #back-icon {
-      font-size: 20px;
-      cursor: pointer;
-      color: #fff;
-      margin-right: 12px;
-    }
-
-    .chat-window {
-      flex: 1;
-      overflow-y: auto;
-      padding: 20px;
-    }
-
-    .chat-message {
-      margin-bottom: 10px;
-    }
-
-    .chat-input {
-      display: flex;
-      align-items: center;
-      padding: 10px;
-      background-color: #111;
-      border-top: 1px solid #222;
-    }
-
-    .chat-input input {
-      flex: 1;
-      padding: 10px;
-      border-radius: 12px;
-      background-color: #333;
-      color: white;
-      border: none;
-      margin-right: 10px;
-    }
-
-    .chat-input input:focus {
-      outline: none;
-    }
-
-    .send-btn {
-      background: none;
-      border: none;
-      color: #4ea6f0;
-      font-size: 20px;
-      cursor: pointer;
-    }
-
-    .thinking-dots {
-      display: inline-block;
-      width: 1em;
-      height: 1em;
-      border-radius: 50%;
-      background: #888;
-      animation: blink 1s infinite;
-      margin-left: 6px;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 0.2; }
-      50% { opacity: 1; }
-    }
-
-    /* Responsive */
     @media (max-width: 767px) {
+      .hero-image {
+        object-position: right center;
+      }
+
       #forehead-button {
-        top: calc(320px - 2cm);
-        left: calc(120px - 3cm + 0.2cm);
+        top: calc(320px - 2cm);  
+        left: calc(120px - 3cm + 0.2cm); 
         width: 36px;
         height: 36px;
-      }
-
-      .chat-input {
-        flex-direction: row;
-      }
-
-      .chat-input input {
-        font-size: 16px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- LANDING -->
-  <div class="banner" id="landing">
+  <div class="banner">
     <picture>
       <source srcset="ai-girl-face.png" media="(max-width: 767px)" />
       <img src="ai-girl-full.png" alt="AI Justice" class="hero-image" />
     </picture>
-    <div id="forehead-button" onclick="openChat()" title="Start AI Justice">
-      <img src="scale-button.png" alt="Glow Button" />
+
+    <div id="forehead-button" onclick="window.location.href='chat.html';" title="Enter AI Justice Chat">
+      <img src="scale-button.png" alt="AI Justice" />
     </div>
   </div>
-
-  <!-- CHAT -->
-  <div id="popup">
-    <div id="chat-header">
-      <span id="back-icon" onclick="goBack()">↶</span>
-      <span>AI Justice</span>
-    </div>
-    <div class="chat-window" id="chat-window">
-      <!-- Messages will go here -->
-    </div>
-    <div class="chat-input">
-      <input type="text" id="chat-input" placeholder="Ask anything..." onkeydown="checkEnter(event)" />
-      <button class="send-btn" onclick="sendMessage()">➤</button>
-    </div>
-  </div>
-
-  <script>
-    function openChat() {
-      document.getElementById('landing').style.display = 'none';
-      document.getElementById('popup').style.display = 'flex';
-    }
-
-    function goBack() {
-      document.getElementById('popup').style.display = 'none';
-      document.getElementById('landing').style.display = 'block';
-    }
-
-    function checkEnter(event) {
-      if (event.key === "Enter") {
-        sendMessage();
-      }
-    }
-
-    function sendMessage() {
-      const input = document.getElementById('chat-input');
-      const msg = input.value.trim();
-      if (!msg) return;
-
-      const chatWindow = document.getElementById('chat-window');
-
-      const userMsg = document.createElement('div');
-      userMsg.className = 'chat-message';
-      userMsg.textContent = msg;
-      chatWindow.appendChild(userMsg);
-
-      input.value = "";
-
-      const dots = document.createElement('div');
-      dots.className = 'thinking-dots';
-      chatWindow.appendChild(dots);
-
-      chatWindow.scrollTop = chatWindow.scrollHeight;
-
-      // Simulated AI Response
-      setTimeout(() => {
-        dots.remove();
-        const aiMsg = document.createElement('div');
-        aiMsg.className = 'chat-message';
-        aiMsg.textContent = "Thanks for your message, I'm AI Justice.";
-        chatWindow.appendChild(aiMsg);
-        chatWindow.scrollTop = chatWindow.scrollHeight;
-      }, 1200);
-    }
-  </script>
 </body>
 </html>
