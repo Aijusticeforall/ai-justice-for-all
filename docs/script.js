@@ -27,9 +27,30 @@ function loadChatList() {
     .filter(key => key.startsWith("chat-"))
     .forEach(key => {
       const name = key.replace("chat-", "");
+      
       const li = document.createElement("li");
-      li.innerText = name;
-      li.onclick = () => loadChat(name);
+      li.classList.add("chat-item");
+
+      const span = document.createElement("span");
+      span.innerText = name;
+      span.onclick = () => loadChat(name);
+
+      const delBtn = document.createElement("button");
+      delBtn.innerText = "🗑️";
+      delBtn.classList.add("delete-chat");
+      delBtn.onclick = (e) => {
+        e.stopPropagation();
+        if (confirm(`Delete "${name}"?`)) {
+          localStorage.removeItem(`chat-${name}`);
+          if (currentChat === name) {
+            chatWindow.innerHTML = "";
+          }
+          loadChatList();
+        }
+      };
+
+      li.appendChild(span);
+      li.appendChild(delBtn);
       chatList.appendChild(li);
     });
 }
