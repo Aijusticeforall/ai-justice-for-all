@@ -130,6 +130,15 @@ backButton.addEventListener("click", () => {
   chatInput.value = "";
 });
 
+function startNewChat() {
+  const timestamp = new Date().toLocaleString();
+  currentChat = "Chat " + timestamp;
+  chatWindow.innerHTML = "";
+  chatPopup.classList.remove("hidden");
+  document.body.style.overflow = "hidden";
+  simulateTyping("Welcome. I'm AI Justice. How can I assist you today?");
+}
+
 sendButton.addEventListener("click", () => {
   const text = chatInput.value.trim();
   if (!text) return;
