@@ -371,3 +371,33 @@ body, html {
 .chat-item {
   position: relative;
 }
+@media (max-width: 768px) {
+  html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  #chat-popup {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #chat-window {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 80px; /* avoid overlapping input */
+  }
+
+  .chat-input-wrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background: rgba(30, 30, 30, 0.95);
+  }
+
+  #chat-input {
+    font-size: 14px;
+  }
+}
