@@ -1,3 +1,4 @@
+console.log("✅ script.js is connected!");
 const glowButton = document.getElementById("glow-button");
 const chatPopup = document.getElementById("chat-popup");
 const backButton = document.getElementById("back-to-landing");
