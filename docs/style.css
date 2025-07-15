@@ -150,7 +150,7 @@ body, html {
 /* Responsive */
 @media (max-width: 768px) {
   #landing-bg {
-    content: url('images/ai-girl-face.png');
+    content: url('ai-girl-face.png');
   }
 
   #glow-button {
