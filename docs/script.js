@@ -129,7 +129,12 @@ function simulateTyping(text, delay = 30) {
 
 // === Event Listeners ===
 glowButton.addEventListener("click", () => {
-  startNewChat();
+  const lastChat = localStorage.getItem("last-chat");
+  if (lastChat && localStorage.getItem(`chat-${lastChat}`)) {
+    loadChat(lastChat);
+  } else {
+    startNewChat();
+  }
 });
 
 backButton.addEventListener("click", () => {
