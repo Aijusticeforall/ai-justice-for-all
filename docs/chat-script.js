@@ -1,52 +1,33 @@
+function sendMessage() {
+  const input = document.getElementById("userInput");
+  const message = input.value.trim();
+  if (!message) return;
 
-// chat-script.js — ChatGPT-style chat + sidebar + scroll fix for mobile
+  appendMessage("user", message);
+  input.value = "";
 
-document.addEventListener("DOMContentLoaded", () => {
+  // Simulate AI response
+  setTimeout(() => {
+    appendMessage("ai", "Thanks for your message. I'm AI Justice.");
+  }, 800);
+}
+
+function appendMessage(sender, text) {
   const chatWindow = document.getElementById("chatWindow");
-  const userInput = document.getElementById("userInput");
-  const sidebarToggle = document.getElementById("sidebarToggle");
+  const messageDiv = document.createElement("div");
+  messageDiv.className = `chat-message ${sender}`;
+  messageDiv.innerText = text;
+  chatWindow.appendChild(messageDiv);
+
+  // Scroll to latest
+  chatWindow.scrollTop = chatWindow.scrollHeight;
+}
+
+function goBack() {
+  window.location.href = "index.html";
+}
+
+document.getElementById("sidebarToggle").addEventListener("click", () => {
   const sidebar = document.getElementById("sidebar");
-  const backButton = document.getElementById("backButton");
-
-  if (sidebarToggle) {
-    sidebarToggle.addEventListener("click", () => {
-      sidebar.classList.toggle("visible");
-    });
-  }
-
-  if (backButton) {
-    backButton.addEventListener("click", () => {
-      window.location.href = "index.html";
-    });
-  }
-
-  window.sendMessage = function () {
-    const message = userInput.value.trim();
-    if (!message) return;
-
-    appendMessage("You", message);
-    userInput.value = "";
-
-    setTimeout(() => {
-      appendMessage("AI Justice", getAIResponse(message));
-    }, 500);
-  };
-
-  function appendMessage(sender, message) {
-    const msg = document.createElement("div");
-    msg.className = "message";
-    msg.innerHTML = `<strong>${sender}:</strong> ${message}`;
-    chatWindow.appendChild(msg);
-
-    // Mobile-safe scroll fix: only scroll the chat window, not the full page
-    setTimeout(() => {
-      chatWindow.scrollTop = chatWindow.scrollHeight;
-    }, 100);
-  }
-
-  function getAIResponse(userMessage) {
-    return "Thanks for your message. I'm AI Justice.";
-  }
-
-  userInput.focus();
+  sidebar.classList.toggle("show");
 });
