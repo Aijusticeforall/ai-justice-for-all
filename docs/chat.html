@@ -2,25 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Justice Chat</title>
   <link rel="stylesheet" href="chat-style.css" />
 </head>
 <body>
-  <div class="chat-container">
-    <div class="chat-window" id="chatWindow"></div>
-    <div class="input-bar">
-      <input
-        type="text"
-        id="userInput"
-        placeholder="Type your message..."
-        onkeydown="if(event.key==='Enter') sendMessage()"
-        autocomplete="off"
-      />
-      <button onclick="sendMessage()">➤</button>
+  <div class="container">
+    <button id="sidebarToggle">☰</button>
+    <div class="sidebar" id="sidebar">
+      <button onclick="goBack()">← Back</button>
+      <h3>Saved Chats</h3>
+      <ul id="chatHistory"></ul>
+    </div>
+    <div class="main">
+      <div class="chat-window" id="chatWindow"></div>
+      <div class="input-bar">
+        <input
+          type="text"
+          id="userInput"
+          placeholder="Type your message..."
+          onkeydown="if(event.key==='Enter') sendMessage()"
+        />
+        <button onclick="sendMessage()">➤</button>
+      </div>
     </div>
   </div>
-
   <script src="chat-script.js"></script>
 </body>
 </html>
