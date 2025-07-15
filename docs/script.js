@@ -98,6 +98,7 @@ function loadChat(name) {
   const data = localStorage.getItem(`chat-${name}`);
   if (!data) return;
   currentChat = name;
+  localStorage.setItem("last-chat", currentChat); // ✅ save it
   chatWindow.innerHTML = "";
   const messages = JSON.parse(data);
   messages.forEach(msg => createMessage(msg.text, msg.sender));
