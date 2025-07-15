@@ -97,7 +97,7 @@ sendButton.addEventListener("click", () => {
 // Sidebar toggle
 toggleSidebar.addEventListener("click", () => {
   sidebar.classList.toggle("hidden");
-  document.querySelector(".chat-overlay").classList.toggle("sidebar-open");
+  document.getElementById("chat-overlay").classList.toggle("sidebar-open");
 });
 
 loadChatList();
