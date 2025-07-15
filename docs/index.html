@@ -3,51 +3,63 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI Justice for All</title>
+  <title>AI Justice</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      overflow: hidden;
       height: 100%;
+      overflow: hidden;
       background-color: black;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     #landing {
       position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #landing img {
       width: 100%;
       height: 100%;
-      background: url('ai-girl-full.png') no-repeat center center;
-      background-size: cover;
+      object-fit: cover;
+      object-position: center;
+      position: absolute;
+      top: 0;
+      left: 0;
     }
 
-    #glowButton {
+    #glowBtn {
       position: absolute;
-      top: 47%;
-      left: 48%;
+      top: 42%;
+      left: 57%;
       transform: translate(-50%, -50%);
-      width: 30px;
-      height: 30px;
-      background: rgba(0, 123, 255, 0.9);
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      box-shadow: 0 0 20px rgba(0,123,255,0.8);
+      background: radial-gradient(circle, #00f, #00a);
+      box-shadow: 0 0 20px #00f, 0 0 40px #00f;
       cursor: pointer;
       z-index: 10;
+      transition: transform 0.2s ease;
     }
 
-    #glowButton:hover {
-      box-shadow: 0 0 30px rgba(0,123,255,1);
+    #glowBtn:hover {
+      transform: translate(-50%, -50%) scale(1.1);
     }
   </style>
 </head>
 <body>
   <div id="landing">
-    <div id="glowButton" onclick="goToChat()"></div>
+    <img src="ai-girl-full.png" alt="AI Girl" />
+    <div id="glowBtn" onclick="window.location.href='chat.html'"></div>
   </div>
-  <script>
-    function goToChat() {
-      window.location.href = 'chat.html';
-    }
-  </script>
 </body>
 </html>
