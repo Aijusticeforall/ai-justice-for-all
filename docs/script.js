@@ -260,4 +260,9 @@ document.getElementById("export-chat").addEventListener("click", () => {
   link.download = `${currentChat.replace(/ /g, "_")}.md`;
   link.click();
 });
+// Ensure landing shows first and chat stays hidden
+window.addEventListener("load", () => {
+  chatPopup.classList.add("hidden");
+  document.body.style.overflow = "auto";
+});
 
