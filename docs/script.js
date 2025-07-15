@@ -1,4 +1,5 @@
 console.log("✅ script.js is connected!");
+
 const glowButton = document.getElementById("glow-button");
 const chatPopup = document.getElementById("chat-popup");
 const backButton = document.getElementById("back-to-landing");
@@ -11,6 +12,7 @@ const chatList = document.getElementById("chat-list");
 
 let currentChat = "Untitled Chat";
 
+// === Start New Chat ===
 function startNewChat() {
   const timestamp = new Date().toLocaleString();
   currentChat = "Chat " + timestamp;
@@ -33,7 +35,7 @@ function saveChatToStorage() {
 function loadChatList() {
   chatList.innerHTML = "";
 
-  // "New Chat" button at top
+  // "New Chat" button
   const newBtn = document.createElement("li");
   newBtn.classList.add("chat-item", "new-chat");
   newBtn.innerText = "+ New Chat";
@@ -44,7 +46,7 @@ function loadChatList() {
     .filter(key => key.startsWith("chat-"))
     .forEach(key => {
       const name = key.replace("chat-", "");
-      
+
       const li = document.createElement("li");
       li.classList.add("chat-item");
       if (name === currentChat) li.classList.add("active");
@@ -89,7 +91,6 @@ function loadChatList() {
     });
 }
 
-
 function loadChat(name) {
   const data = localStorage.getItem(`chat-${name}`);
   if (!data) return;
@@ -125,13 +126,9 @@ function simulateTyping(text, delay = 30) {
 
 // === Event Listeners ===
 glowButton.addEventListener("click", () => {
-  const timestamp = new Date().toLocaleString();
-  currentChat = "Chat " + timestamp;
-  chatWindow.innerHTML = "";
-  chatPopup.classList.remove("hidden");
-  document.body.style.overflow = "hidden";
-  simulateTyping("Welcome. I'm AI Justice. How can I assist you today?");
+  startNewChat();
 });
+
 backButton.addEventListener("click", () => {
   chatPopup.classList.add("hidden");
   document.body.style.overflow = "auto";
