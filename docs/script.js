@@ -14,8 +14,11 @@ let currentChat = "Untitled Chat";
 
 // === Start New Chat ===
 function startNewChat() {
-  const timestamp = new Date().toLocaleString();
-  currentChat = "Chat " + timestamp;
+  currentChat = "New Chat";
+  let counter = 1;
+  while (localStorage.getItem(`chat-${currentChat}`)) {
+    currentChat = `New Chat ${++counter}`;
+  }
   chatWindow.innerHTML = "";
   chatPopup.classList.remove("hidden");
   document.body.style.overflow = "hidden";
