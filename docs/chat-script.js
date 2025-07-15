@@ -1,77 +1,97 @@
-const chatWindow = document.getElementById("chatWindow");
-const userInput = document.getElementById("userInput");
-const chatHistoryEl = document.getElementById("chatHistory");
-const sidebar = document.getElementById("sidebar");
-const toggleSidebarBtn = document.getElementById("toggleSidebar");
+// chat-script.js
 
-let chats = JSON.parse(localStorage.getItem("aiJusticeChats") || "[]");
-let currentChat = [];
+document.addEventListener("DOMContentLoaded", () => {
+  const chatBox = document.getElementById("chatBox");
+  const chatForm = document.getElementById("chatForm");
+  const userInput = document.getElementById("userInput");
+  const sidebar = document.getElementById("sidebar");
+  const toggleSidebarBtn = document.getElementById("toggleSidebar");
+  const backToLandingBtn = document.getElementById("backToLanding");
+  const chatHistory = document.getElementById("chatHistory");
 
-function scrollToBottom() {
-  chatWindow.scrollTop = chatWindow.scrollHeight;
-}
+  // Load saved chats
+  loadChatHistory();
 
-function addMessage(role, text) {
-  const msg = document.createElement("div");
-  msg.classList.add("message");
-  msg.innerHTML = `<strong>${role === "user" ? "You" : "AI Justice"}</strong>${text}`;
-  chatWindow.appendChild(msg);
-  scrollToBottom();
-}
+  chatForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const message = userInput.value.trim();
+    if (message === "") return;
 
-function sendMessage() {
-  const text = userInput.value.trim();
-  if (!text) return;
+    addMessage(message, "user");
+    userInput.value = "";
+    scrollToBottom();
 
-  addMessage("user", text);
-  userInput.value = "";
-  userInput.focus();
+    setTimeout(() => {
+      addMessage("Thinking...", "ai", true); // Placeholder
+      scrollToBottom();
 
-  // Save to current session
-  currentChat.push({ role: "user", text });
-
-  // Fake AI response
-  setTimeout(() => {
-    const response = "This is a sample AI Justice response to: " + text;
-    addMessage("ai", response);
-    currentChat.push({ role: "ai", text: response });
-    saveCurrentChat();
-  }, 600);
-}
-
-function newChat() {
-  if (currentChat.length > 0) {
-    chats.push(currentChat);
-    localStorage.setItem("aiJusticeChats", JSON.stringify(chats));
-    currentChat = [];
-  }
-  chatWindow.innerHTML = "";
-}
-
-function loadChat(index) {
-  chatWindow.innerHTML = "";
-  currentChat = chats[index] || [];
-  currentChat.forEach(entry => addMessage(entry.role, entry.text));
-}
-
-function populateHistory() {
-  chatHistoryEl.innerHTML = "";
-  chats.forEach((chat, index) => {
-    const item = document.createElement("li");
-    item.textContent = chat[0]?.text?.substring(0, 30) || "Chat " + (index + 1);
-    item.onclick = () => loadChat(index);
-    chatHistoryEl.appendChild(item);
+      setTimeout(() => {
+        removeTypingIndicator();
+        addMessage("This is a simulated AI response.", "ai");
+        scrollToBottom();
+        saveChat();
+      }, 1000);
+    }, 400);
   });
-}
 
-toggleSidebarBtn.onclick = () => {
-  sidebar.classList.toggle("visible");
-};
+  toggleSidebarBtn.addEventListener("click", () => {
+    sidebar.classList.toggle("hidden");
+  });
 
-function saveCurrentChat() {
-  localStorage.setItem("aiJusticeChats", JSON.stringify([...chats.slice(0, -1), currentChat]));
-}
+  backToLandingBtn.addEventListener("click", () => {
+    window.location.href = "index.html";
+  });
 
-// Initial
-populateHistory();
-scrollToBottom();
+  function addMessage(text, sender, isTyping = false) {
+    const msg = document.createElement("div");
+    msg.classList.add("message", sender);
+    msg.textContent = isTyping ? "..." : text;
+    msg.setAttribute("data-type", isTyping ? "typing" : "msg");
+    chatBox.appendChild(msg);
+  }
+
+  function removeTypingIndicator() {
+    const typing = [...chatBox.querySelectorAll(".message.ai")].find(el =>
+      el.getAttribute("data-type") === "typing"
+    );
+    if (typing) typing.remove();
+  }
+
+  function scrollToBottom() {
+    setTimeout(() => {
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }, 50);
+  }
+
+  function saveChat() {
+    const allMessages = [...chatBox.querySelectorAll(".message")].map(m =>
+      m.textContent
+    );
+    localStorage.setItem("aiJusticeChat", JSON.stringify(allMessages));
+    renderHistory();
+  }
+
+  function loadChatHistory() {
+    const saved = JSON.parse(localStorage.getItem("aiJusticeChat") || "[]");
+    saved.forEach((msg, i) => {
+      const sender = i % 2 === 0 ? "user" : "ai";
+      addMessage(msg, sender);
+    });
+    scrollToBottom();
+  }
+
+  function renderHistory() {
+    chatHistory.innerHTML = "";
+    const saved = JSON.parse(localStorage.getItem("aiJusticeChat") || "[]");
+    if (saved.length === 0) return;
+
+    const item = document.createElement("li");
+    item.textContent = `Chat with ${Math.ceil(saved.length / 2)} exchanges`;
+    item.style.cursor = "pointer";
+    item.onclick = () => {
+      chatBox.innerHTML = "";
+      loadChatHistory();
+    };
+    chatHistory.appendChild(item);
+  }
+});
