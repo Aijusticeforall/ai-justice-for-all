@@ -14,14 +14,11 @@ body, html {
   height: 100vh;
   overflow: hidden;
 }
-
 #landing-bg {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
-/* Glowing Button */
 #glow-button {
   position: absolute;
   top: 42%;
@@ -45,20 +42,18 @@ body, html {
   backdrop-filter: blur(5px);
   z-index: 10;
 }
-
 .chat-overlay {
-  position: relative;
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: row;
+  width: 100%;
+  height: 100%;
 }
 
 /* Sidebar */
 .chat-sidebar {
   position: absolute;
-  left: 0;
   top: 0;
+  left: 0;
   width: 220px;
   height: 100%;
   background: #111;
@@ -68,26 +63,22 @@ body, html {
   z-index: 12;
   overflow-y: auto;
 }
-
 .chat-sidebar h3 {
-  margin-top: 0;
+  margin: 0 0 10px;
   font-size: 18px;
   border-bottom: 1px solid #333;
   padding-bottom: 8px;
 }
-
 #chat-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-
 #chat-list li {
   padding: 8px;
   cursor: pointer;
   border-bottom: 1px solid #333;
 }
-
 #chat-list li:hover {
   background-color: #222;
 }
@@ -101,7 +92,6 @@ body, html {
   height: 100%;
   transition: margin-left 0.3s;
 }
-
 .chat-overlay.sidebar-open .chat-main {
   margin-left: 220px;
 }
@@ -114,35 +104,24 @@ body, html {
   padding: 6px 16px;
   background-color: rgba(0, 0, 0, 0.6);
   color: white;
+  position: sticky;
+  top: 0;
+  z-index: 11;
 }
-
-.left-icons button,
-.right-icons button {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 16px;
-  margin-left: 12px;
-  cursor: pointer;
-}
-
+.left-icons,
 .right-icons {
   display: flex;
   align-items: center;
-  gap: 12px;
 }
-
-.left-icons {
-  display: flex;
-  align-items: center;
-}
-
+.left-icons button,
+.right-icons button,
 .chat-topbar button {
-  font-size: 20px;
   background: none;
   border: none;
   color: white;
+  font-size: 18px;
   cursor: pointer;
+  margin-left: 12px;
 }
 
 /* Chat Window */
@@ -152,17 +131,22 @@ body, html {
   padding: 20px;
   display: flex;
   flex-direction: column;
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
 }
 
-/* Input Wrapper */
+/* Input */
 .chat-input-wrapper {
   display: flex;
   padding: 10px;
   background: rgba(0, 0, 0, 0.6);
   align-items: center;
   justify-content: center;
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
 }
-
 #chat-input {
   flex: 1;
   padding: 10px;
@@ -173,7 +157,6 @@ body, html {
   resize: none;
   max-height: 150px;
 }
-
 #send-button {
   margin-left: 10px;
   padding: 10px;
@@ -185,7 +168,7 @@ body, html {
   cursor: pointer;
 }
 
-/* Responsive */
+/* Mobile */
 @media (max-width: 768px) {
   #landing-bg {
     content: url('ai-girl-face.png');
@@ -212,18 +195,4 @@ body, html {
   .chat-overlay.sidebar-open .chat-main {
     margin-left: 180px;
   }
-}
-
-/* Center chat window like ChatGPT */
-#chat-window {
-  max-width: 700px;
-  width: 100%;
-  margin: 0 auto;
-}
-
-/* Center input bar too */
-.chat-input-wrapper {
-  max-width: 700px;
-  width: 100%;
-  margin: 0 auto;
 }
