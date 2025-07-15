@@ -216,6 +216,7 @@ body, html {
 
   #chat-input {
     font-size: 14px;
+    max-height: 120px; /* optional compact input */
   }
 
   .chat-sidebar {
@@ -223,10 +224,20 @@ body, html {
   }
 
   .chat-overlay.sidebar-open .chat-main {
-    m
+    margin-left: 180px;
+  }
+}
+
+/* Center chat window like ChatGPT */
 #chat-window {
   max-width: 700px;
   width: 100%;
   margin: 0 auto;
 }
 
+/* Center input bar too (optional but recommended) */
+.chat-input-wrapper {
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+}
