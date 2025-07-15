@@ -7,29 +7,26 @@
   <link rel="stylesheet" href="chat-style.css" />
 </head>
 <body>
-  <div id="chatContainer">
-    
-    <div id="sidebar" class="hidden">
-      <h2>Chat History</h2>
-      <p>– Coming soon –</p>
+  <div class="top-bar">
+    <button id="toggleSidebar">☰</button>
+    <button id="backToLanding">⟵</button>
+  </div>
+
+  <div class="chat-container">
+    <div class="sidebar hidden" id="sidebar">
+      <h2>Saved Chats</h2>
+      <ul id="chatHistory"></ul>
     </div>
 
-    <div id="main">
-      <div id="topButtons">
-        <button onclick="toggleSidebar()">☰</button>
-        <button onclick="goBack()">←</button>
+    <div class="chat-main">
+      <div class="chat-box" id="chatBox">
+        <!-- Messages go here -->
       </div>
 
-      <div id="chatWindow"></div>
-
-      <div class="input-bar">
-        <input
-          type="text"
-          id="userInput"
-          placeholder="Type your message..."
-          onkeydown="if(event.key==='Enter') sendMessage()" />
-        <button onclick="sendMessage()">➤</button>
-      </div>
+      <form class="input-bar" id="chatForm">
+        <input type="text" id="userInput" placeholder="Type your message..." autocomplete="off" />
+        <button type="submit">➤</button>
+      </form>
     </div>
   </div>
 
