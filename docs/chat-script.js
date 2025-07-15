@@ -1,33 +1,39 @@
 function sendMessage() {
   const input = document.getElementById("userInput");
   const message = input.value.trim();
-  if (!message) return;
+  if (message === "") return;
 
-  appendMessage("user", message);
-  input.value = "";
-
-  // Simulate AI response
-  setTimeout(() => {
-    appendMessage("ai", "Thanks for your message. I'm AI Justice.");
-  }, 800);
-}
-
-function appendMessage(sender, text) {
   const chatWindow = document.getElementById("chatWindow");
-  const messageDiv = document.createElement("div");
-  messageDiv.className = `chat-message ${sender}`;
-  messageDiv.innerText = text;
-  chatWindow.appendChild(messageDiv);
 
-  // Scroll to latest
+  const userDiv = document.createElement("div");
+  userDiv.classList.add("message");
+  userDiv.innerHTML = `<strong>You:</strong> ${message}`;
+  chatWindow.appendChild(userDiv);
+
+  input.value = "";
   chatWindow.scrollTop = chatWindow.scrollHeight;
+
+  setTimeout(() => {
+    const replyDiv = document.createElement("div");
+    replyDiv.classList.add("message");
+    replyDiv.innerHTML = `<strong>AI Justice:</strong> Thanks for your message. I'm AI Justice.`;
+    chatWindow.appendChild(replyDiv);
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+  }, 600);
 }
 
-function goBack() {
-  window.location.href = "index.html";
-}
-
-document.getElementById("sidebarToggle").addEventListener("click", () => {
+function toggleSidebar() {
   const sidebar = document.getElementById("sidebar");
-  sidebar.classList.toggle("show");
-});
+  if (sidebar.style.display === "none" || !sidebar.style.display) {
+    sidebar.style.display = "block";
+  } else {
+    sidebar.style.display = "none";
+  }
+}
+
+document.getElementById("toggleSidebar").addEventListener("click", toggleSidebar);
+
+function newChat() {
+  const chatWindow = document.getElementById("chatWindow");
+  chatWindow.innerHTML = "";
+}
