@@ -19,11 +19,15 @@ function startNewChat() {
   while (localStorage.getItem(`chat-${currentChat}`)) {
     currentChat = `New Chat ${++counter}`;
   }
+
+  localStorage.setItem("last-chat", currentChat); // ✅ save last active chat name
+
   chatWindow.innerHTML = "";
   chatPopup.classList.remove("hidden");
   document.body.style.overflow = "hidden";
   simulateTyping("Welcome. I'm AI Justice. How can I assist you today?");
 }
+
 
 // === LocalStorage Helpers ===
 function saveChatToStorage() {
