@@ -1,16 +1,58 @@
 const glowButton = document.getElementById("glow-button");
+const glowButton = document.getElementById("glow-button");
 const chatPopup = document.getElementById("chat-popup");
 const backButton = document.getElementById("back-to-landing");
 const sendButton = document.getElementById("send-button");
 const chatInput = document.getElementById("chat-input");
 const chatWindow = document.getElementById("chat-window");
+const toggleSidebar = document.getElementById("toggle-sidebar");
+const sidebar = document.getElementById("chat-sidebar");
+const chatList = document.getElementById("chat-list");
 
+let currentChat = "Untitled Chat";
+
+// === LocalStorage Helpers ===
+function saveChatToStorage() {
+  const messages = [...chatWindow.querySelectorAll(".message")].map(m => ({
+    sender: m.classList.contains("user") ? "user" : "ai",
+    text: m.innerText
+  }));
+  localStorage.setItem(`chat-${currentChat}`, JSON.stringify(messages));
+  loadChatList();
+}
+
+function loadChatList() {
+  chatList.innerHTML = "";
+  Object.keys(localStorage)
+    .filter(key => key.startsWith("chat-"))
+    .forEach(key => {
+      const name = key.replace("chat-", "");
+      const li = document.createElement("li");
+      li.innerText = name;
+      li.onclick = () => loadChat(name);
+      chatList.appendChild(li);
+    });
+}
+
+function loadChat(name) {
+  const data = localStorage.getItem(`chat-${name}`);
+  if (!data) return;
+  currentChat = name;
+  chatWindow.innerHTML = "";
+  const messages = JSON.parse(data);
+  messages.forEach(msg => createMessage(msg.text, msg.sender));
+  chatPopup.classList.remove("hidden");
+  document.body.style.overflow = "hidden";
+}
+
+// === Chat UI ===
 function createMessage(text, sender) {
   const msg = document.createElement("div");
   msg.classList.add("message", sender);
   msg.innerText = text;
   chatWindow.appendChild(msg);
   chatWindow.scrollTop = chatWindow.scrollHeight;
+  saveChatToStorage();
 }
 
 function simulateTyping(text, delay = 30) {
@@ -25,12 +67,13 @@ function simulateTyping(text, delay = 30) {
   }, delay);
 }
 
+// === Event Listeners ===
 glowButton.addEventListener("click", () => {
+  currentChat = prompt("Name this chat:", "Untitled Chat") || "Untitled Chat";
+  chatWindow.innerHTML = "";
   chatPopup.classList.remove("hidden");
   document.body.style.overflow = "hidden";
-  setTimeout(() => {
-    simulateTyping("Welcome. I'm AI Justice. How can I assist you today?");
-  }, 300);
+  simulateTyping("Welcome. I'm AI Justice. How can I assist you today?");
 });
 
 backButton.addEventListener("click", () => {
@@ -50,3 +93,11 @@ sendButton.addEventListener("click", () => {
     simulateTyping("I'm here to help. Please tell me more.");
   }, 1000);
 });
+
+// Sidebar toggle
+toggleSidebar.addEventListener("click", () => {
+  sidebar.classList.toggle("hidden");
+  document.querySelector(".chat-overlay").classList.toggle("sidebar-open");
+});
+
+loadChatList();
