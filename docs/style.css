@@ -401,3 +401,12 @@ body, html {
     font-size: 14px;
   }
 }
+#export-chat,
+#toggle-theme {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  margin-left: 10px;
+}
