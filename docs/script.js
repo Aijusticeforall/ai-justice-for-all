@@ -1,4 +1,3 @@
-
 console.log("✅ script.js is connected!");
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -11,14 +10,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const toggleSidebar = document.getElementById("toggle-sidebar");
   const sidebar = document.getElementById("chat-sidebar");
 
- glowButton.addEventListener("click", () => {
-  const lastChat = localStorage.getItem("last-chat");
-  if (lastChat && localStorage.getItem(`chat-${lastChat}`)) {
-    loadChat(lastChat);
-  } else {
-    startNewChat();
-  }
-});
+  glowButton.addEventListener("click", () => {
+    const lastChat = localStorage.getItem("last-chat");
+    if (lastChat && localStorage.getItem(`chat-${lastChat}`)) {
+      loadChat(lastChat);
+    } else {
+      startNewChat();
+    }
+  });
 
   backButton.addEventListener("click", () => {
     chatPopup.classList.add("hidden");
@@ -41,17 +40,47 @@ document.addEventListener("DOMContentLoaded", () => {
   function sendMessage() {
     const text = chatInput.value.trim();
     if (!text) return;
+    createMessage(text, "user");
+    chatInput.value = "";
+
+    setTimeout(() => {
+      simulateTyping("I'm AI Justice. Please continue.");
+    }, 800);
+  }
+
+  function createMessage(text, sender) {
     const msg = document.createElement("div");
-    msg.className = "message user";
+    msg.classList.add("message", sender);
     msg.innerText = text;
     chatWindow.appendChild(msg);
-    chatInput.value = "";
-    setTimeout(() => {
-      const reply = document.createElement("div");
-      reply.className = "message ai";
-      reply.innerText = "AI Justice: I understand. Please go on.";
-      chatWindow.appendChild(reply);
-      chatWindow.scrollTop = chatWindow.scrollHeight;
-    }, 800);
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+  }
+
+  function simulateTyping(text) {
+    const msg = document.createElement("div");
+    msg.classList.add("message", "ai");
+    chatWindow.appendChild(msg);
+
+    let i = 0;
+    const interval = setInterval(() => {
+      msg.innerText += text[i++];
+      if (i >= text.length) clearInterval(interval);
+    }, 30);
+  }
+
+  function startNewChat() {
+    chatWindow.innerHTML = "";
+    chatPopup.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+    simulateTyping("Welcome. I'm AI Justice. How can I assist you?");
+    localStorage.setItem("last-chat", "temp");
+  }
+
+  function loadChat(name) {
+    // Placeholder — you can fill this in later if you're doing full chat save/load
+    chatWindow.innerHTML = "";
+    chatPopup.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+    simulateTyping("Loaded chat: " + name);
   }
 });
