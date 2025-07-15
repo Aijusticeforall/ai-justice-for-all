@@ -11,6 +11,15 @@ const chatList = document.getElementById("chat-list");
 
 let currentChat = "Untitled Chat";
 
+function startNewChat() {
+  const timestamp = new Date().toLocaleString();
+  currentChat = "Chat " + timestamp;
+  chatWindow.innerHTML = "";
+  chatPopup.classList.remove("hidden");
+  document.body.style.overflow = "hidden";
+  simulateTyping("Welcome. I'm AI Justice. How can I assist you today?");
+}
+
 // === LocalStorage Helpers ===
 function saveChatToStorage() {
   const messages = [...chatWindow.querySelectorAll(".message")].map(m => ({
@@ -129,15 +138,6 @@ backButton.addEventListener("click", () => {
   chatWindow.innerHTML = "";
   chatInput.value = "";
 });
-
-function startNewChat() {
-  const timestamp = new Date().toLocaleString();
-  currentChat = "Chat " + timestamp;
-  chatWindow.innerHTML = "";
-  chatPopup.classList.remove("hidden");
-  document.body.style.overflow = "hidden";
-  simulateTyping("Welcome. I'm AI Justice. How can I assist you today?");
-}
 
 sendButton.addEventListener("click", () => {
   const text = chatInput.value.trim();
