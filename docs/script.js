@@ -69,13 +69,13 @@ function simulateTyping(text, delay = 30) {
 
 // === Event Listeners ===
 glowButton.addEventListener("click", () => {
-  currentChat = prompt("Name this chat:", "Untitled Chat") || "Untitled Chat";
+  const timestamp = new Date().toLocaleString();
+  currentChat = "Chat " + timestamp;
   chatWindow.innerHTML = "";
   chatPopup.classList.remove("hidden");
   document.body.style.overflow = "hidden";
   simulateTyping("Welcome. I'm AI Justice. How can I assist you today?");
 });
-
 backButton.addEventListener("click", () => {
   chatPopup.classList.add("hidden");
   document.body.style.overflow = "auto";
