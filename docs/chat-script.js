@@ -1,48 +1,35 @@
+const chatWindow = document.getElementById("chatWindow");
+const userInput = document.getElementById("userInput");
 
 function sendMessage() {
-  const input = document.getElementById("userInput");
-  const message = input.value.trim();
+  const message = userInput.value.trim();
   if (message === "") return;
 
-  const chatWindow = document.getElementById("chatWindow");
+  appendMessage("You", message);
+  userInput.value = "";
 
-  const userBubble = document.createElement("div");
-  userBubble.className = "user-message";
-  userBubble.textContent = message;
-  chatWindow.appendChild(userBubble);
-
-  input.value = "";
-
-  // Simulate bot thinking
-  const typing = document.createElement("div");
-  typing.className = "typing-indicator";
-  typing.textContent = "AI is thinking...";
-  chatWindow.appendChild(typing);
-
-  // Scroll to bottom after sending
-  chatWindow.scrollTop = chatWindow.scrollHeight;
-
+  // Simulated response
   setTimeout(() => {
-    typing.remove();
-    const aiBubble = document.createElement("div");
-    aiBubble.className = "ai-message";
-    aiBubble.textContent = "Thanks for your message. I'm AI Justice.";
-    chatWindow.appendChild(aiBubble);
+    appendMessage("AI Justice", getAIResponse(message));
+  }, 500);
+}
 
-    // Scroll to bottom again after bot reply
+function appendMessage(sender, message) {
+  const messageElement = document.createElement("div");
+  messageElement.className = "message";
+  messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+  chatWindow.appendChild(messageElement);
+
+  // Scroll to latest message after DOM updates
+  setTimeout(() => {
     chatWindow.scrollTop = chatWindow.scrollHeight;
-  }, 800);
+  }, 100);
 }
 
-function toggleSidebar() {
-  const sidebar = document.getElementById("sidebar");
-  sidebar.style.display = sidebar.style.display === "none" ? "block" : "none";
+function getAIResponse(userMessage) {
+  return "Thanks for your message. I'm AI Justice.";
 }
 
-function newChat() {
-  document.getElementById("chatWindow").innerHTML = "";
-}
-
-function goBack() {
-  window.location.href = "index.html";
-}
+window.onload = () => {
+  userInput.focus();
+};
