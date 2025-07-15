@@ -12,24 +12,28 @@
     <button id="glow-button"></button>
   </div>
 
-<div class="chat-overlay">
-  <div class="chat-sidebar hidden" id="chat-sidebar">
-    <h3>Chats</h3>
-    <ul id="chat-list"></ul>
-  </div>
+  <div id="chat-popup" class="hidden">
+    <div class="chat-overlay">
+      <!-- Sidebar -->
+      <div class="chat-sidebar hidden" id="chat-sidebar">
+        <h3>Chats</h3>
+        <ul id="chat-list"></ul>
+      </div>
 
-  <div class="chat-main">
-    <div class="chat-topbar">
-      <button id="toggle-sidebar">☰</button>
-      <button id="back-to-landing">←</button>
-    </div>
-    <div id="chat-window"></div>
-    <div class="chat-input-wrapper">
-      <textarea id="chat-input" placeholder="Send a message..."></textarea>
-      <button id="send-button">➤</button>
+      <!-- Main Chat -->
+      <div class="chat-main">
+        <div class="chat-topbar">
+          <button id="toggle-sidebar">☰</button>
+          <button id="back-to-landing">←</button>
+        </div>
+        <div id="chat-window"></div>
+        <div class="chat-input-wrapper">
+          <textarea id="chat-input" placeholder="Send a message..."></textarea>
+          <button id="send-button">➤</button>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
   <script src="script.js"></script>
 </body>
