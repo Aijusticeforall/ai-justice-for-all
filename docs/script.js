@@ -142,16 +142,23 @@ glowButton.addEventListener("click", () => {
   }
 });
 
-backButton.addEventListener("click", () => {
-  chatPopup.classList.add("hidden");
-  document.body.style.overflow = "auto";
-  chatWindow.innerHTML = "";
-  chatInput.value = "";
-});
-
 sendButton.addEventListener("click", () => {
   const text = chatInput.value.trim();
   if (!text) return;
+
+  // ✅ Auto-rename chat if it's still named New Chat
+  if (currentChat.startsWith("New Chat")) {
+    const preview = text.slice(0, 25).trim();
+    const newName = preview + (text.length > 25 ? "..." : "");
+    const oldKey = `chat-${currentChat}`;
+    const data = localStorage.getItem(oldKey);
+    currentChat = newName;
+    localStorage.removeItem(oldKey);
+    localStorage.setItem(`chat-${currentChat}`, data || "[]");
+    localStorage.setItem("last-chat", currentChat);
+    loadChatList();
+  }
+
   createMessage(text, "user");
   chatInput.value = "";
 
