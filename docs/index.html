@@ -2,64 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Justice</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
-      background-color: black;
-    }
-
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    #landing {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    #landing img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
-    #glowBtn {
-      position: absolute;
-      top: 42%;
-      left: 57%;
-      transform: translate(-50%, -50%);
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #00f, #00a);
-      box-shadow: 0 0 20px #00f, 0 0 40px #00f;
-      cursor: pointer;
-      z-index: 10;
-      transition: transform 0.2s ease;
-    }
-
-    #glowBtn:hover {
-      transform: translate(-50%, -50%) scale(1.1);
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="landing">
-    <img src="ai-girl-full.png" alt="AI Girl" />
-    <div id="glowBtn" onclick="window.location.href='chat.html'"></div>
+  <div class="landing">
+    <img id="landing-bg" src="images/ai-girl-full.png" alt="AI Justice Background" />
+    <button id="glow-button"></button>
   </div>
+
+  <div id="chat-popup" class="hidden">
+    <div class="chat-overlay">
+      <div class="chat-topbar">
+        <button id="toggle-sidebar">☰</button>
+        <button id="back-to-landing">←</button>
+      </div>
+      <div id="chat-window"></div>
+      <div class="chat-input-wrapper">
+        <textarea id="chat-input" placeholder="Send a message..."></textarea>
+        <button id="send-button">➤</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
