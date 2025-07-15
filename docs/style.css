@@ -250,3 +250,31 @@ body, html {
   position: relative;
   z-index: 21;
 }
+.chat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 8px;
+  border-bottom: 1px solid #333;
+  cursor: pointer;
+}
+
+.chat-item:hover {
+  background-color: #222;
+}
+
+.chat-item span {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.delete-chat {
+  background: none;
+  border: none;
+  color: red;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0 4px;
+}
