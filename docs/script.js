@@ -23,6 +23,14 @@ function saveChatToStorage() {
 
 function loadChatList() {
   chatList.innerHTML = "";
+
+  // "New Chat" button at top
+  const newBtn = document.createElement("li");
+  newBtn.classList.add("chat-item", "new-chat");
+  newBtn.innerText = "+ New Chat";
+  newBtn.onclick = () => startNewChat();
+  chatList.appendChild(newBtn);
+
   Object.keys(localStorage)
     .filter(key => key.startsWith("chat-"))
     .forEach(key => {
@@ -30,10 +38,26 @@ function loadChatList() {
       
       const li = document.createElement("li");
       li.classList.add("chat-item");
+      if (name === currentChat) li.classList.add("active");
 
       const span = document.createElement("span");
       span.innerText = name;
       span.onclick = () => loadChat(name);
+
+      const renameBtn = document.createElement("button");
+      renameBtn.innerText = "✏️";
+      renameBtn.classList.add("rename-chat");
+      renameBtn.onclick = (e) => {
+        e.stopPropagation();
+        const newName = prompt("Rename chat:", name);
+        if (newName && newName !== name) {
+          const data = localStorage.getItem(`chat-${name}`);
+          localStorage.removeItem(`chat-${name}`);
+          localStorage.setItem(`chat-${newName}`, data);
+          if (currentChat === name) currentChat = newName;
+          loadChatList();
+        }
+      };
 
       const delBtn = document.createElement("button");
       delBtn.innerText = "🗑️";
@@ -50,10 +74,12 @@ function loadChatList() {
       };
 
       li.appendChild(span);
+      li.appendChild(renameBtn);
       li.appendChild(delBtn);
       chatList.appendChild(li);
     });
 }
+
 
 function loadChat(name) {
   const data = localStorage.getItem(`chat-${name}`);
