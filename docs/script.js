@@ -241,4 +241,16 @@ function loadChatList() {
       chatList.appendChild(li);
     });
 }
+document.getElementById("export-chat").addEventListener("click", () => {
+  const messages = [...chatWindow.querySelectorAll(".message")].map(m => {
+    const role = m.classList.contains("user") ? "You" : "AI";
+    return `**${role}:** ${m.innerText}`;
+  }).join("\n\n");
+
+  const blob = new Blob([messages], { type: "text/markdown" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = `${currentChat.replace(/ /g, "_")}.md`;
+  link.click();
+});
 
