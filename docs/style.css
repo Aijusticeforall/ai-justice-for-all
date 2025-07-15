@@ -224,3 +224,8 @@ body, html {
 
   .chat-overlay.sidebar-open .chat-main {
     m
+#chat-window {
+  max-width: 700px;
+  margin: 0 auto;
+  width: 100%;
+}
