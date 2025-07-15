@@ -11,10 +11,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const toggleSidebar = document.getElementById("toggle-sidebar");
   const sidebar = document.getElementById("chat-sidebar");
 
-  glowButton.addEventListener("click", () => {
-    chatPopup.classList.remove("hidden");
-    document.body.style.overflow = "hidden";
-  });
+ glowButton.addEventListener("click", () => {
+  const lastChat = localStorage.getItem("last-chat");
+  if (lastChat && localStorage.getItem(`chat-${lastChat}`)) {
+    loadChat(lastChat);
+  } else {
+    startNewChat();
+  }
+});
 
   backButton.addEventListener("click", () => {
     chatPopup.classList.add("hidden");
