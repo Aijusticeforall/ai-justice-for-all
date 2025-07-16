@@ -182,7 +182,7 @@ body.light .chat-topbar button {
 }
 
 body.light .chat-window .user {
-  background: #e6f0ff; /* softer bubble like ChatGPT */
+  background: #e6f0ff; 
   color: black;
 }
 
@@ -234,7 +234,7 @@ body.light #chat-input::placeholder {
   padding: 10px 14px;
   border-radius: 12px;
   max-width: 720px;
-  width: auto;       /* ✅ fixes center-hugged message */
+  width: auto;       
   color: white;
 }
 
