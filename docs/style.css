@@ -117,14 +117,14 @@ body {
 .chat-window .ai {
   width: 100%;
   max-width: 720px;
-  padding: 16px 24px;
-  margin-bottom: 8px;
+  padding: 8px 0;
   font-size: 16px;
   line-height: 1.6;
-  border-radius: 8px;
+  color: #e5e5e5;        
+  background: none !important;  
+  border: none;
+  border-radius: 0;
   text-align: left;
-  background: #212121;
-  color: white;
 }
 
 .chat-window .user {
