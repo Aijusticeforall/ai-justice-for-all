@@ -228,18 +228,17 @@ body.light #chat-input::placeholder {
 .chat-window .user,
 .chat-window .ai {
   align-self: center;
-  display: flex;
-  justify-content: flex-start;
+  display: block;
   text-align: left;
   word-wrap: break-word;
-  padding: 10px;
+  padding: 10px 14px;
   border-radius: 12px;
   max-width: 720px;
-  width: 100%;
+  width: auto;          
   color: white;
 }
 
-/* Specific background color */
+
 .chat-window .user {
   background: #0f82ff;
 }
