@@ -227,14 +227,15 @@ body.light #chat-input::placeholder {
 }
 .chat-window .user,
 .chat-window .ai {
-  align-self: center;
-  display: block;
+  display: flex;
+  justify-content: flex-start; 
+  align-self: center;          
   text-align: left;
   word-wrap: break-word;
   padding: 10px 14px;
   border-radius: 12px;
   max-width: 720px;
-  width: auto; 
+  width: 100%;              
   color: white;
   box-sizing: border-box;
 }
