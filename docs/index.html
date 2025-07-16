@@ -4,75 +4,51 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Justice</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: black;
-    }
-
-    .landing {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background-image: url('ai-girl-full.png');
-      background-size: cover;
-      background-position: center;
-    }
-
-    #glow-button {
-      position: absolute;
-      top: 40%;
-      left: 53%;
-      transform: translate(-50%, -50%);
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(0, 255, 255, 0.5);
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
-    }
-
-    #chat-popup {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background: rgba(0,0,0,0.9);
-      color: white;
-      z-index: 100;
-      padding: 20px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Landing -->
+  <!-- Landing Page -->
   <div class="landing">
+    <img id="landing-bg" src="ai-girl-full.png" alt="AI Justice Background" />
     <button id="glow-button"></button>
   </div>
 
-  <!-- Chat -->
-  <div id="chat-popup">
-    <button id="close-chat">← Back</button>
-    <h1>Welcome to AI Justice</h1>
-    <textarea id="input" placeholder="Type here..."></textarea>
+  <!-- Chat Popup -->
+  <div id="chat-popup" class="hidden">
+    <div class="chat-overlay" id="chat-overlay">
+
+      <!-- Sidebar -->
+      <div class="chat-sidebar hidden" id="chat-sidebar">
+        <h3>Chats</h3>
+        <ul id="chat-list"></ul>
+      </div>
+
+      <!-- Main Chat -->
+      <div class="chat-main">
+        <!-- Topbar -->
+        <div class="chat-topbar">
+          <div class="left-icons">
+            <button id="toggle-sidebar">☰</button>
+          </div>
+          <div class="right-icons">
+            <button id="export-chat">⤓</button>
+            <button id="toggle-theme">🌓</button>
+            <button id="back-to-landing">←</button>
+          </div>
+        </div>
+
+        <!-- Chat window -->
+        <div id="chat-window"></div>
+
+        <!-- Input area -->
+        <div class="chat-input-wrapper">
+          <textarea id="chat-input" placeholder="Send a message..."></textarea>
+          <button id="send-button">➤</button>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <script>
-    const glowButton = document.getElementById('glow-button');
-    const chatPopup = document.getElementById('chat-popup');
-    const closeChat = document.getElementById('close-chat');
-
-    glowButton.addEventListener('click', () => {
-      chatPopup.style.display = 'block';
-      document.querySelector('.landing').style.display = 'none';
-    });
-
-    closeChat.addEventListener('click', () => {
-      chatPopup.style.display = 'none';
-      document.querySelector('.landing').style.display = 'block';
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
