@@ -71,10 +71,9 @@ body {
 
 /* === Main Chat Area === */
 .chat-main {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  position: relative;
+  height: 100%;
 }
 
 .chat-topbar {
@@ -98,8 +97,8 @@ body {
 /* === Chat Window === */
 .chat-window {
   flex: 1;
-  padding: 20px;
   overflow-y: auto;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
