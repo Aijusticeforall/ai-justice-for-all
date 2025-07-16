@@ -182,8 +182,8 @@ body.light .chat-topbar button {
 }
 
 body.light .chat-window .user {
-  background: #007aff;
-  color: white;
+  background: #e6f0ff; /* softer bubble like ChatGPT */
+  color: black;
 }
 
 body.light .chat-window .ai {
