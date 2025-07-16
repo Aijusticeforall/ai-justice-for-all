@@ -161,10 +161,9 @@ body {
   align-items: center;
   justify-content: center;
 }
-
 body.light {
-  background-color: #f0f0f0;
-  color: #000;
+  background-color: #f6f6f6;
+  color: #111;
 }
 
 body.light .chat-overlay {
@@ -174,40 +173,43 @@ body.light .chat-overlay {
 body.light .chat-topbar,
 body.light .chat-sidebar,
 body.light .chat-input-wrapper {
-  background: #ddd;
-  color: black;
+  background: #f6f6f6;
+  color: #111;
 }
 
 body.light .chat-topbar button {
-  color: black;
+  color: #111;
 }
 
-body.light .chat-window .user {
-  background: #e6f0ff;
-  color: black;
+body.light .chat-window {
+  background-color: #f6f6f6;
 }
 
+body.light .chat-window .user,
 body.light .chat-window .ai {
-  background: #f1f1f1;
-  color: black;
+  background: none !important;
+  color: #111;
+  border: none;
+  border-radius: 0;
 }
 
 body.light #chat-input {
-  background: #f6f6f6;
-  color: #000;
+  background: #eaeaea;
+  color: #111;
   border: none;
   box-shadow: none;
   outline: none;
 }
 
-body.light .chat-input-wrapper {
-  background: #f6f6f6;
-  border-top: 1px solid #ddd;
+body.light #chat-input::placeholder {
+  color: #555;
 }
 
-body.light #chat-input::placeholder {
-  color: #666;
+body.light #send-button {
+  background: #0f82ff;
+  color: white;
 }
+
 .chat-window .user,
 .chat-window .ai {
   width: 100%;
@@ -220,16 +222,6 @@ body.light #chat-input::placeholder {
   border: none;
   border-radius: 0;
   text-align: left;
-}
-
-body.light .chat-window .user,
-body.light .chat-window .ai {
-  color: #111;
-}
-
-body:not(.light) .chat-window .user,
-body:not(.light) .chat-window .ai {
-  color: #e5e5e5 !important;
 }
 
 @media (max-width: 768px) {
