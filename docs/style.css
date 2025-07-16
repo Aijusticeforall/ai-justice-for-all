@@ -1,3 +1,4 @@
+/* === Base Styles === */
 body {
   margin: 0;
   padding: 0;
@@ -7,12 +8,14 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   overflow: hidden;
+  transition: background 0.3s, color 0.3s;
 }
 
 .hidden {
   display: none !important;
 }
 
+/* === Landing Page === */
 .landing {
   position: fixed;
   top: 0; left: 0;
@@ -43,6 +46,7 @@ body {
   z-index: 10;
 }
 
+/* === Chat Overlay === */
 .chat-overlay {
   display: flex;
   width: 100vw;
@@ -52,6 +56,7 @@ body {
   position: relative;
 }
 
+/* === Sidebar === */
 .chat-sidebar {
   width: 220px;
   background: #111;
@@ -60,6 +65,11 @@ body {
   overflow-y: auto;
 }
 
+.chat-sidebar.hidden {
+  display: none;
+}
+
+/* === Main Chat Area === */
 .chat-main {
   flex: 1;
   display: flex;
@@ -85,11 +95,11 @@ body {
   margin-left: 10px;
 }
 
+/* === Chat Window === */
 .chat-window {
   flex: 1;
   padding: 20px;
   overflow-y: auto;
-  color: white;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -113,6 +123,7 @@ body {
   color: white;
 }
 
+/* === Input === */
 .chat-input-wrapper {
   display: flex;
   padding: 10px;
@@ -127,6 +138,13 @@ body {
   border-radius: 6px;
   font-size: 16px;
   outline: none;
+  background: #fff;
+  color: #000;
+}
+
+body:not(.light) #chat-input {
+  background: #222;
+  color: #fff;
 }
 
 #send-button {
@@ -140,6 +158,38 @@ body {
   cursor: pointer;
 }
 
+/* === Light Mode === */
+body.light {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+body.light .chat-overlay {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+body.light .chat-topbar,
+body.light .chat-sidebar,
+body.light .chat-input-wrapper {
+  background: #ddd;
+  color: black;
+}
+
+body.light .chat-topbar button {
+  color: black;
+}
+
+body.light .chat-window .user {
+  background: #007aff;
+  color: white;
+}
+
+body.light .chat-window .ai {
+  background: #f1f1f1;
+  color: black;
+}
+
+/* === Responsive === */
 @media (max-width: 768px) {
   .chat-sidebar {
     display: none;
