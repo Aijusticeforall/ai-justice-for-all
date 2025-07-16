@@ -222,3 +222,24 @@ body.light #chat-input::placeholder {
     font-size: 14px;
   }
 }
+/* Chat Input Styles - Dark */
+#chat-input {
+  background: #222;
+  color: white;
+  border: 1px solid #444;
+}
+
+#chat-input::placeholder {
+  color: #aaa;
+}
+
+/* Chat Input Styles - Light */
+body.light #chat-input {
+  background: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+}
+
+body.light #chat-input::placeholder {
+  color: #666;
+}
