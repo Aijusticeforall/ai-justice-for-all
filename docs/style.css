@@ -227,6 +227,11 @@ body.light .chat-window .ai {
   color: #111;
 }
 
+body:not(.light) .chat-window .user,
+body:not(.light) .chat-window .ai {
+  color: #e5e5e5 !important;
+}
+
 @media (max-width: 768px) {
   .chat-sidebar {
     display: none;
