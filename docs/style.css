@@ -234,7 +234,7 @@ body.light #chat-input::placeholder {
   padding: 10px 14px;
   border-radius: 12px;
   max-width: 720px;
-  width: auto;          
+  width: auto;       /* ✅ fixes center-hugged message */
   color: white;
 }
 
