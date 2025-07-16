@@ -109,17 +109,6 @@ body {
   background-color: #000;
 }
 
-.chat-window .user,
-.chat-window .ai {
-  align-self: center;           
-  background: #0f82ff;          
-  padding: 10px;
-  border-radius: 12px;
-  max-width: 720px;
-  color: white;
-  text-align: left;             
-  word-wrap: break-word;
-}
 .chat-window .ai {
   background: #333;             
 }
