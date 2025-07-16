@@ -15,7 +15,6 @@ body {
   display: none !important;
 }
 
-/* === Landing Page === */
 .landing {
   position: fixed;
   top: 0; left: 0;
@@ -46,7 +45,6 @@ body {
   z-index: 10;
 }
 
-/* === Chat Overlay === */
 .chat-overlay {
   display: flex;
   flex-direction: row;
@@ -57,7 +55,6 @@ body {
   overflow: hidden;
 }
 
-/* === Sidebar === */
 .chat-sidebar {
   width: 220px;
   background: #111;
@@ -70,7 +67,6 @@ body {
   display: none;
 }
 
-/* === Main Chat Area === */
 .chat-main {
   display: flex;
   flex-direction: column;
@@ -96,7 +92,6 @@ body {
   margin-left: 10px;
 }
 
-/* === Chat Window === */
 .chat-window {
   flex: 1;
   overflow-y: auto;
@@ -124,7 +119,6 @@ body {
   color: white;
 }
 
-/* === Input === */
 .chat-input-wrapper {
   position: sticky;
   bottom: 0;
@@ -166,7 +160,6 @@ body {
   justify-content: center;
 }
 
-/* === Light Mode === */
 body.light {
   background-color: #f0f0f0;
   color: #000;
@@ -205,7 +198,6 @@ body.light #chat-input::placeholder {
   color: #666;
 }
 
-/* === Responsive === */
 @media (max-width: 768px) {
   .chat-sidebar {
     display: none;
@@ -227,8 +219,7 @@ body.light #chat-input::placeholder {
     font-size: 14px;
   }
 }
-/* Chat Input Styles - Dark */
-/* Chat Input Refinement (Final) */
+
 #chat-input {
   flex: 1;
   resize: none;
