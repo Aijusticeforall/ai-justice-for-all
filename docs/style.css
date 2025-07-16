@@ -111,20 +111,17 @@ body {
 
 .chat-window .user,
 .chat-window .ai {
-  background: #0f82ff;
-  padding: 10px 16px;
-  border-radius: 16px;
+  align-self: center;           
+  background: #0f82ff;          
+  padding: 10px;
+  border-radius: 12px;
   max-width: 720px;
   color: white;
-  align-self: center;
-  text-align: left;
-  width: 100%;
-  box-sizing: border-box;
+  text-align: left;             
+  word-wrap: break-word;
 }
-
 .chat-window .ai {
-  background: #333;
-  color: white;
+  background: #333;             
 }
 
 .chat-input-wrapper {
@@ -235,4 +232,13 @@ body.light #chat-input::placeholder {
   #chat-input {
     font-size: 14px;
   }
+}
+.chat-input-wrapper {
+  border-top: none !important;
+}
+.chat-window .user,
+.chat-window .ai {
+  align-self: center;
+  text-align: left;
+  word-wrap: break-word;
 }
