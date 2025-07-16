@@ -1,3 +1,4 @@
+
 /* === Base Styles === */
 body {
   margin: 0;
@@ -15,10 +16,13 @@ body {
   display: none !important;
 }
 
+/* === Landing Page === */
 .landing {
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -27,7 +31,8 @@ body {
   height: 100%;
   object-fit: cover;
   position: absolute;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   z-index: -1;
 }
 
@@ -45,6 +50,7 @@ body {
   z-index: 10;
 }
 
+/* === Chat Overlay === */
 .chat-overlay {
   display: flex;
   flex-direction: row;
@@ -55,6 +61,7 @@ body {
   overflow: hidden;
 }
 
+/* === Sidebar === */
 .chat-sidebar {
   width: 220px;
   background: #111;
@@ -67,11 +74,12 @@ body {
   display: none;
 }
 
+/* === Main Chat === */
 .chat-main {
   display: flex;
   flex-direction: column;
   flex: 1;
-  min-height: 0; /* enables proper scroll in child */
+  min-height: 0;
   position: relative;
 }
 
@@ -93,6 +101,7 @@ body {
   margin-left: 10px;
 }
 
+/* === Chat Window === */
 .chat-window {
   flex: 1;
   overflow-y: auto;
@@ -121,19 +130,24 @@ body {
   color: white;
 }
 
+/* === Input Area === */
 .chat-input-wrapper {
   display: flex;
   padding: 12px;
   background: #111;
   border-top: 1px solid #333;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
 }
 
 #chat-input {
   flex: 1;
   resize: none;
+  height: 40px;
   padding: 12px 16px;
   font-size: 16px;
-  border: none;
+  border: 1px solid #444;
   border-radius: 12px 0 0 12px;
   background: #222;
   color: white;
@@ -158,6 +172,7 @@ body {
   justify-content: center;
 }
 
+/* === Light Mode === */
 body.light {
   background-color: #f0f0f0;
   color: #000;
@@ -187,15 +202,18 @@ body.light .chat-window .ai {
   background: #f1f1f1;
   color: black;
 }
+
 body.light #chat-input {
   background: #fff;
   color: #000;
+  border: 1px solid #ccc;
 }
 
 body.light #chat-input::placeholder {
   color: #666;
 }
 
+/* === Responsive (Mobile) === */
 @media (max-width: 768px) {
   .chat-sidebar {
     display: none;
@@ -216,32 +234,4 @@ body.light #chat-input::placeholder {
   #chat-input {
     font-size: 14px;
   }
-}
-
-#chat-input {
-  flex: 1;
-  resize: none;
-  height: 40px;
-  padding: 12px 16px;
-  font-size: 16px;
-  border: 1px solid #444;
-  border-radius: 12px 0 0 12px;
-  background: #222;
-  color: white;
-  outline: none;
-  font-family: inherit;
-}
-
-#chat-input::placeholder {
-  color: #aaa;
-}
-
-body.light #chat-input {
-  background: #fff;
-  color: #000;
-  border: 1px solid #ccc;
-}
-
-body.light #chat-input::placeholder {
-  color: #666;
 }
