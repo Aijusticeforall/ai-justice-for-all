@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,46 +9,46 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  
+
   <div class="landing">
     <img id="landing-bg" src="ai-girl-full.png" alt="AI Justice Background" />
     <button id="glow-button"></button>
   </div>
 
-  
   <div id="chat-popup" class="hidden">
     <div class="chat-overlay" id="chat-overlay">
 
-     
       <div class="chat-sidebar hidden" id="chat-sidebar">
         <h3>Chats</h3>
         <ul id="chat-list"></ul>
       </div>
 
       <div class="chat-main">
-       
+
         <div class="chat-topbar">
-  <div class="topbar-left">
-    <button id="back-to-landing">←</button>
-    <button id="toggle-sidebar">☰</button>
-  </div>
-  <div class="topbar-right">
-    <button id="export-chat">⤓</button>
-    <button id="toggle-theme">🌓</button>
-  </div>
-</div>
+          <div class="topbar-left">
+            <button id="back-to-landing">←</button>
+            <button id="toggle-sidebar">☰</button>
+          </div>
+          <div class="topbar-right">
+            <button id="export-chat">⤓</button>
+            <button id="toggle-theme">🌓</button>
+          </div>
+        </div>
 
         <div id="chat-window" class="chat-window"></div>
 
-      <div class="chat-input-wrapper">
-  <div class="chat-input-inner">
-    <textarea id="chat-input" placeholder="Send a message..."></textarea>
-    <button id="send-button">➤</button>
-  </div>
-</div>
-      </div>
-    </div>
-  </div>
+        <div class="chat-input-wrapper">
+          <div class="chat-input-inner">
+            <textarea id="chat-input" placeholder="Send a message..."></textarea>
+            <button id="send-button">➤</button>
+          </div>
+        </div>
+
+      </div> <!-- closes .chat-main -->
+
+    </div> <!-- closes .chat-overlay -->
+  </div> <!-- closes #chat-popup -->
 
   <script src="script.js"></script>
 </body>
