@@ -194,7 +194,7 @@ body.light .chat-window .ai {
 body.light #chat-input {
   background: #fff;
   color: #000;
-  border: 1px solid #ccc;
+  border: none; /* ✅ Remove border */
 }
 
 body.light #chat-input::placeholder {
