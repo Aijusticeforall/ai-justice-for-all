@@ -49,11 +49,12 @@ body {
 /* === Chat Overlay === */
 .chat-overlay {
   display: flex;
+  flex-direction: row;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0,0,0,0.95);
-  flex-direction: row;
+  background-color: rgba(0, 0, 0, 0.95);
   position: relative;
+  overflow: hidden;
 }
 
 /* === Sidebar === */
