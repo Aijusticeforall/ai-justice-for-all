@@ -236,5 +236,38 @@ body.light #chat-input::placeholder {
   color: black;
   background: #f1f1f1; /* default fallback, will be overridden by theme */
 }
+.chat-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #222;
+  color: white;
+  padding: 10px 15px;
+  font-size: 16px;
+}
+
+.chat-topbar .topbar-left,
+.chat-topbar .topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chat-topbar button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+body.light .chat-topbar {
+  background: #ddd;
+  color: black;
+}
+
+body.light .chat-topbar button {
+  color: black;
+}
 
 
