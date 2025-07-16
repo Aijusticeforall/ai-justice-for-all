@@ -269,4 +269,15 @@ body.light .chat-topbar button {
   color: black;
 }
 
+.chat-window .user,
+.chat-window .ai {
+  width: auto;
+  max-width: 100%;
+}
+/* Add side padding on mobile and desktop */
+.chat-window {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
 
