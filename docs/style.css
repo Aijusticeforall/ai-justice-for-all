@@ -236,11 +236,14 @@ body.light #chat-input::placeholder {
   border-radius: 12px;
   max-width: 720px;
   width: 100%;
-  background: #0f82ff;
   color: white;
 }
 
-/* AI-specific override */
+/* Specific background color */
+.chat-window .user {
+  background: #0f82ff;
+}
+
 .chat-window .ai {
   background: #333;
 }
