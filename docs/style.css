@@ -126,7 +126,6 @@ body {
   padding: 12px;
   background: #111;
   border-top: 1px solid #333;
-  position: relative; 
 }
 
 #chat-input {
@@ -246,4 +245,3 @@ body.light #chat-input {
 body.light #chat-input::placeholder {
   color: #666;
 }
-
