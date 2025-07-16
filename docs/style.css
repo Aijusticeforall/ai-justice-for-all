@@ -129,17 +129,6 @@ body {
   color: white;
 }
 
-.chat-input-wrapper {
-  display: flex;
-  justify-content: center;
-  background: #111;
-  border-top: 1px solid #333;
-  position: sticky;
-  bottom: 0;
-  z-index: 10;
-  padding: 12px;
-}
-
 #chat-input {
   flex: 1;
   resize: none;
@@ -236,7 +225,7 @@ body.light #chat-input::placeholder {
 }
 .chat-input-wrapper {
   display: flex;
-  justify-content: center; /* centers the inner bar */
+  justify-content: center;
   background: #111;
   border-top: 1px solid #333;
   padding: 12px;
@@ -250,3 +239,4 @@ body.light #chat-input::placeholder {
   max-width: 720px;
   width: 100%;
 }
+
