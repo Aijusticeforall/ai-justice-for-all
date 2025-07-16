@@ -171,9 +171,13 @@ body.light .chat-overlay {
 }
 
 body.light .chat-topbar,
-body.light .chat-sidebar,
 body.light .chat-input-wrapper {
   background: #f6f6f6;
+  color: #111;
+}
+
+body.light .chat-sidebar {
+  background: #eaeaea;
   color: #111;
 }
 
