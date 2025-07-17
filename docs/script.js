@@ -87,18 +87,27 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
  // ✅ New Chat button clears chat and adds a starter message
-const newChatBtn = document.querySelector('.new-chat-btn');
-if (newChatBtn) {
-  newChatBtn.addEventListener('click', () => {
-    chatWindow.innerHTML = '';
-    chatInput.value = '';
+document.querySelector('.new-chat-btn').addEventListener('click', () => {
+  // Clear chat window and input
+  chatWindow.innerHTML = '';
+  chatInput.value = '';
 
-    const newMsg = document.createElement("div");
-    newMsg.className = "user";
-    newMsg.textContent = "🆕 New chat started.";
-    chatWindow.appendChild(newMsg);
-    chatWindow.scrollTop = chatWindow.scrollHeight;
-  });
+  // Add message to chat window
+  const newMessage = document.createElement('div');
+  newMessage.className = 'user';
+  newMessage.textContent = 'New chat started...';
+  chatWindow.appendChild(newMessage);
+  chatWindow.scrollTop = chatWindow.scrollHeight;
+
+  // ✅ Add new chat entry to sidebar
+  const chatList = document.getElementById('chat-list');
+  const listItem = document.createElement('li');
+  const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+  listItem.textContent = `Chat at ${timestamp}`;
+  chatList.appendChild(listItem);
+});
+
 }
 
 });
