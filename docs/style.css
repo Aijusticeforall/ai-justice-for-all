@@ -406,11 +406,6 @@ body.light .sidebar-toggle {
   background: #333;
 }
 
-.menu-options.hidden {
-  display: none;
-}
-
-/* === Search Bar Styling === */
 #chat-search {
   width: 90%;
   margin: 12px auto;
