@@ -16,18 +16,19 @@
   <div id="chat-popup" class="hidden">
     <div class="chat-overlay" id="chat-overlay">
 
-      <div class="chat-sidebar collapsed" id="chat-sidebar">
-        <button id="toggle-sidebar" class="sidebar-toggle">☰</button>
+     <div class="chat-sidebar collapsed" id="chat-sidebar">
+  <!-- GROUP BUTTONS HERE -->
+  <div class="sidebar-top-buttons">
+    <button id="toggle-sidebar" class="sidebar-toggle">☰</button>
+    <button class="new-chat-btn">➕</button>
+  </div>
 
-        <!-- ✅ New Chat button -->
-        <button class="new-chat-btn" onclick="startNewChat()">➕</button>
-
-        <div class="sidebar-content">
-          <ul id="chat-list">
-            <!-- Your chat list goes here -->
-          </ul>
-        </div>
-      </div>
+  <div class="sidebar-content">
+    <ul id="chat-list">
+      <!-- Your chat list goes here -->
+    </ul>
+  </div>
+</div>
 
       <div class="chat-main">
         <div class="chat-topbar">
