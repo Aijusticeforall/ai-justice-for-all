@@ -16,20 +16,20 @@
   <div id="chat-popup" class="hidden">
     <div class="chat-overlay" id="chat-overlay">
 
-     <div class="chat-sidebar collapsed" id="chat-sidebar">
-  <button id="toggle-sidebar" class="sidebar-toggle">☰</button>
+      <div class="chat-sidebar collapsed" id="chat-sidebar">
+        <button id="toggle-sidebar" class="sidebar-toggle">☰</button>
 
-  <button class="new-chat-btn">➕</button>
+        <!-- ✅ New Chat button -->
+        <button class="new-chat-btn" onclick="startNewChat()">➕</button>
 
-  <div class="sidebar-content">
-    <ul id="chat-list">
-      <!-- Your chat list goes here -->
-    </ul>
-  </div>
-</div>
+        <div class="sidebar-content">
+          <ul id="chat-list">
+            <!-- Your chat list goes here -->
+          </ul>
+        </div>
+      </div>
 
       <div class="chat-main">
-
         <div class="chat-topbar">
           <div class="topbar-left">
             <button id="back-to-landing">←</button>
@@ -48,17 +48,16 @@
             <button id="send-button">➤</button>
           </div>
         </div>
-
       </div> <!-- closes .chat-main -->
 
     </div> <!-- closes .chat-overlay -->
   </div> <!-- closes #chat-popup -->
 
+  <!-- ✅ This defines the new chat behavior -->
   <script>
     function startNewChat() {
       const chatWindow = document.getElementById("chat-window");
       chatWindow.innerHTML = "";
-      // Optionally clear input field too
       document.getElementById("chat-input").value = "";
     }
   </script>
