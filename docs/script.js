@@ -86,10 +86,19 @@ document.addEventListener("DOMContentLoaded", () => {
     return "I'm AI Justice. How can I assist you today?";
   }
 
-  // ✅ New Chat button clears chat
-  document.querySelector('.new-chat-btn').addEventListener('click', () => {
+ // ✅ New Chat button clears chat and adds a starter message
+const newChatBtn = document.querySelector('.new-chat-btn');
+if (newChatBtn) {
+  newChatBtn.addEventListener('click', () => {
     chatWindow.innerHTML = '';
     chatInput.value = '';
+
+    const newMsg = document.createElement("div");
+    newMsg.className = "user";
+    newMsg.textContent = "🆕 New chat started.";
+    chatWindow.appendChild(newMsg);
+    chatWindow.scrollTop = chatWindow.scrollHeight;
   });
+}
 
 });
