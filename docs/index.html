@@ -8,16 +8,18 @@
 </head>
 <body>
 
+  <!-- 🌌 Landing Page -->
   <div class="landing">
     <img id="landing-bg" src="ai-girl-full.png" alt="AI Justice Background" />
-    <button id="glow-button"></button>
+    <button id="glow-button" title="Begin"></button>
   </div>
 
+  <!-- 💬 Chat Popup -->
   <div id="chat-popup" class="hidden">
     <div class="chat-overlay" id="chat-overlay">
 
+      <!-- 📁 Sidebar -->
       <div class="chat-sidebar collapsed" id="chat-sidebar">
-
         <div class="sidebar-top-buttons">
           <button id="toggle-sidebar" class="sidebar-toggle">☰</button>
           <button class="new-chat-btn">
@@ -26,17 +28,16 @@
         </div>
 
         <div class="sidebar-content">
-
-         <div class="search-container">
-  <input id="chat-search" type="text" placeholder="Search chats..." />
-  <span class="search-icon" title="Search">🔍</span>
-</div>
+          <div class="search-container">
+            <input id="chat-search" type="text" placeholder="Search chats..." />
+            <span class="search-icon" title="Search">🔍</span>
+          </div>
 
           <ul id="chat-list">
             <li>
               <span class="chat-title">Chat at 12:17 AM</span>
               <div class="chat-menu">
-                <span class="dots">⋯</span>
+                <span class="dots" title="Options">⋯</span>
                 <div class="menu-options">
                   <div class="rename">Rename</div>
                   <div class="delete">Delete</div>
@@ -44,18 +45,18 @@
               </div>
             </li>
           </ul>
-
         </div>
       </div>
 
+      <!-- 💬 Main Chat Area -->
       <div class="chat-main">
         <div class="chat-topbar">
           <div class="topbar-left">
-            <button id="back-to-landing">←</button>
+            <button id="back-to-landing" title="Back">←</button>
           </div>
           <div class="topbar-right">
-            <button id="export-chat">⤓</button>
-            <button id="toggle-theme">🌓</button>
+            <button id="export-chat" title="Export">⤓</button>
+            <button id="toggle-theme" title="Toggle Theme">🌓</button>
           </div>
         </div>
 
@@ -64,7 +65,7 @@
         <div class="chat-input-wrapper">
           <div class="chat-input-inner">
             <textarea id="chat-input" placeholder="Send a message..."></textarea>
-            <button id="send-button">➤</button>
+            <button id="send-button" title="Send">➤</button>
           </div>
         </div>
       </div> <!-- closes .chat-main -->
@@ -72,15 +73,7 @@
     </div> <!-- closes .chat-overlay -->
   </div> <!-- closes #chat-popup -->
 
-  <!-- ✅ This defines the new chat behavior -->
-  <script>
-    function startNewChat() {
-      const chatWindow = document.getElementById("chat-window");
-      chatWindow.innerHTML = "";
-      document.getElementById("chat-input").value = "";
-    }
-  </script>
-
+  <!-- ✅ Script: Core Chat Logic -->
   <script src="script.js"></script>
 </body>
 </html>
