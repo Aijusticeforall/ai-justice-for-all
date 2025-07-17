@@ -438,7 +438,9 @@ body.light .sidebar-toggle {
   top: 50%;
   transform: translateY(-50%);
   color: #aaa;
-  pointer-events: none;
+  font-size: 20px;
+  cursor: pointer;
+  pointer-events: auto; /* ✅ allows click */
 }
 
 /* === Collapsed Sidebar Style === */
