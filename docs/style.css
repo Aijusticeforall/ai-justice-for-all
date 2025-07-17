@@ -68,8 +68,13 @@ body {
 }
 
 .chat-sidebar.collapsed {
-  width: 50px;
+  width: 36px; /* Just a bit larger than the ☰ icon */
+  padding-left: 0;
+  padding-right: 0;
   overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .chat-sidebar.collapsed h3,
