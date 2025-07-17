@@ -161,6 +161,33 @@ body {
   align-items: center;
   justify-content: center;
 }
+/* Sidebar when collapsed */
+.chat-sidebar.collapsed {
+  width: 50px;
+  overflow: hidden;
+  transition: width 0.3s ease;
+  position: relative;
+}
+
+/* Hide sidebar content but show toggle button */
+.chat-sidebar.collapsed h3,
+.chat-sidebar.collapsed ul {
+  display: none;
+}
+
+/* Sidebar toggle button always visible inside */
+.sidebar-toggle {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  color: inherit;
+  cursor: pointer;
+  z-index: 2;
+}
+
 body.light {
   background-color: #f6f6f6;
   color: #111;
