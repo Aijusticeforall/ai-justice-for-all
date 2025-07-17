@@ -14,6 +14,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatList = document.getElementById("chat-list");
   const searchInput = document.getElementById("chat-search");
 
+  // ✅ NEW: Add reference to magnifier icon
+  const searchIcon = document.querySelector(".search-icon");
+
+  // ✅ NEW: Expand sidebar when magnifier icon is clicked
+  searchIcon.addEventListener("click", () => {
+    if (sidebar.classList.contains("collapsed")) {
+      sidebar.classList.remove("collapsed");
+      searchInput.focus();
+    }
+  });
+
   // === Chat Rename if first message ===
   function renameFirstChatIfNeeded(text) {
     const chatTitles = document.querySelectorAll('#chat-list .chat-title');
