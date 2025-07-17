@@ -12,6 +12,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const toggleTheme = document.getElementById("toggle-theme");
   const exportBtn = document.getElementById("export-chat");
 
+  function renameFirstChatIfNeeded(text) {
+  const chatList = document.querySelectorAll('.chat-entry');
+  if (chatList.length && chatList[chatList.length - 1].innerText.startsWith("Chat at")) {
+    const title = text.slice(0, 30) + (text.length > 30 ? "..." : "");
+    chatList[chatList.length - 1].innerText = title;
+  }
+}
+
   // Open chat
   glowButton.addEventListener("click", () => {
     chatPopup.classList.remove("hidden");
