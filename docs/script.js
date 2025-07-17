@@ -13,6 +13,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const exportBtn = document.getElementById("export-chat");
   const chatList = document.getElementById("chat-list");
   const searchInput = document.getElementById("chat-search");
+  const landing = document.querySelector(".landing"); // ✅ reference landing div
+  const glowButton = document.getElementById("glow-button");
+  const chatPopup = document.getElementById("chat-popup");
+  const backButton = document.getElementById("back-to-landing");
+
+// ✅ When user clicks glowing button
+glowButton.addEventListener("click", () => {
+  landing.style.display = "none";
+  chatPopup.classList.remove("hidden");
+  document.body.style.overflow = "hidden";
+});
+
+// ✅ When user clicks back arrow
+backButton.addEventListener("click", () => {
+  chatPopup.classList.add("hidden");
+  landing.style.display = "block";
+  document.body.style.overflow = "auto";
+});
 
   // ✅ NEW: Add reference to magnifier icon
   const searchIcon = document.querySelector(".search-icon");
