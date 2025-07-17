@@ -87,4 +87,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return "I'm AI Justice. How can I assist you today?";
   }
   
+document.querySelector('.new-chat-btn').addEventListener('click', () => {
+  document.getElementById('chat-window').innerHTML = '';
 });
