@@ -486,3 +486,11 @@ body.light .sidebar-toggle {
   border-right: none;
   transition: width 0.3s ease, padding 0.3s ease;
 }
+/* === Dropdown Menu Visibility for 3-Dots === */
+.menu-options {
+  display: none;
+}
+
+.menu-options.show {
+  display: block;
+}
