@@ -365,3 +365,64 @@ body.light .sidebar-toggle {
 .chat-entry:hover {
   background-color: #2a2a2a;
 }
+/* === Chat Entry Styling === */
+.chat-entry {
+  padding: 8px 12px;
+  margin-bottom: 4px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-entry:hover {
+  background-color: #2a2a2a;
+}
+
+/* === ⋯ Menu Styling === */
+.chat-menu {
+  position: relative;
+  display: inline-block;
+  float: right;
+}
+
+.dots {
+  cursor: pointer;
+  padding-left: 6px;
+}
+
+.menu-options {
+  position: absolute;
+  right: 0;
+  background: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 4px;
+  display: none;
+  z-index: 10;
+  min-width: 100px;
+}
+
+.menu-options div {
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.menu-options div:hover {
+  background: #333;
+}
+
+.menu-options.hidden {
+  display: none;
+}
+
+/* === Search Bar Styling === */
+#chat-search {
+  width: 90%;
+  margin: 12px auto;
+  padding: 6px;
+  border-radius: 6px;
+  border: none;
+  background: #2a2a2a;
+  color: white;
+}
