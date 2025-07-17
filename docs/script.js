@@ -86,8 +86,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     return "I'm AI Justice. How can I assist you today?";
   }
-    document.getElementById("toggle-sidebar").addEventListener("click", function () {
-    document.getElementById("chat-sidebar").classList.toggle("collapsed");
-  });
-
+  
 });
