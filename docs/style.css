@@ -68,12 +68,12 @@ body {
 }
 
 .chat-sidebar.collapsed {
-  width: 44px; /* Just enough room around the icon */
+  width: 44px;
   padding: 0;
   overflow: hidden;
   display: flex;
-  align-items: center; /* vertical centering */
-  justify-content: center; /* horizontal centering */
+  flex-direction: column;
+  align-items: center;
   box-shadow: none;
   border-right: none;
   transition: width 0.3s ease, padding 0.3s ease;
@@ -85,7 +85,6 @@ body {
 }
 
 .sidebar-toggle {
-  position: relative;
   background: transparent;
   border: none;
   font-size: 22px;
@@ -96,7 +95,20 @@ body {
   margin: 0;
 }
 
-/* === New Chat button styling (full, final version) === */
+.sidebar-top-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 16px;
+  align-items: flex-start;
+}
+
+.chat-sidebar.collapsed .sidebar-top-buttons {
+  align-items: center;
+  padding-top: 12px;
+  padding-bottom: 0;
+}
+
 .new-chat-btn {
   display: flex;
   align-items: center;
@@ -111,7 +123,7 @@ body {
   cursor: pointer;
   transition: background 0.2s ease;
   position: relative;
-  margin-top: 48px;
+  margin-top: 0;
 }
 
 .new-chat-btn:hover {
@@ -119,7 +131,6 @@ body {
   border-radius: 8px;
 }
 
-/* === Tooltip support === */
 .new-chat-btn::after {
   content: "New Chat";
   position: absolute;
@@ -138,31 +149,12 @@ body {
   z-index: 999;
 }
 
-.chat-sidebar.collapsed .new-chat-btn:hover::after {
-  opacity: 1;
-}
-
-/* === Collapsed sidebar version === */
 .chat-sidebar.collapsed .new-chat-btn {
   justify-content: center;
   padding: 10px 0;
   width: 100%;
-  margin-top: 0; /* keep spacing tight */
+  margin-top: 0;
 }
-
-/* Tooltip visibility when collapsed and hovered */
-.chat-sidebar.collapsed .new-chat-btn:hover::after {
-  opacity: 1;
-}
-
-/* When sidebar is collapsed, center the icon only */
-.chat-sidebar.collapsed .new-chat-btn {
-  justify-content: center;
-  padding: 10px 0;
-  width: 100%;
-  margin-top: 0; /* remove margin to keep tight with toggle */
-}
-
 
 .chat-sidebar.collapsed .new-chat-btn:hover::after {
   opacity: 1;
