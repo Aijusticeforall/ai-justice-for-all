@@ -36,9 +36,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Toggle Sidebar
-  toggleSidebar.addEventListener("click", () => {
-    sidebar.classList.toggle("hidden");
-  });
+ toggleSidebar.addEventListener("click", () => {
+  sidebar.classList.toggle("collapsed");
+});
 
   // Toggle Dark/Light Theme
   toggleTheme.addEventListener("click", () => {
@@ -86,4 +86,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     return "I'm AI Justice. How can I assist you today?";
   }
+    document.getElementById("toggle-sidebar").addEventListener("click", function () {
+    document.getElementById("chat-sidebar").classList.toggle("collapsed");
+  });
+
 });
