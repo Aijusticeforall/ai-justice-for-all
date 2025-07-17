@@ -16,21 +16,36 @@
   <div id="chat-popup" class="hidden">
     <div class="chat-overlay" id="chat-overlay">
 
-     <div class="chat-sidebar collapsed" id="chat-sidebar">
+      <div class="chat-sidebar collapsed" id="chat-sidebar">
 
-  <div class="sidebar-top-buttons">
-    <button id="toggle-sidebar" class="sidebar-toggle">☰</button>
-   <button class="new-chat-btn">
-  ➕ <span class="chat-label">New Chat</span>
-</button>
-  </div>
+        <div class="sidebar-top-buttons">
+          <button id="toggle-sidebar" class="sidebar-toggle">☰</button>
+          <button class="new-chat-btn">
+            ➕ <span class="chat-label">New Chat</span>
+          </button>
+        </div>
 
-  <div class="sidebar-content">
-    <ul id="chat-list">
-      <!-- Your chat list goes here -->
-    </ul>
-  </div>
-</div>
+        <div class="sidebar-content">
+
+          <!-- ✅ SEARCH BAR -->
+          <input id="chat-search" type="text" placeholder="Search chats..." />
+
+          <!-- ✅ CHAT LIST -->
+          <ul id="chat-list">
+            <li>
+              <span class="chat-title">Chat at 12:17 AM</span>
+              <div class="chat-menu">
+                <span class="dots">⋯</span>
+                <div class="menu-options hidden">
+                  <div class="rename">Rename</div>
+                  <div class="delete">Delete</div>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+        </div>
+      </div>
 
       <div class="chat-main">
         <div class="chat-topbar">
