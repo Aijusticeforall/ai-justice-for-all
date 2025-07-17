@@ -175,11 +175,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-  const searchIcon = document.querySelector(".search-icon");
-
-  searchIcon.addEventListener("click", () => {
-    if (sidebar.classList.contains("collapsed")) {
-      sidebar.classList.remove("collapsed");
-      searchInput.focus(); // optional focus
-    }
-  });
