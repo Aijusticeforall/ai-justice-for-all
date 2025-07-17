@@ -18,6 +18,10 @@
 
       <div class="chat-sidebar collapsed" id="chat-sidebar">
         <button id="toggle-sidebar" class="sidebar-toggle">☰</button>
+        
+        <!-- ✅ New Chat button added here -->
+        <button class="new-chat-btn" onclick="startNewChat()" title="New Chat">➕</button>
+
         <div class="sidebar-content">
           <ul id="chat-list">
             <!-- Your chat list goes here -->
@@ -50,6 +54,15 @@
 
     </div> <!-- closes .chat-overlay -->
   </div> <!-- closes #chat-popup -->
+
+  <script>
+    function startNewChat() {
+      const chatWindow = document.getElementById("chat-window");
+      chatWindow.innerHTML = "";
+      // Optionally clear input field too
+      document.getElementById("chat-input").value = "";
+    }
+  </script>
 
   <script src="script.js"></script>
 </body>
