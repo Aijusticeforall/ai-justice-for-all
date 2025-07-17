@@ -350,22 +350,6 @@ body.light .sidebar-toggle {
     font-size: 14px;
   }
 }
-/* New Chat button styling */
-.new-chat-btn {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 8px;
-  width: 100%;
-  padding: 10px 12px;
-  background: transparent;
-  border: none;
-  color: inherit;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 48px; /* space below toggle */
-  transition: background 0.2s ease;
-}
 
 .new-chat-btn:hover {
   background: rgba(255, 255, 255, 0.1);
