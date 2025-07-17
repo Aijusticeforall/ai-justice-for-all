@@ -95,6 +95,8 @@ body {
   color: inherit;
   cursor: pointer;
   z-index: 2;
+  margin: 0;
+  padding: 8px;
 }
 
 .chat-main {
