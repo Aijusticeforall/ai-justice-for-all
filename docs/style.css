@@ -63,10 +63,30 @@ body {
   color: white;
   padding: 20px;
   overflow-y: auto;
+  transition: width 0.3s ease;
+  position: relative;
 }
 
-.chat-sidebar.hidden {
+.chat-sidebar.collapsed {
+  width: 50px;
+  overflow: hidden;
+}
+
+.chat-sidebar.collapsed h3,
+.chat-sidebar.collapsed ul {
   display: none;
+}
+
+.sidebar-toggle {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  color: inherit;
+  cursor: pointer;
+  z-index: 2;
 }
 
 .chat-main {
@@ -161,31 +181,19 @@ body {
   align-items: center;
   justify-content: center;
 }
-/* Sidebar when collapsed */
-.chat-sidebar.collapsed {
-  width: 50px;
-  overflow: hidden;
-  transition: width 0.3s ease;
-  position: relative;
-}
 
-/* Hide sidebar content but show toggle button */
-.chat-sidebar.collapsed h3,
-.chat-sidebar.collapsed ul {
-  display: none;
-}
-
-/* Sidebar toggle button always visible inside */
-.sidebar-toggle {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: transparent;
+.chat-window .user,
+.chat-window .ai {
+  width: 100%;
+  max-width: 720px;
+  padding: 8px 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #e5e5e5;
+  background: none !important;
   border: none;
-  font-size: 22px;
-  color: inherit;
-  cursor: pointer;
-  z-index: 2;
+  border-radius: 0;
+  text-align: left;
 }
 
 body.light {
@@ -218,10 +226,7 @@ body.light .chat-window {
 
 body.light .chat-window .user,
 body.light .chat-window .ai {
-  background: none !important;
   color: #111;
-  border: none;
-  border-radius: 0;
 }
 
 body.light #chat-input {
@@ -241,18 +246,8 @@ body.light #send-button {
   color: white;
 }
 
-.chat-window .user,
-.chat-window .ai {
-  width: 100%;
-  max-width: 720px;
-  padding: 8px 0;
-  font-size: 16px;
-  line-height: 1.6;
-  color: #e5e5e5;
-  background: none !important;
-  border: none;
-  border-radius: 0;
-  text-align: left;
+body.light .sidebar-toggle {
+  color: #111;
 }
 
 @media (max-width: 768px) {
@@ -275,12 +270,4 @@ body.light #send-button {
   #chat-input {
     font-size: 14px;
   }
-}
-
-body.light .chat-sidebar {
-  background-color: #f6f6f6;
-}
-
-body.light .sidebar-toggle {
-  color: #111;
 }
