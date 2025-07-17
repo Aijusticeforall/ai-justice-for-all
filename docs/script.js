@@ -14,28 +14,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatList = document.getElementById("chat-list");
   const searchInput = document.getElementById("chat-search");
   const landing = document.querySelector(".landing"); // ✅ reference landing div
-  const glowButton = document.getElementById("glow-button");
-  const chatPopup = document.getElementById("chat-popup");
-  const backButton = document.getElementById("back-to-landing");
 
-// ✅ When user clicks glowing button
-glowButton.addEventListener("click", () => {
-  landing.style.display = "none";
-  chatPopup.classList.remove("hidden");
-  document.body.style.overflow = "hidden";
-});
+  // ✅ When user clicks glowing button
+  glowButton.addEventListener("click", () => {
+    landing.style.display = "none";
+    chatPopup.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+  });
 
-// ✅ When user clicks back arrow
-backButton.addEventListener("click", () => {
-  chatPopup.classList.add("hidden");
-  landing.style.display = "block";
-  document.body.style.overflow = "auto";
-});
+  // ✅ When user clicks back arrow
+  backButton.addEventListener("click", () => {
+    chatPopup.classList.add("hidden");
+    landing.style.display = "block";
+    document.body.style.overflow = "auto";
+  });
 
   // ✅ NEW: Add reference to magnifier icon
   const searchIcon = document.querySelector(".search-icon");
 
-  // ✅ NEW: Expand sidebar when magnifier icon is clicked
+  // ✅ Expand sidebar when magnifier icon is clicked
   searchIcon.addEventListener("click", () => {
     if (sidebar.classList.contains("collapsed")) {
       sidebar.classList.remove("collapsed");
@@ -51,17 +48,6 @@ backButton.addEventListener("click", () => {
       chatTitles[chatTitles.length - 1].innerText = newTitle;
     }
   }
-
-  // === Open / Close chat view ===
-  glowButton.addEventListener("click", () => {
-    chatPopup.classList.remove("hidden");
-    document.body.style.overflow = "hidden";
-  });
-
-  backButton.addEventListener("click", () => {
-    chatPopup.classList.add("hidden");
-    document.body.style.overflow = "auto";
-  });
 
   // === Send message by button or Enter key ===
   sendButton.addEventListener("click", sendMessage);
@@ -153,16 +139,16 @@ backButton.addEventListener("click", () => {
   });
 
   // === Handle ⋯ Menu Toggle
- document.addEventListener("click", (e) => {
-  if (e.target.classList.contains("dots")) {
-    const menu = e.target.nextElementSibling;
-    menu.classList.toggle("show"); // ✅ use .show now
-  } else {
-    document.querySelectorAll(".menu-options").forEach(menu => {
-      if (!menu.contains(e.target)) menu.classList.remove("show");
-    });
-  }
-});
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("dots")) {
+      const menu = e.target.nextElementSibling;
+      menu.classList.toggle("show"); // ✅ use .show now
+    } else {
+      document.querySelectorAll(".menu-options").forEach(menu => {
+        if (!menu.contains(e.target)) menu.classList.remove("show");
+      });
+    }
+  });
 
   // === Rename Chat
   document.addEventListener("click", (e) => {
