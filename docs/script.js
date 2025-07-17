@@ -11,31 +11,32 @@ document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.getElementById("chat-sidebar");
   const toggleTheme = document.getElementById("toggle-theme");
   const exportBtn = document.getElementById("export-chat");
+  const chatList = document.getElementById("chat-list");
+  const searchInput = document.getElementById("chat-search");
 
+  // === Chat Rename if first message ===
   function renameFirstChatIfNeeded(text) {
-  const chatList = document.querySelectorAll('.chat-entry');
-  if (chatList.length && chatList[chatList.length - 1].innerText.startsWith("Chat at")) {
-    const title = text.slice(0, 30) + (text.length > 30 ? "..." : "");
-    chatList[chatList.length - 1].innerText = title;
+    const chatTitles = document.querySelectorAll('#chat-list .chat-title');
+    if (chatTitles.length && chatTitles[chatTitles.length - 1].innerText.startsWith("Chat at")) {
+      const newTitle = text.slice(0, 30) + (text.length > 30 ? "..." : "");
+      chatTitles[chatTitles.length - 1].innerText = newTitle;
+    }
   }
-}
 
-  // Open chat
+  // === Open / Close chat view ===
   glowButton.addEventListener("click", () => {
     chatPopup.classList.remove("hidden");
     document.body.style.overflow = "hidden";
   });
 
-  // Close chat
   backButton.addEventListener("click", () => {
     chatPopup.classList.add("hidden");
     document.body.style.overflow = "auto";
   });
 
-  // Send on button click
+  // === Send message by button or Enter key ===
   sendButton.addEventListener("click", sendMessage);
 
-  // Send on Enter (without Shift)
   chatInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
@@ -43,31 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Toggle Sidebar
-  toggleSidebar.addEventListener("click", () => {
-    sidebar.classList.toggle("collapsed");
-  });
-
-  // Toggle Dark/Light Theme
-  toggleTheme.addEventListener("click", () => {
-    document.body.classList.toggle("light");
-    toggleTheme.textContent = document.body.classList.contains("light") ? "🌞" : "🌙";
-  });
-
-  // Export Chat
-  exportBtn.addEventListener("click", () => {
-    const text = Array.from(chatWindow.children)
-      .map(el => el.textContent)
-      .join("\n\n");
-
-    const blob = new Blob([text], { type: "text/plain" });
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "chat.txt";
-    a.click();
-  });
-
-  // Send Message
   function sendMessage() {
     const text = chatInput.value.trim();
     if (!text) return;
@@ -85,6 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
     chatWindow.appendChild(aiMsg);
 
     chatWindow.scrollTop = chatWindow.scrollHeight;
+
+    renameFirstChatIfNeeded(text);
   }
 
   function getAIResponse(input) {
@@ -94,25 +72,95 @@ document.addEventListener("DOMContentLoaded", () => {
     return "I'm AI Justice. How can I assist you today?";
   }
 
-  // ✅ New Chat button: clears window and adds new chat to sidebar
+  // === Toggle Sidebar Collapse ===
+  toggleSidebar.addEventListener("click", () => {
+    sidebar.classList.toggle("collapsed");
+  });
+
+  // === Toggle Light/Dark Theme ===
+  toggleTheme.addEventListener("click", () => {
+    document.body.classList.toggle("light");
+    toggleTheme.textContent = document.body.classList.contains("light") ? "🌞" : "🌙";
+  });
+
+  // === Export Chat Text ===
+  exportBtn.addEventListener("click", () => {
+    const text = Array.from(chatWindow.children)
+      .map(el => el.textContent)
+      .join("\n\n");
+
+    const blob = new Blob([text], { type: "text/plain" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "chat.txt";
+    a.click();
+  });
+
+  // === New Chat Button ===
   document.querySelector('.new-chat-btn').addEventListener('click', () => {
-    // Clear chat window and input
+    // Clear chat
     chatWindow.innerHTML = '';
     chatInput.value = '';
 
-    // Add message to chat window
     const newMessage = document.createElement('div');
     newMessage.className = 'user';
     newMessage.textContent = 'New chat started...';
     chatWindow.appendChild(newMessage);
     chatWindow.scrollTop = chatWindow.scrollHeight;
 
-    // Add new chat entry to sidebar
-    const chatList = document.getElementById('chat-list');
-    const listItem = document.createElement('li');
-    const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
-    listItem.textContent = `Chat at ${timestamp}`;
-    chatList.appendChild(listItem);
+    // Create a new chat list item with proper structure
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <span class="chat-title">Chat at ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+      <div class="chat-menu">
+        <span class="dots">⋯</span>
+        <div class="menu-options hidden">
+          <div class="rename">Rename</div>
+          <div class="delete">Delete</div>
+        </div>
+      </div>
+    `;
+    chatList.appendChild(li);
   });
-}); // ✅ This closes the DOMContentLoaded listener correctly
+
+  // === Handle ⋯ Menu Toggle
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("dots")) {
+      const menu = e.target.nextElementSibling;
+      menu.classList.toggle("hidden");
+    } else {
+      document.querySelectorAll(".menu-options").forEach(menu => {
+        if (!menu.contains(e.target)) menu.classList.add("hidden");
+      });
+    }
+  });
+
+  // === Rename Chat
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("rename")) {
+      const chatTitle = e.target.closest("li").querySelector(".chat-title");
+      const newName = prompt("Enter new chat name:", chatTitle.innerText);
+      if (newName) chatTitle.innerText = newName;
+    }
+  });
+
+  // === Delete Chat
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("delete")) {
+      const chatItem = e.target.closest("li");
+      if (confirm("Are you sure you want to delete this chat?")) {
+        chatItem.remove();
+      }
+    }
+  });
+
+  // === Search Filter
+  searchInput.addEventListener("input", () => {
+    const term = searchInput.value.toLowerCase();
+    const items = document.querySelectorAll("#chat-list li");
+    items.forEach(item => {
+      const title = item.querySelector(".chat-title").innerText.toLowerCase();
+      item.style.display = title.includes(term) ? "flex" : "none";
+    });
+  });
+});
