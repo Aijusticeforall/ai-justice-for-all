@@ -494,24 +494,6 @@ body.light .sidebar-toggle {
   border-right: none;
   transition: width 0.3s ease, padding 0.3s ease;
 }
-/* === Dropdown Menu Visibility for 3-Dots === */
-/* === Dropdown Menu Visibility for 3-Dots === */
-.menu-options {
-  position: absolute;
-  background: #333;
-  border: 1px solid #555;
-  border-radius: 6px;
-  padding: 8px 0;
-  right: 0;
-  top: 24px;
-  min-width: 100px;
-  z-index: 10;
-  display: none;
-}
-
-.menu-options.show {
-  display: block;
-}
 
 .menu-options div {
   padding: 8px 12px;
