@@ -10,8 +10,12 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
-.hidden {
+.menu-options {
   display: none;
+}
+
+.menu-options.show {
+  display: block;
 }
 
 .landing {
