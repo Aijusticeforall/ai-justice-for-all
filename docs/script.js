@@ -36,9 +36,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Toggle Sidebar
- toggleSidebar.addEventListener("click", () => {
-  sidebar.classList.toggle("collapsed");
-});
+  toggleSidebar.addEventListener("click", () => {
+    sidebar.classList.toggle("collapsed");
+  });
 
   // Toggle Dark/Light Theme
   toggleTheme.addEventListener("click", () => {
@@ -80,13 +80,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function getAIResponse(input) {
-    // Dummy response
     if (input.toLowerCase().includes("hello")) {
       return "Hi there! How can I assist you?";
     }
     return "I'm AI Justice. How can I assist you today?";
   }
-  
-document.querySelector('.new-chat-btn').addEventListener('click', () => {
-  document.getElementById('chat-window').innerHTML = '';
+
+  // ✅ New Chat button clears chat
+  document.querySelector('.new-chat-btn').addEventListener('click', () => {
+    chatWindow.innerHTML = '';
+    chatInput.value = '';
+  });
+
 });
