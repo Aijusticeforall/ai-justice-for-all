@@ -85,17 +85,15 @@ body {
 }
 
 .sidebar-toggle {
-  position: absolute;
-  top: 10px;
-  left: 10px;
+  position: relative;
   background: transparent;
   border: none;
   font-size: 22px;
   color: inherit;
   cursor: pointer;
   z-index: 2;
-  margin: 0;
   padding: 8px;
+  margin: 0;
 }
 
 .chat-main {
