@@ -416,3 +416,55 @@ body.light .sidebar-toggle {
   background: #2a2a2a;
   color: white;
 }
+/* === Search Container Styling === */
+.search-container {
+  position: relative;
+  width: 90%;
+  margin: 10px auto;
+}
+
+#chat-search {
+  width: 100%;
+  padding: 8px 32px 8px 12px;
+  border-radius: 6px;
+  border: none;
+  background: #2a2a2a;
+  color: white;
+}
+
+.search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  pointer-events: none;
+}
+
+/* === Collapsed Sidebar Style === */
+.chat-sidebar.collapsed .search-container {
+  width: 100%;
+  padding: 0;
+  margin-top: 12px;
+}
+
+.chat-sidebar.collapsed #chat-search {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  text-indent: -9999px; /* hide text */
+  background: none;
+  border: none;
+  margin: 0 auto;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.chat-sidebar.collapsed .search-icon {
+  position: static;
+  display: block;
+  text-align: center;
+  font-size: 20px;
+  color: white;
+}
