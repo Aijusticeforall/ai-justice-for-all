@@ -11,7 +11,7 @@ body {
 }
 
 .hidden {
-  display: none !important;
+  display: none;
 }
 
 .landing {
