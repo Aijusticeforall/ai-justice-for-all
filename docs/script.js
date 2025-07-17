@@ -135,16 +135,16 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // === Handle ⋯ Menu Toggle
-  document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("dots")) {
-      const menu = e.target.nextElementSibling;
-      menu.classList.toggle("hidden");
-    } else {
-      document.querySelectorAll(".menu-options").forEach(menu => {
-        if (!menu.contains(e.target)) menu.classList.add("hidden");
-      });
-    }
-  });
+ document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("dots")) {
+    const menu = e.target.nextElementSibling;
+    menu.classList.toggle("show"); // ✅ use .show now
+  } else {
+    document.querySelectorAll(".menu-options").forEach(menu => {
+      if (!menu.contains(e.target)) menu.classList.remove("show");
+    });
+  }
+});
 
   // === Rename Chat
   document.addEventListener("click", (e) => {
