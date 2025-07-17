@@ -504,3 +504,27 @@ body.light .sidebar-toggle {
 .menu-options div:hover {
   background-color: #444;
 }
+.menu-options {
+  position: absolute;
+  right: 0;
+  background: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 4px;
+  display: none;
+  z-index: 10;
+  min-width: 100px;
+}
+
+.menu-options.show {
+  display: block !important; /* <-- Add this for safety */
+}
+
+.menu-options div {
+  padding: 8px 12px;
+  cursor: pointer;
+  color: white;
+}
+
+.menu-options div:hover {
+  background-color: #444;
+}
