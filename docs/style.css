@@ -159,6 +159,10 @@ body {
 .chat-sidebar.collapsed .new-chat-btn:hover::after {
   opacity: 1;
 }
+/* Hide the "New Chat" text when sidebar is collapsed */
+.chat-sidebar.collapsed .chat-label {
+  display: none;
+}
 
 .chat-main {
   display: flex;
