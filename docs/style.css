@@ -351,3 +351,17 @@ body.light .sidebar-toggle {
 .chat-sidebar.collapsed .chat-label {
   display: none;
 }
+
+.chat-entry {
+  padding: 8px 12px;
+  margin-bottom: 4px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-entry:hover {
+  background-color: #2a2a2a;
+}
