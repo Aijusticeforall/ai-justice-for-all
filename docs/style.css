@@ -365,16 +365,6 @@ body.light .sidebar-toggle {
 .chat-entry:hover {
   background-color: #2a2a2a;
 }
-/* === Chat Entry Styling === */
-.chat-entry {
-  padding: 8px 12px;
-  margin-bottom: 4px;
-  border-radius: 6px;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
 .chat-entry:hover {
   background-color: #2a2a2a;
