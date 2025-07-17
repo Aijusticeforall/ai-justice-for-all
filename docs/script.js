@@ -13,26 +13,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const exportBtn = document.getElementById("export-chat");
   const chatList = document.getElementById("chat-list");
   const searchInput = document.getElementById("chat-search");
-  const landing = document.querySelector(".landing"); // ✅ reference landing div
+  const landing = document.querySelector(".landing");
 
-  // ✅ When user clicks glowing button
+  // Show chat, hide landing
   glowButton.addEventListener("click", () => {
     landing.style.display = "none";
     chatPopup.classList.remove("hidden");
     document.body.style.overflow = "hidden";
   });
 
-  // ✅ When user clicks back arrow
+  // Back to landing
   backButton.addEventListener("click", () => {
     chatPopup.classList.add("hidden");
     landing.style.display = "block";
     document.body.style.overflow = "auto";
   });
 
-  // ✅ NEW: Add reference to magnifier icon
+  // Expand sidebar when magnifier clicked
   const searchIcon = document.querySelector(".search-icon");
-
-  // ✅ Expand sidebar when magnifier icon is clicked
   searchIcon.addEventListener("click", () => {
     if (sidebar.classList.contains("collapsed")) {
       sidebar.classList.remove("collapsed");
@@ -40,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // === Chat Rename if first message ===
+  // Rename first chat title if unnamed
   function renameFirstChatIfNeeded(text) {
     const chatTitles = document.querySelectorAll('#chat-list .chat-title');
     if (chatTitles.length && chatTitles[chatTitles.length - 1].innerText.startsWith("Chat at")) {
@@ -49,9 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // === Send message by button or Enter key ===
+  // Send message
   sendButton.addEventListener("click", sendMessage);
-
   chatInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
@@ -76,7 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
     chatWindow.appendChild(aiMsg);
 
     chatWindow.scrollTop = chatWindow.scrollHeight;
-
     renameFirstChatIfNeeded(text);
   }
 
@@ -87,23 +83,22 @@ document.addEventListener("DOMContentLoaded", () => {
     return "I'm AI Justice. How can I assist you today?";
   }
 
-  // === Toggle Sidebar Collapse ===
+  // Sidebar toggle
   toggleSidebar.addEventListener("click", () => {
     sidebar.classList.toggle("collapsed");
   });
 
-  // === Toggle Light/Dark Theme ===
+  // Theme toggle
   toggleTheme.addEventListener("click", () => {
     document.body.classList.toggle("light");
     toggleTheme.textContent = document.body.classList.contains("light") ? "🌞" : "🌙";
   });
 
-  // === Export Chat Text ===
+  // Export chat
   exportBtn.addEventListener("click", () => {
     const text = Array.from(chatWindow.children)
       .map(el => el.textContent)
       .join("\n\n");
-
     const blob = new Blob([text], { type: "text/plain" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
@@ -111,9 +106,8 @@ document.addEventListener("DOMContentLoaded", () => {
     a.click();
   });
 
-  // === New Chat Button ===
+  // New Chat
   document.querySelector('.new-chat-btn').addEventListener('click', () => {
-    // Clear chat
     chatWindow.innerHTML = '';
     chatInput.value = '';
 
@@ -123,13 +117,12 @@ document.addEventListener("DOMContentLoaded", () => {
     chatWindow.appendChild(newMessage);
     chatWindow.scrollTop = chatWindow.scrollHeight;
 
-    // Create a new chat list item with proper structure
     const li = document.createElement('li');
     li.innerHTML = `
       <span class="chat-title">Chat at ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
       <div class="chat-menu">
         <span class="dots">⋯</span>
-        <div class="menu-options hidden">
+        <div class="menu-options">
           <div class="rename">Rename</div>
           <div class="delete">Delete</div>
         </div>
@@ -138,30 +131,31 @@ document.addEventListener("DOMContentLoaded", () => {
     chatList.appendChild(li);
   });
 
-  // === Handle ⋯ Menu Toggle
+  // Unified click listener for menu toggle, rename, delete
   document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("dots")) {
-      const menu = e.target.nextElementSibling;
-      menu.classList.toggle("show"); // ✅ use .show now
-    } else {
-      document.querySelectorAll(".menu-options").forEach(menu => {
-        if (!menu.contains(e.target)) menu.classList.remove("show");
-      });
-    }
-  });
+    const isDots = e.target.classList.contains("dots");
+    const isRename = e.target.classList.contains("rename");
+    const isDelete = e.target.classList.contains("delete");
 
-  // === Rename Chat
-  document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("rename")) {
+    // Handle menu toggle
+    document.querySelectorAll(".menu-options").forEach(menu => {
+      const parent = menu.previousElementSibling;
+      if (parent && parent.contains(e.target)) {
+        menu.classList.toggle("show");
+      } else if (!menu.contains(e.target)) {
+        menu.classList.remove("show");
+      }
+    });
+
+    // Rename chat
+    if (isRename) {
       const chatTitle = e.target.closest("li").querySelector(".chat-title");
       const newName = prompt("Enter new chat name:", chatTitle.innerText);
       if (newName) chatTitle.innerText = newName;
     }
-  });
 
-  // === Delete Chat
-  document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("delete")) {
+    // Delete chat
+    if (isDelete) {
       const chatItem = e.target.closest("li");
       if (confirm("Are you sure you want to delete this chat?")) {
         chatItem.remove();
@@ -169,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // === Search Filter
+  // Search
   searchInput.addEventListener("input", () => {
     const term = searchInput.value.toLowerCase();
     const items = document.querySelectorAll("#chat-list li");
