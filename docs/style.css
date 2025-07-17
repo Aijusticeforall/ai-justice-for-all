@@ -345,4 +345,9 @@ body.light .sidebar-toggle {
   #chat-input {
     font-size: 14px;
   }
+  
+}
+/* Hide New Chat label when sidebar is collapsed */
+.chat-sidebar.collapsed .chat-label {
+  display: none;
 }
