@@ -95,8 +95,8 @@ body {
   padding: 8px;
   margin: 0;
 }
-/* === Tooltip for New Chat button when sidebar is collapsed === */
-/* === Main style for New Chat button === */
+
+/* === New Chat button styling (full, final version) === */
 .new-chat-btn {
   display: flex;
   align-items: center;
@@ -111,7 +111,7 @@ body {
   cursor: pointer;
   transition: background 0.2s ease;
   position: relative;
-  margin-top: 48px; /* space below toggle in expanded view */
+  margin-top: 48px;
 }
 
 .new-chat-btn:hover {
@@ -119,6 +119,7 @@ body {
   border-radius: 8px;
 }
 
+/* === Tooltip support === */
 .new-chat-btn::after {
   content: "New Chat";
   position: absolute;
@@ -135,6 +136,18 @@ body {
   pointer-events: none;
   transition: opacity 0.2s ease;
   z-index: 999;
+}
+
+.chat-sidebar.collapsed .new-chat-btn:hover::after {
+  opacity: 1;
+}
+
+/* === Collapsed sidebar version === */
+.chat-sidebar.collapsed .new-chat-btn {
+  justify-content: center;
+  padding: 10px 0;
+  width: 100%;
+  margin-top: 0; /* keep spacing tight */
 }
 
 /* Tooltip visibility when collapsed and hovered */
