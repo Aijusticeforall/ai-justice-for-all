@@ -249,3 +249,32 @@ body.light #send-button {
     font-size: 14px;
   }
 }
+/* Collapsible sidebar setup */
+.chat-sidebar {
+  width: 220px;
+  transition: margin-left 0.3s ease;
+  overflow-y: auto;
+  background-color: #111;
+}
+
+.chat-sidebar.collapsed {
+  margin-left: -220px;
+}
+
+.sidebar-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 8px;
+  display: block;
+}
+
+body.light .chat-sidebar {
+  background-color: #f6f6f6;
+}
+
+body.light .sidebar-toggle {
+  color: #111;
+}
