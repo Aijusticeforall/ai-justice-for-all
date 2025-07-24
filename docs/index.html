@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Justice Landing</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: black url('ai-girl-full.png') no-repeat center center;
+      background-size: cover;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    @media only screen and (max-width: 768px) {
+      body {
+        background: black url('ai-girl-face.png') no-repeat center center;
+        background-size: cover;
+      }
+    }
+
+    #glow-button {
+      width: 30px;
+      height: 30px;
+      background-color: #00f0ff;
+      border-radius: 50%;
+      box-shadow: 0 0 12px #00f0ff;
+      border: none;
+      position: absolute;
+      top: 52%;
+      left: 55%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <button id="glow-button" onclick="location.href='chat.html'"></button>
+</body>
+</html>
