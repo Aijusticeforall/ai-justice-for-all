@@ -515,3 +515,32 @@ body.light .sidebar-toggle {
 .menu-options div:hover {
   background-color: #444;
 }
+.case-icon {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.chat-sidebar.collapsed .case-icon::after {
+  content: "Case Type";
+  position: absolute;
+  left: 110%;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #333;
+  color: white;
+  padding: 4px 8px;
+  font-size: 13px;
+  white-space: nowrap;
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.chat-sidebar.collapsed .case-icon:hover::after {
+  opacity: 1;
+}
