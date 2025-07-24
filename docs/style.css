@@ -73,13 +73,11 @@ body {
 
 .chat-sidebar.collapsed {
   width: 60px;
-  padding: 0;
+  padding: 10px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
-  box-shadow: none;
-  border-right: none;
   transition: width 0.3s ease, padding 0.3s ease;
 }
 
@@ -103,10 +101,54 @@ body {
 
 .chat-sidebar.collapsed .sidebar-top-buttons {
   align-items: center;
-  padding-top: 12px;
-  padding-bottom: 0;
+  gap: 12px;
+  padding: 8px 0;
 }
 
+.sidebar-top-buttons > * {
+  width: 100%;
+}
+
+/* === Collapsed Icon Row Clean Style === */
+.chat-sidebar.collapsed .chat-label,
+.chat-sidebar.collapsed #chat-search {
+  display: none !important;
+}
+
+.chat-sidebar.collapsed .search-container {
+  width: auto;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chat-sidebar.collapsed .search-icon {
+  position: static;
+  transform: none;
+  font-size: 20px;
+  padding: 8px;
+  margin: 6px 0;
+}
+
+.chat-sidebar.collapsed .case-icon {
+  font-size: 22px;
+  padding: 8px;
+  margin: 6px 0;
+}
+
+.chat-sidebar.collapsed .new-chat-btn {
+  justify-content: center;
+  padding: 10px 0;
+  gap: 0;
+}
+
+.chat-sidebar.collapsed .new-chat-btn .chat-label {
+  display: none;
+}
+
+/* === BUTTONS === */
 .new-chat-btn {
   display: flex;
   align-items: center;
@@ -130,7 +172,6 @@ body {
 
 .chat-sidebar.collapsed .new-chat-btn {
   justify-content: center;
-  padding: 10px 0;
 }
 
 .chat-sidebar.collapsed .chat-label {
