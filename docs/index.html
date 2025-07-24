@@ -22,9 +22,7 @@
       <div class="chat-sidebar collapsed" id="chat-sidebar">
         <div class="sidebar-top-buttons">
           <button id="toggle-sidebar" class="sidebar-toggle">☰</button>
-          <button class="new-chat-btn">
-            ➕ <span class="chat-label">New Chat</span>
-          </button>
+          <button class="new-chat-btn">➕ <span class="chat-label">New Chat</span></button>
         </div>
 
         <div class="sidebar-content">
@@ -64,27 +62,28 @@
         <div id="chat-window" class="chat-window"></div>
 
         <div class="chat-input-wrapper">
-<div id="case-select-wrapper" class="hidden">
-  <select id="case-type-select">
-    <option value="">Choose case type...</option>
-    <option value="Unfair Arrest">Unfair Arrest</option>
-    <option value="Child Custody">Child Custody</option>
-    <option value="Business Seizure">Business Seizure</option>
-    <option value="Police Misconduct">Police Misconduct</option>
-    <option value="Freedom of Movement">Freedom of Movement</option>
-  </select>
-</div>
+          <div id="case-select-wrapper" class="hidden">
+            <select id="case-type-select">
+              <option value="">Choose case type...</option>
+              <option value="Unfair Arrest">Unfair Arrest</option>
+              <option value="Child Custody">Child Custody</option>
+              <option value="Business Seizure">Business Seizure</option>
+              <option value="Police Misconduct">Police Misconduct</option>
+              <option value="Freedom of Movement">Freedom of Movement</option>
+            </select>
+          </div>
+
           <div class="chat-input-inner">
             <textarea id="chat-input" placeholder="Send a message..."></textarea>
             <button id="send-button" title="Send">➤</button>
           </div>
         </div>
-      </div> <!-- closes .chat-main -->
+      </div> <!-- end .chat-main -->
 
-    </div> <!-- closes .chat-overlay -->
-  </div> <!-- closes #chat-popup -->
+    </div> <!-- end .chat-overlay -->
+  </div> <!-- end #chat-popup -->
 
-  <!-- ✅ Script: Core Chat Logic -->
   <script src="script.js"></script>
 </body>
 </html>
+
