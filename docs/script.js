@@ -1,8 +1,3 @@
-from zipfile import ZipFile
-from pathlib import Path
-
-# Create fixed script.js content
-script_js_content = """
 document.addEventListener("DOMContentLoaded", () => {
   const toggleSidebar = document.getElementById("toggle-sidebar");
   const sidebar = document.getElementById("chat-sidebar");
@@ -92,17 +87,3 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   });
 });
-"""
-
-# Write to script.js file
-output_dir = Path("/mnt/data/ai-justice-fixed")
-output_dir.mkdir(exist_ok=True)
-script_path = output_dir / "script.js"
-script_path.write_text(script_js_content.strip())
-
-# Zip it
-zip_path = Path("/mnt/data/fixed_script_js.zip")
-with ZipFile(zip_path, "w") as zipf:
-    zipf.write(script_path, arcname="script.js")
-
-zip_path.name
