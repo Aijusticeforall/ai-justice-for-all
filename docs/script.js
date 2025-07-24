@@ -1,16 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const toggleSidebar = document.getElementById("toggle-sidebar");
-  const sidebar = document.getElementById("chat-sidebar");
-  const newChatBtn = document.querySelector(".new-chat-btn");
-  const sendButton = document.getElementById("send-button");
-  const chatInput = document.getElementById("chat-input");
-  const chatWindow = document.getElementById("chat-window");
-  const plusButton = document.createElement("button");
-  plusButton.textContent = "+";
-  plusButton.id = "plus-button";
-  plusButton.title = "Upload";
-  plusButton.style.marginRight = "8px";
-  document.addEventListener("DOMContentLoaded", () => {
+  // 🌟 Glow Button Logic
   const glowButton = document.getElementById("glow-button");
   const landing = document.querySelector(".landing");
   const chatPopup = document.getElementById("chat-popup");
@@ -22,22 +11,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ...rest of your code continues
-});
-
-  // Insert plus button before chat input
-  const chatInputWrapper = document.querySelector(".chat-input-inner");
-  chatInputWrapper.insertBefore(plusButton, chatInputWrapper.firstChild);
-
-  // Sidebar toggle
+  // 📁 Sidebar Toggle
+  const toggleSidebar = document.getElementById("toggle-sidebar");
+  const sidebar = document.getElementById("chat-sidebar");
   toggleSidebar.addEventListener("click", () => {
     sidebar.classList.toggle("collapsed");
   });
 
-  // New Chat
+  // ➕ New Chat
+  const newChatBtn = document.querySelector(".new-chat-btn");
   newChatBtn.addEventListener("click", () => {
     const li = document.createElement("li");
-    li.innerHTML = \`
+    li.innerHTML = `
       <span class="chat-title">New Chat</span>
       <div class="chat-menu">
         <span class="dots" title="Options">⋯</span>
@@ -45,11 +30,15 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="rename">Rename</div>
           <div class="delete">Delete</div>
         </div>
-      </div>\`;
+      </div>`;
     document.getElementById("chat-list").appendChild(li);
   });
 
-  // Send message
+  // 📨 Send Message
+  const sendButton = document.getElementById("send-button");
+  const chatInput = document.getElementById("chat-input");
+  const chatWindow = document.getElementById("chat-window");
+
   function sendMessage() {
     const text = chatInput.value.trim();
     if (!text) return;
@@ -80,7 +69,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // File input logic
+  // 📎 Plus Button for File Upload
+  const plusButton = document.createElement("button");
+  plusButton.textContent = "+";
+  plusButton.id = "plus-button";
+  plusButton.title = "Upload";
+  plusButton.style.marginRight = "8px";
+
+  const chatInputWrapper = document.querySelector(".chat-input-inner");
+  chatInputWrapper.insertBefore(plusButton, chatInputWrapper.firstChild);
+
   plusButton.addEventListener("click", () => {
     const fileInput = document.createElement("input");
     fileInput.type = "file";
@@ -95,6 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const img = document.createElement("img");
         img.src = e.target.result;
         img.style.maxWidth = "200px";
+        img.style.marginTop = "10px";
         chatWindow.appendChild(img);
       };
       reader.readAsDataURL(file);
