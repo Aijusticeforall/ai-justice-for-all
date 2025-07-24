@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
   const glowButton = document.getElementById("glow-button");
   const landing = document.querySelector(".landing");
