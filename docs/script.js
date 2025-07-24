@@ -14,6 +14,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatList = document.getElementById("chat-list");
   const searchInput = document.getElementById("chat-search");
   const landing = document.querySelector(".landing");
+  const caseIconBtn = document.getElementById("case-type-toggle");
+  const caseSelectWrapper = document.getElementById("case-select-wrapper");
+  const caseSelect = document.getElementById("case-type-select");
+
+caseIconBtn.addEventListener("click", () => {
+  if (sidebar.classList.contains("collapsed")) {
+    sidebar.classList.remove("collapsed");
+  }
+  caseSelectWrapper.classList.toggle("hidden");
+});
+
+// Optional: insert selected type into input
+caseSelect.addEventListener("change", (e) => {
+  const type = e.target.value;
+  if (type) {
+    chatInput.value = `I need help with: ${type}`;
+  }
+});
 
   // Show chat, hide landing
   glowButton.addEventListener("click", () => {
