@@ -1,39 +1,35 @@
-index_html = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Justice</title>
+  <title>AI Justice Chat</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <div class="landing">
-    <button id="glow-button">●</button>
-  </div>
-  <div id="chat-popup" class="hidden">
-    <div class="sidebar expanded" id="chat-sidebar">
-      <div class="sidebar-icons">
+<body class="dark">
+  <div id="app">
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
         <button id="toggle-sidebar">☰</button>
-        <button class="new-chat-btn">➕ <span class="label">New Chat</span></button>
-        <button class="search-btn">🔍 <span class="label">Search</span></button>
-        <button class="case-btn">⚖️ <span class="label">Case Type</span></button>
+        <input type="text" id="search-bar" placeholder="Search..." />
+        <button id="new-chat">+ New Chat</button>
+      </div>
+      <ul id="chat-list"></ul>
+    </div>
+    <div class="chat-window">
+      <div id="top-bar">
+        <button id="back-button" onclick="window.location.href='index.html'">←</button>
+        <button id="toggle-theme">🌓</button>
+        <button id="export-chat">💾</button>
+      </div>
+      <div id="messages"></div>
+      <div id="input-container">
+        <input type="file" id="file-input" style="display: none" />
+        <button id="plus-button">➕</button>
+        <input type="text" id="chat-input" placeholder="Type your message..." />
+        <button id="send-button">➤</button>
       </div>
     </div>
-    <div id="chat-window-container">
-      <div id="chat-window"></div>
-      <div class="chat-input-container">
-        <div class="chat-input-inner">
-          <button id="plus-button">+</button>
-          <input id="chat-input" placeholder="Send a message..." />
-          <button id="send-button">➡️</button>
-        </div>
-      </div>
-    </div>
-    <div id="image-modal" class="image-modal hidden">
-      <span class="close-button">&times;</span>
-      <img id="modal-image" src="" />
-    </div>
-    <button id="toggle-theme">🌙</button>
   </div>
   <script src="script.js"></script>
 </body>
