@@ -1,4 +1,4 @@
-/* === Base Styles === */
+/* === BASE === */
 body {
   margin: 0;
   padding: 0;
@@ -31,6 +31,10 @@ body {
   z-index: -1;
 }
 
+.hidden {
+  display: none !important;
+}
+
 #glow-button {
   position: absolute;
   top: 44%;
@@ -45,22 +49,18 @@ body {
   z-index: 10;
 }
 
-/* === Visibility === */
-.hidden {
-  display: none !important;
-}
-
-/* === Layout Structure === */
+/* === CHAT OVERLAY === */
 .chat-overlay {
   display: flex;
+  flex-direction: row;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.95);
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
 }
 
-/* === Sidebar === */
+/* === SIDEBAR === */
 .chat-sidebar {
   width: 220px;
   background: #111;
@@ -78,13 +78,19 @@ body {
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+  box-shadow: none;
+  border-right: none;
   transition: width 0.3s ease, padding 0.3s ease;
 }
 
-.chat-sidebar.collapsed .chat-label,
-.chat-sidebar.collapsed h3,
-.chat-sidebar.collapsed ul {
-  display: none;
+.sidebar-toggle {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  color: inherit;
+  cursor: pointer;
+  padding: 8px;
+  margin: 0;
 }
 
 .sidebar-top-buttons {
@@ -99,18 +105,6 @@ body {
   align-items: center;
   padding-top: 12px;
   padding-bottom: 0;
-}
-
-/* === Sidebar Buttons === */
-.sidebar-toggle,
-.case-icon {
-  background: transparent;
-  border: none;
-  font-size: 22px;
-  color: inherit;
-  cursor: pointer;
-  padding: 8px;
-  margin: 0;
 }
 
 .new-chat-btn {
@@ -137,107 +131,13 @@ body {
 .chat-sidebar.collapsed .new-chat-btn {
   justify-content: center;
   padding: 10px 0;
-  width: 100%;
 }
 
-.new-chat-btn::after {
-  content: "New Chat";
-  position: absolute;
-  left: 110%;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #333;
-  color: white;
-  padding: 4px 8px;
-  font-size: 13px;
-  white-space: nowrap;
-  border-radius: 4px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
-  z-index: 999;
-}
-
-.chat-sidebar.collapsed .new-chat-btn:hover::after,
-.chat-sidebar.collapsed .case-icon:hover::after {
-  opacity: 1;
-}
-
-.chat-sidebar.collapsed .case-icon::after {
-  content: "Case Type";
-  position: absolute;
-  left: 110%;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #333;
-  color: white;
-  padding: 4px 8px;
-  font-size: 13px;
-  white-space: nowrap;
-  border-radius: 4px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
-}
-
-/* === Chat List === */
-.chat-entry {
-  padding: 8px 12px;
-  margin-bottom: 4px;
-  border-radius: 6px;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.chat-entry:hover {
-  background-color: #2a2a2a;
-}
-
-#chat-list {
-  padding-left: 0;
-  list-style: none;
-}
-
-/* === Menu Options (3 dots) === */
-.chat-menu {
-  position: relative;
-  display: inline-block;
-  float: right;
-}
-
-.dots {
-  cursor: pointer;
-  padding-left: 6px;
-}
-
-.menu-options {
-  position: absolute;
-  right: 0;
-  background: #1e1e1e;
-  border: 1px solid #333;
-  border-radius: 4px;
+.chat-sidebar.collapsed .chat-label {
   display: none;
-  z-index: 10;
-  min-width: 100px;
 }
 
-.menu-options.show {
-  display: block !important;
-}
-
-.menu-options div {
-  padding: 8px 12px;
-  cursor: pointer;
-  color: white;
-}
-
-.menu-options div:hover {
-  background-color: #444;
-}
-
-/* === Search === */
+/* === SEARCH AND CASE TYPE === */
 .search-container {
   position: relative;
   width: 90%;
@@ -264,34 +164,36 @@ body {
   pointer-events: auto;
 }
 
-.chat-sidebar.collapsed .search-container {
-  width: 100%;
-  padding: 0;
-  margin-top: 12px;
-}
-
-.chat-sidebar.collapsed #chat-search {
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  text-indent: -9999px;
+.case-icon {
   background: none;
   border: none;
-  margin: 0 auto;
-  background-color: transparent;
+  color: inherit;
+  font-size: 22px;
   cursor: pointer;
-  border-radius: 50%;
+  padding: 8px;
 }
 
-.chat-sidebar.collapsed .search-icon {
-  position: static;
-  display: block;
-  text-align: center;
-  font-size: 20px;
+.chat-sidebar.collapsed .case-icon::after {
+  content: "Case Type";
+  position: absolute;
+  left: 110%;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #333;
   color: white;
+  padding: 4px 8px;
+  font-size: 13px;
+  white-space: nowrap;
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
 }
 
-/* === Case Selector === */
+.chat-sidebar.collapsed .case-icon:hover::after {
+  opacity: 1;
+}
+
 #case-select-wrapper {
   text-align: center;
   margin: 4px auto;
@@ -312,11 +214,13 @@ body.light #case-type-select {
   color: #111;
 }
 
-/* === Chat Main === */
+/* === MAIN CHAT === */
 .chat-main {
   display: flex;
   flex-direction: column;
   flex: 1;
+  min-height: 0;
+  position: relative;
   background-color: #000;
 }
 
@@ -348,19 +252,6 @@ body.light #case-type-select {
   background-color: #000;
 }
 
-.chat-window .user,
-.chat-window .ai {
-  width: 100%;
-  max-width: 720px;
-  padding: 8px 0;
-  font-size: 16px;
-  line-height: 1.6;
-  color: #e5e5e5;
-  background: none;
-  text-align: left;
-}
-
-/* === Input === */
 .chat-input-wrapper {
   display: flex;
   justify-content: center;
@@ -392,10 +283,6 @@ body.light #case-type-select {
   font-family: inherit;
 }
 
-#chat-input::placeholder {
-  color: #aaa;
-}
-
 #send-button {
   padding: 12px 16px;
   font-size: 18px;
@@ -409,7 +296,34 @@ body.light #case-type-select {
   justify-content: center;
 }
 
-/* === Light Mode === */
+/* === MESSAGE STYLES (No Bubbles) === */
+.chat-window .user,
+.chat-window .ai {
+  width: 100%;
+  max-width: 720px;
+  padding: 8px 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #e5e5e5;
+  background: none;
+  border: none;
+  border-radius: 0;
+  text-align: left;
+}
+
+/* === Dots Typing Animation for AI === */
+.ai.typing::after {
+  content: "\2026";
+  animation: blink 1s infinite steps(1, start);
+  font-weight: bold;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* === LIGHT THEME === */
 body.light {
   background-color: #f6f6f6;
   color: #111;
@@ -420,21 +334,10 @@ body.light .chat-topbar,
 body.light .chat-input-wrapper,
 body.light .chat-window {
   background-color: #f6f6f6;
-  color: #111;
 }
 
 body.light .chat-sidebar {
   background: #eaeaea;
-  color: #111;
-}
-
-body.light .chat-topbar button,
-body.light .sidebar-toggle {
-  color: #111;
-}
-
-body.light .chat-window .user,
-body.light .chat-window .ai {
   color: #111;
 }
 
@@ -443,16 +346,12 @@ body.light #chat-input {
   color: #111;
 }
 
-body.light #chat-input::placeholder {
-  color: #555;
-}
-
 body.light #send-button {
   background: #0f82ff;
   color: white;
 }
 
-/* === Responsive === */
+/* === MOBILE === */
 @media (max-width: 768px) {
   .chat-sidebar {
     display: none;
