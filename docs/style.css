@@ -410,3 +410,14 @@ body.light #send-button {
     font-size: 14px;
   }
 }
+.chat-sidebar .sidebar-buttons-only {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding-top: 12px;
+}
+
+.chat-sidebar.collapsed .chat-label {
+  display: none;
+}
