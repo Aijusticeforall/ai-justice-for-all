@@ -20,20 +20,26 @@
 
       <!-- 📁 Sidebar -->
       <div class="chat-sidebar collapsed" id="chat-sidebar">
+
+        <!-- Top buttons -->
         <div class="sidebar-top-buttons">
           <button id="toggle-sidebar" class="sidebar-toggle">☰</button>
-          <button class="new-chat-btn">
-            ➕ <span class="chat-label">New Chat</span>
-          </button>
-        </div>
 
-        <div class="sidebar-content">
+          <button class="new-chat-btn">
+            <span class="icon">➕</span>
+            <span class="chat-label">New Chat</span>
+          </button>
+
           <div class="search-container">
             <input id="chat-search" type="text" placeholder="Search chats..." />
             <span class="search-icon" title="Search">🔍</span>
-            <button id="case-type-toggle" class="case-icon" title="Select Case Type">⚖️</button>
           </div>
 
+          <button id="case-type-toggle" class="case-icon" title="Select Case Type">⚖️</button>
+        </div>
+
+        <!-- Sidebar content -->
+        <div class="sidebar-content">
           <ul id="chat-list">
             <li>
               <span class="chat-title">Chat at 12:17 AM</span>
@@ -89,3 +95,4 @@
   <script src="script.js"></script>
 </body>
 </html>
+
