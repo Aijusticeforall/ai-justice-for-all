@@ -1,126 +1,94 @@
-:root {
-  --bg-light: #ffffff;
-  --bg-dark: #000000;
-  --text-light: #000000;
-  --text-dark: #ffffff;
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const glowButton = document.getElementById("glow-button");
+  const landing = document.querySelector(".landing");
+  const chatPopup = document.getElementById("chat-popup");
 
-body {
-  margin: 0;
-  font-family: sans-serif;
-}
+  if (glowButton) {
+    glowButton.addEventListener("click", () => {
+      landing.classList.add("hidden");
+      chatPopup.classList.remove("hidden");
+    });
+  }
 
-body.light {
-  background-color: var(--bg-light);
-  color: var(--text-light);
-}
+  const toggleSidebar = document.getElementById("toggle-sidebar");
+  const sidebar = document.getElementById("chat-sidebar");
+  const newChatBtn = document.querySelector(".new-chat-btn");
+  const sendButton = document.getElementById("send-button");
+  const chatInput = document.getElementById("chat-input");
+  const chatWindow = document.getElementById("chat-window");
 
-body.dark {
-  background-color: var(--bg-dark);
-  color: var(--text-dark);
-}
+  // Toggle sidebar
+  toggleSidebar.addEventListener("click", () => {
+    sidebar.classList.toggle("collapsed");
+    sidebar.classList.toggle("expanded");
+  });
 
-.landing {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  background: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  // Theme toggle
+  document.getElementById("toggle-theme").addEventListener("click", () => {
+    document.body.classList.toggle("light");
+    document.body.classList.toggle("dark");
+  });
 
-#glow-button {
-  background: radial-gradient(circle, #0ff, #00f);
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  border: none;
-}
+  // New chat
+  newChatBtn.addEventListener("click", () => {
+    const msg = document.createElement("div");
+    msg.textContent = "New Chat Started";
+    chatWindow.appendChild(msg);
+  });
 
-.hidden {
-  display: none !important;
-}
+  function sendMessage() {
+    const text = chatInput.value.trim();
+    if (!text) return;
+    const userMsg = document.createElement("div");
+    userMsg.className = "user";
+    userMsg.textContent = text;
+    chatWindow.appendChild(userMsg);
+    chatInput.value = "";
 
-.sidebar {
-  width: 60px;
-  background: #1e1e1e;
-  padding: 10px;
-  color: white;
-  height: 100vh;
-  float: left;
-}
+    const aiReply = document.createElement("div");
+    aiReply.className = "ai";
+    aiReply.textContent = "This is a simulated reply.";
+    chatWindow.appendChild(aiReply);
+  }
 
-.sidebar.expanded {
-  width: 200px;
-}
+  sendButton.addEventListener("click", sendMessage);
+  chatInput.addEventListener("keydown", e => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
 
-.sidebar-icons button {
-  background: none;
-  border: none;
-  color: white;
-  padding: 10px 0;
-  width: 100%;
-  display: flex;
-  align-items: center;
-}
+  // File Upload
+  document.getElementById("plus-button").addEventListener("click", () => {
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.accept = "image/*";
+    fileInput.click();
+    fileInput.onchange = () => {
+      const file = fileInput.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        const img = document.createElement("img");
+        img.src = e.target.result;
+        img.style.maxWidth = "200px";
+        img.style.cursor = "pointer";
+        chatWindow.appendChild(img);
 
-.sidebar-icons .label {
-  margin-left: 8px;
-  display: inline;
-}
+        img.addEventListener("click", () => {
+          const modal = document.getElementById("image-modal");
+          const modalImage = document.getElementById("modal-image");
+          modalImage.src = img.src;
+          modal.classList.remove("hidden");
+        });
+      };
+      reader.readAsDataURL(file);
+    };
+  });
 
-.sidebar.collapsed .label {
-  display: none;
-}
-
-#chat-window-container {
-  margin-left: 60px;
-  padding: 20px;
-}
-
-.chat-input-container {
-  position: fixed;
-  bottom: 0;
-  left: 60px;
-  width: calc(100% - 60px);
-  background: #222;
-}
-
-.chat-input-inner {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-}
-
-.chat-input-inner input {
-  flex: 1;
-  padding: 10px;
-  margin: 0 5px;
-}
-
-.image-modal {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.9);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
-}
-
-.image-modal img {
-  max-width: 90%;
-  max-height: 90%;
-}
-
-.close-button {
-  position: absolute;
-  top: 20px;
-  right: 40px;
-  font-size: 2rem;
-  color: white;
-  cursor: pointer;
-}
+  // Close image modal
+  document.querySelector(".close-button").addEventListener("click", () => {
+    document.getElementById("image-modal").classList.add("hidden");
+  });
+});
