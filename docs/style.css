@@ -544,3 +544,21 @@ body.light .sidebar-toggle {
 .chat-sidebar.collapsed .case-icon:hover::after {
   opacity: 1;
 }
+#case-select-wrapper {
+  text-align: center;
+  margin: 4px auto;
+}
+#case-type-select {
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: none;
+  background: #222;
+  color: white;
+  font-family: inherit;
+}
+
+body.light #case-type-select {
+  background: #eaeaea;
+  color: #111;
+}
