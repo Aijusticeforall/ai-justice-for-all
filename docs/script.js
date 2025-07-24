@@ -10,6 +10,20 @@ document.addEventListener("DOMContentLoaded", () => {
   plusButton.id = "plus-button";
   plusButton.title = "Upload";
   plusButton.style.marginRight = "8px";
+  document.addEventListener("DOMContentLoaded", () => {
+  const glowButton = document.getElementById("glow-button");
+  const landing = document.querySelector(".landing");
+  const chatPopup = document.getElementById("chat-popup");
+
+  if (glowButton) {
+    glowButton.addEventListener("click", () => {
+      landing.classList.add("hidden");
+      chatPopup.classList.remove("hidden");
+    });
+  }
+
+  // ...rest of your code continues
+});
 
   // Insert plus button before chat input
   const chatInputWrapper = document.querySelector(".chat-input-inner");
