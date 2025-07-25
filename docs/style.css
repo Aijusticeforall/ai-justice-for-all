@@ -1,647 +1,65 @@
-/* === CSS VARIABLES === */
+
 :root {
-  --bg-light: #ffffff;
-  --bg-dark: #212121;           /* main chat background */
-  --text-light: #000000;
-  --text-dark: #ececf1;
-  --sidebar-bg-light: #f3f3f3;
-  --sidebar-bg-dark: #181818;   /* ChatGPT sidebar dark */
+  --bg-dark: #343541;
+  --text-light: #ffffff;
   --accent: #10a37f;
 }
 
-
-/* === BASE STYLES === */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  display: flex;
-  height: 100vh;
-}
-
-body.dark {
   background-color: var(--bg-dark);
-  color: var(--text-dark);
-}
-
-body.light {
-  background-color: var(--bg-light);
   color: var(--text-light);
-}
-
-html {
-  padding-bottom: env(safe-area-inset-bottom);
-  overscroll-behavior-y: auto;
+  height: 100vh;
+  display: flex;
 }
 
 #app {
   display: flex;
   width: 100%;
 }
-#plus-button {
-  background: transparent;
-  border: none;
-  color: #c5c5d2;
-  font-size: 18px;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 6px;
-  transition: background 0.2s ease;
-  cursor: pointer;
-}
 
-#plus-button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-/* === SIDEBAR === */
 .sidebar {
-  width: 288px;
-  min-width: 288px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  overflow: hidden;
-}
-
-.sidebar.collapsed {
-  width: 48px;
-  min-width: 48px;
-  padding: 10px 6px;
-}
-
-.sidebar.collapsed .sidebar-header *:not(#toggle-sidebar),
-.sidebar.collapsed #search-bar,
-.sidebar.collapsed #new-chat,
-.sidebar.collapsed .chat-item .dots,
-.sidebar.collapsed .chat-item {
-  display: none;
-}
-
-.sidebar.collapsed .chat-item::before {
-  content: "💬";
-  display: block;
-  text-align: center;
-  font-size: 18px;
-  color: white;
-  margin: 12px 0;
-}
-
-body.dark .sidebar {
-  background-color: var(--sidebar-bg-dark);
-}
-
-body.light .sidebar {
-  background-color: #f3f3f3;
-  color: black;
+  width: 280px;
+  background-color: #40414f;
+  padding: 1rem;
 }
 
 .sidebar-header {
   display: flex;
   flex-direction: column;
-  gap: 8px;
 }
 
-#toggle-sidebar {
-  align-self: flex-start;
-  font-size: 20px;
-  background: none;
-  border: none;
-  color: inherit;
-  cursor: pointer;
-}
-
-#search-bar {
-  padding: 6px;
-  border-radius: 4px;
-  border: none;
-  background-color: #444;
-  color: white;
-}
-
-body.light #search-bar {
-  background-color: #ddd;
-  color: black;
-}
-
-#new-chat {
-  padding: 6px;
-  border-radius: 4px;
-  background-color: #343541;
-  color: white;
-  border: 1px solid #666;
-  cursor: pointer;
-}
-
-body.light #new-chat {
-  background-color: #ddd;
-  color: black;
-}
-
-#chat-list {
-  list-style: none;
-  padding: 0;
-  margin-top: 10px;
-  overflow-y: auto;
-  flex-grow: 1;
-  max-height: calc(100vh - 140px);
-}
-
-.chat-item {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-body.light .chat-item {
-  background-color: #ddd;
-  color: black;
-}
-
-.menu {
-  display: none;
-  flex-direction: column;
-  background-color: #555;
-  border-radius: 4px;
-  padding: 4px;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  z-index: 20;
-}
-
-.chat-item .dots {
-  cursor: pointer;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 16px;
-}
-
-/* === CHAT WINDOW === */
 .chat-window {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex-grow: 1;
-  background-color: var(--bg-dark);
-  position: relative;
-}
-
-body.light .chat-window {
-  background-color: #ffffff;
-}
-
-.chat-window.expanded {
-  flex: 1 1 100%;
-}
-
-#top-bar {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  display: flex;
-  gap: 10px;yellow 
-  z-index: 10;
-}
-
-#messages {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  overflow-y: auto;
-  scroll-behavior: smooth;
-  padding: 20px;
-  padding-top: 60px;
-  height: calc(100vh - 160px);
-}
-
-
-.message {
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  max-width: 100%;
-  padding: 8px 12px;
-  border-radius: 12px;
-  margin: 6px 0;
-}
-
-.message.user,
-.message.bot {
-  background: none;
-  color: inherit;
-  padding: 4px 0;
-  border-radius: 0;
-  text-align: left;
-}
-
-
-/* === INPUT BAR === */
-#input-container {
-  position: absolute;
-  bottom: 16px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  width: 100%;
-  max-width: 720px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(30, 30, 30, 0.8);
-  border-radius: 32px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-  z-index: 999;
-}
-
-
-
-body.light #input-container {
-  background: #ffffff;
-}
-
-#chat-input {
   flex: 1;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 999px;
-  background-color: #2a2a2a;
-  color: white;
-  font-size: 16px;
-  outline: none;
-}
-
-#chat-input::placeholder {
-  color: #aaa;
-  font-style: italic;
-}
-
-
-body.light #chat-input {
-  background-color: #eeeeee;
-  color: #000000;
-}
-
-#send-button {
-  width: 40px;
-  height: 40px;
-  background-color: #22c55e;
-  border: none;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-
-
-/* === TYPING INDICATOR === */
-.typing-indicator {
-  display: inline-block;
-  width: 2em;
-  text-align: center;
-}
-
-.typing-indicator span {
-  display: inline-block;
-  background: #999;
-  border-radius: 50%;
-  width: 6px;
-  height: 6px;
-  margin: 0 2px;
-  animation: blink 1.4s infinite both;
-}
-
-.typing-indicator span:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.typing-indicator span:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-@keyframes blink {
-  0%, 80%, 100% { opacity: 0; }
-  40% { opacity: 1; }
-}
-
-
-@media (max-width: 768px) {
-  .sidebar {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 250px;
-    background-color: var(--sidebar-bg-dark); /* or use var(--sidebar-bg-light) for light theme */
-    z-index: 1000;
-    flex-direction: column;
-    box-shadow: 2px 0 10px rgba(0,0,0,0.4);
-  }
-
-  .sidebar.active {
-    display: flex;
-    flex-direction: column;
-  }
-
-.chat-window {
-  height: 100dvh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  overflow: hidden;
-}
-
-#messages {
-  padding-bottom: env(keyboard-inset-height, 80px); /* fallback 80px */
+  padding: 1rem;
 }
 
 #messages {
   flex-grow: 1;
   overflow-y: auto;
-  padding: 20px 12px;
-  padding-top: 60px;
-  padding-bottom: 100px; /* enough room above the input bar */
-  box-sizing: border-box;
+  padding-bottom: 1rem;
 }
 
-
-  #input-container {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    max-width: 100%;
-    padding: 8px 12px;
-    transform: none;
-    border-radius: 0;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
-    z-index: 999;
-  }
-
-  #chat-input {
-    font-size: 14px;
-    padding: 10px 16px;
-  }
-
-  #send-button {
-    width: 36px;
-    height: 36px;
-    font-size: 16px;
-  }
-
-  #top-bar {
-    position: fixed;
-    top: 12px;
-    right: 12px;
-    z-index: 999;
-  }
-}
-
-
-
-@media (min-width: 769px) {
-  .chat-window {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* center chat content */
-  }
-
-  #messages {
-    width: 100%;
-    max-width: 700px;
-    align-items: stretch;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    padding-top: 60px;
-  }
-
-  .message {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-
-  .message.user {
-    align-self: flex-end;
-    text-align: right;
-  }
-
-  .message.bot {
-    align-self: flex-start;
-    text-align: left;
-  }
-
-}
-#input-wrapper {
-  position: relative;
+.input-container {
   display: flex;
   align-items: center;
-  background: var(--bg-dark);
-  padding: 10px 16px;
-  border-radius: 999px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
-  width: 100%;
-  max-width: 720px;
+  gap: 10px;
 }
 
-
-#chat-input {
-  padding-right: 60px; /* make space for the send button inside */
-  margin-right: 0; /* ensure it’s not pushing the button away */
-}
-#chat-input::placeholder {
-  color: #aaa;
-  font-style: italic;
+.input-container input[type="text"] {
+  flex: 1;
+  padding: 10px;
 }
 
-#send-button {
-  position: absolute;
-  top: 50%;
-  right: 12px;
-  transform: translateY(-50%);
-  margin: 0;
-  border-radius: 50%;
-}
-html,
-body {
-  height: 100%;
-  overflow: hidden;
-}
-/* === ChatGPT-Style Dark/Light Background Fix === */
-body.dark .chat-window {
-  background-color: var(--bg-dark);
+.input-container button {
+  padding: 10px;
+  cursor: pointer;
 }
 
-body.light .chat-window {
-  background-color: #ffffff;
-}
-
-body.dark #messages {
-  background-color: var(--bg-dark);
-}
-
-body.light #messages {
-  background-color: #ffffff;
-}
-
-body.dark #input-container {
-  background-color: #212121;
-}
-
-body.light #input-container {
-  background-color: #ffffff;
-}
-
-body.dark #chat-input {
-  background-color: #343541;
-  color: #ececf1;
-}
-
-body.light #chat-input {
-  background-color: #eee;
-  color: #000000;
-}
-
-body.dark .sidebar {
-  background-color: var(--sidebar-bg-dark);
-}
-
-body.light .sidebar {
-  background-color: var(--sidebar-bg-light);
-}
-/* === Flat ChatGPT-Style Text Only (No Bubbles) === */
-
-/* Dark Theme */
-body.dark .message.user {
-  color: #ececf1;
-  font-weight: 500;
-  padding: 4px 0;
-}
-
-body.dark .message.bot {
-  color: #ececf1;
-  opacity: 0.95;
-  padding: 4px 0;
-}
-
-/* Light Theme */
-body.light .message.user {
-  color: #000000;
-  font-weight: 500;
-  padding: 4px 0;
-}
-
-body.light .message.bot {
-  color: #000000;
-  opacity: 0.95;
-  padding: 4px 0;
-}
-/* === RESPONSIVE BACKGROUND IMAGE FOR LANDING PAGE === */
-@media screen and (min-width: 769px) {
-  body.landing {
-    background-image: url("ai-girl-full.png");
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  body.landing {
-    background-image: url("ai-girl-face.png");
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-  }
-}
-@media screen and (max-width: 768px) {
-  #input-container {
-    display: flex;
-    align-items: center;
-    padding: 8px;
-    background-color: #fff;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    box-sizing: border-box;
-    z-index: 100;
-  }
-
-  #chat-input {
-    flex: 1;
-    font-size: 16px;
-    padding: 10px 12px;
-    margin-right: 8px;
-    border: 1px solid #ccc;
-    border-radius: 18px;
-    max-width: 100%;
-  }
-
-  #send-button {
-    background-color: #10a37f;
-    color: white;
-    font-size: 20px;
-    padding: 8px 14px;
-    border-radius: 50%;
-    border: none;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-@media (max-width: 768px) {
-  #input-container {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 8px;
-    background-color: #2b2b2f; /* Matches ChatGPT mobile bar */
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    box-sizing: border-box;
-    z-index: 1000;
-  }
-
-  #chat-input {
-    flex-grow: 1;
-    border: none;
-    border-radius: 20px;
-    padding: 10px 14px;
-    font-size: 16px;
-    background-color: #3e3e46;
-    color: #fff;
-    outline: none;
-  }
-
-  #send-button {
-    background-color: #3e3e46;
-    border: none;
-    border-radius: 50%;
-    padding: 10px;
-    min-width: 40px;
-    min-height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 18px;
-  }
-}
+/* ===== IMAGE MODAL ===== */
 .image-modal {
   display: flex;
   align-items: center;
@@ -652,7 +70,7 @@ body.light .message.bot {
   top: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: rgba(0,0,0,0.8);
 }
 
 .image-modal.hidden {
@@ -662,17 +80,15 @@ body.light .message.bot {
 .modal-content {
   max-width: 90%;
   max-height: 90%;
-  border-radius: 8px;
+  box-shadow: 0 0 20px black;
 }
 
 .close-button {
   position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 36px;
+  top: 30px;
+  right: 40px;
+  font-size: 40px;
   color: white;
   font-weight: bold;
   cursor: pointer;
-  z-index: 1001;
 }
-
