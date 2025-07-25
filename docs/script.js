@@ -13,20 +13,17 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentChatId = null;
   let chats = {};
 
-  // === Sidebar toggle ===
   toggleSidebar.addEventListener("click", () => {
     sidebar.classList.toggle("collapsed");
   });
 
-  // === Theme toggle ===
   toggleTheme.addEventListener("click", () => {
     document.body.classList.toggle("dark");
     document.body.classList.toggle("light");
   });
 
-  // === Export chat ===
   exportChat.addEventListener("click", () => {
-    if (!currentChatId) return;
+    if (!currentChatId || !chats[currentChatId]) return;
     const content = chats[currentChatId].join("\n");
     const blob = new Blob([content], { type: "text/plain" });
     const link = document.createElement("a");
@@ -35,13 +32,11 @@ document.addEventListener("DOMContentLoaded", () => {
     link.click();
   });
 
-  // === Send Message ===
   function sendMessage(text) {
     if (!text.trim()) return;
 
     const userMessage = createMessageBubble(text, "user");
     messages.appendChild(userMessage);
-
     chats[currentChatId].push(`User: ${text}`);
     chatInput.value = "";
     scrollToBottom();
@@ -49,14 +44,14 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       const reply = createMessageBubble("This is a simulated reply", "assistant");
       messages.appendChild(reply);
-      chats[currentChatId].push(`AI: This is a simulated reply`);
+      chats[currentChatId].push("AI: This is a simulated reply");
       scrollToBottom();
-    }, 500);
+    }, 300);
   }
 
   function createMessageBubble(text, sender) {
     const bubble = document.createElement("div");
-    bubble.classList.add("message", sender);
+    bubble.className = "message " + sender;
     bubble.textContent = text;
     return bubble;
   }
@@ -76,14 +71,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // === New Chat ===
   newChatBtn.addEventListener("click", () => {
     const chatId = Date.now().toString();
     chats[chatId] = [];
     currentChatId = chatId;
 
     const li = document.createElement("li");
-    li.classList.add("chat-item");
+    li.className = "chat-item";
     li.dataset.id = chatId;
     li.innerHTML = `
       <span class="chat-name">New Chat</span>
@@ -100,56 +94,42 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function updateChatUI(chatId) {
-    document.querySelectorAll(".chat-item").forEach(item => {
-      item.classList.remove("active");
-    });
+    [...chatList.children].forEach(item => item.classList.remove("active"));
     const chatItem = [...chatList.children].find(item => item.dataset.id === chatId);
     chatItem.classList.add("active");
 
     currentChatId = chatId;
     messages.innerHTML = "";
-    chats[chatId].forEach(text => {
-      const [sender, ...msg] = text.split(": ");
-      const bubble = createMessageBubble(msg.join(": "), sender.toLowerCase());
-      messages.appendChild(bubble);
+    chats[chatId].forEach(msg => {
+      const [sender, ...text] = msg.split(": ");
+      messages.appendChild(createMessageBubble(text.join(": "), sender.toLowerCase()));
     });
     scrollToBottom();
   }
 
-  // === Load selected chat ===
   chatList.addEventListener("click", (e) => {
-    const item = e.target.closest(".chat-item");
-    if (item && item.dataset.id) {
-      updateChatUI(item.dataset.id);
-    }
-  });
-
-  // === Rename & Delete ===
-  chatList.addEventListener("click", (e) => {
-    const btn = e.target;
-    const chatItem = btn.closest(".chat-item");
+    const target = e.target;
+    const chatItem = target.closest(".chat-item");
+    if (!chatItem) return;
     const chatId = chatItem.dataset.id;
 
-    if (btn.classList.contains("rename-btn")) {
+    if (target.classList.contains("rename-btn")) {
       const newName = prompt("Rename chat:");
-      if (newName) {
-        chatItem.querySelector(".chat-name").textContent = newName;
-      }
-    }
-
-    if (btn.classList.contains("delete-btn")) {
+      if (newName) chatItem.querySelector(".chat-name").textContent = newName;
+    } else if (target.classList.contains("delete-btn")) {
       if (confirm("Delete this chat?")) {
         chatList.removeChild(chatItem);
         delete chats[chatId];
-        if (currentChatId === chatId) {
+        if (chatId === currentChatId) {
           messages.innerHTML = "";
           currentChatId = null;
         }
       }
+    } else {
+      updateChatUI(chatId);
     }
   });
 
-  // === File upload via "+" ===
   fileInput.addEventListener("change", () => {
     const file = fileInput.files[0];
     if (file && file.type.startsWith("image/")) {
@@ -157,10 +137,10 @@ document.addEventListener("DOMContentLoaded", () => {
       reader.onload = () => {
         const modal = document.createElement("div");
         modal.className = "image-modal";
-        modal.innerHTML = `
+        modal.innerHTML = \`
           <span class="close-button">&times;</span>
-          <img src="${reader.result}" alt="Preview" />
-        `;
+          <img src="\${reader.result}" alt="Preview" />
+        \`;
         document.body.appendChild(modal);
 
         modal.querySelector(".close-button").addEventListener("click", () => {
