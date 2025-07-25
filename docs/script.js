@@ -14,33 +14,48 @@ document.addEventListener("DOMContentLoaded", () => {
   const plusBtn = document.getElementById("plus-button");
   const fileInput = document.getElementById("file-input");
 
-  // Back to landing
+  // Back button
   if (backButton) {
     backButton.addEventListener("click", () => {
       window.location.href = "index.html";
     });
   }
+
+  // ===== Image Modal Logic =====
   const modal = document.getElementById("image-modal");
   const modalImg = document.getElementById("modal-img");
   const closeBtn = document.getElementById("close-modal");
 
-// Add click event for any uploaded image
-  document.addEventListener("click", function (e) {
-  if (e.target.classList.contains("uploaded-image")) {
-    modal.classList.remove("hidden");
-    modalImg.src = e.target.src;
+  // When any uploaded image is clicked
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("uploaded-image")) {
+      modal.classList.remove("hidden");
+      modalImg.src = e.target.src;
+    }
+  });
+
+  // Close the modal on click of X
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      modal.classList.add("hidden");
+    });
   }
+
+  // Close modal on ESC key
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      modal.classList.add("hidden");
+    }
+  });
+
+  // Optional: Close modal when clicking outside image
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.classList.add("hidden");
+    }
+  });
 });
 
-closeBtn.addEventListener("click", () => {
-  modal.classList.add("hidden");
-});
-
-window.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    modal.classList.add("hidden");
-  }
-});
 
   chatInput.addEventListener("focus", () => {
     setTimeout(() => {
