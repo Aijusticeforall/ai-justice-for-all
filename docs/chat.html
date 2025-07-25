@@ -16,24 +16,18 @@
         <ul id="chat-list"></ul>
       </div>
     </div>
-
     <div class="chat-window">
-      <div id="top-bar">
-        <button id="toggle-theme">🌙</button>
-        <button id="export-chat">⤓</button>
-      </div>
       <div id="messages"></div>
-
-      <form id="input-container">
-        <label for="file-input" class="upload-label">+</label>
-        <input type="file" id="file-input" accept="image/*" hidden />
-        <input type="text" id="chat-input" placeholder="Type your message..." autocomplete="off" />
-        <button id="send-button" type="submit">➤</button>
-      </form>
     </div>
+    <div id="input-container">
+      <label for="file-input" class="upload-label">+</label>
+      <input type="file" id="file-input" accept="image/*" hidden />
+      <input type="text" id="chat-input" placeholder="Type your message..." />
+      <button id="send-btn">➤</button>
+    </div>
+    <button id="toggle-theme" class="theme-toggle">☀️/🌙</button>
+    <button id="export-chat" class="export-btn">📤</button>
   </div>
-
   <script src="script.js"></script>
 </body>
 </html>
-
