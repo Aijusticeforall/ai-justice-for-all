@@ -1,148 +1,173 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const toggleTheme = document.getElementById("toggle-theme");
-  const exportBtn = document.getElementById("export-chat");
-  const newChat = document.getElementById("new-chat");
+  const sidebar = document.getElementById("sidebar");
+  const toggleSidebar = document.getElementById("toggle-sidebar");
+  const newChatBtn = document.getElementById("new-chat");
   const chatList = document.getElementById("chat-list");
   const chatInput = document.getElementById("chat-input");
-  const sendButton = document.getElementById("send-button");
+  const sendBtn = document.getElementById("send-btn");
   const messages = document.getElementById("messages");
-  const toggleSidebar = document.getElementById("toggle-sidebar");
-  const sidebar = document.querySelector(".sidebar");
-  const inputContainer = document.getElementById("input-container");
   const fileInput = document.getElementById("file-input");
+  const toggleTheme = document.getElementById("toggle-theme");
+  const exportChat = document.getElementById("export-chat");
 
-  // 🌗 Theme toggle
-  toggleTheme.onclick = () => {
-    document.body.classList.toggle("dark");
-    document.body.classList.toggle("light");
-  };
+  let currentChatId = null;
+  let chats = {};
 
-  // ☰ Sidebar toggle
-  toggleSidebar.onclick = () => {
+  // === Sidebar toggle ===
+  toggleSidebar.addEventListener("click", () => {
     sidebar.classList.toggle("collapsed");
-  };
-
-  // ➕ New chat
-  newChat.onclick = () => {
-    const li = document.createElement("li");
-    li.className = "chat-item active";
-    li.innerHTML = `Chat ${chatList.children.length + 1} <div class="menu"><button class="rename-btn">Rename</button><button class="delete-btn">Delete</button></div><button class="menu-btn">⋮</button>`;
-
-    chatList.querySelectorAll(".chat-item").forEach(item => item.classList.remove("active"));
-    chatList.appendChild(li);
-    messages.innerHTML = "";
-
-    // Rename
-    li.querySelector(".rename-btn").onclick = (e) => {
-      e.stopPropagation();
-      const name = prompt("Rename chat:", li.childNodes[0].textContent.trim());
-      if (name) li.childNodes[0].textContent = name + " ";
-    };
-
-    // Delete
-    li.querySelector(".delete-btn").onclick = (e) => {
-      e.stopPropagation();
-      li.remove();
-    };
-
-    // Menu toggle
-    li.querySelector(".menu-btn").onclick = (e) => {
-      e.stopPropagation();
-      const menu = li.querySelector(".menu");
-      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-    };
-
-    li.onclick = () => {
-      chatList.querySelectorAll(".chat-item").forEach(item => item.classList.remove("active"));
-      li.classList.add("active");
-      messages.innerHTML = "";
-    };
-  };
-
-  // 📨 Send message
-  function sendMessage() {
-    const msg = chatInput.value.trim();
-    if (!msg) return;
-
-    const userBubble = document.createElement("div");
-    userBubble.className = "message user";
-    userBubble.textContent = msg;
-    messages.appendChild(userBubble);
-
-    const typing = document.createElement("div");
-    typing.className = "message bot";
-    typing.innerHTML = `
-      <div class="typing-indicator">
-        <span></span><span></span><span></span>
-      </div>`;
-    messages.appendChild(typing);
-    messages.scrollTop = messages.scrollHeight;
-
-    setTimeout(() => {
-      typing.remove();
-      const botBubble = document.createElement("div");
-      botBubble.className = "message bot";
-      botBubble.textContent = "This is a simulated reply.";
-      messages.appendChild(botBubble);
-      messages.scrollTop = messages.scrollHeight;
-    }, 1500);
-
-    chatInput.value = "";
-  }
-
-  sendButton.onclick = sendMessage;
-  chatInput.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") sendMessage();
   });
 
-  // ➕ File upload
-  fileInput.addEventListener("change", (e) => {
-    const file = e.target.files[0];
+  // === Theme toggle ===
+  toggleTheme.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+  });
+
+  // === Export chat ===
+  exportChat.addEventListener("click", () => {
+    if (!currentChatId) return;
+    const content = chats[currentChatId].join("\n");
+    const blob = new Blob([content], { type: "text/plain" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "chat.txt";
+    link.click();
+  });
+
+  // === Send Message ===
+  function sendMessage(text) {
+    if (!text.trim()) return;
+
+    const userMessage = createMessageBubble(text, "user");
+    messages.appendChild(userMessage);
+
+    chats[currentChatId].push(`User: ${text}`);
+    chatInput.value = "";
+    scrollToBottom();
+
+    setTimeout(() => {
+      const reply = createMessageBubble("This is a simulated reply", "assistant");
+      messages.appendChild(reply);
+      chats[currentChatId].push(`AI: This is a simulated reply`);
+      scrollToBottom();
+    }, 500);
+  }
+
+  function createMessageBubble(text, sender) {
+    const bubble = document.createElement("div");
+    bubble.classList.add("message", sender);
+    bubble.textContent = text;
+    return bubble;
+  }
+
+  function scrollToBottom() {
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  sendBtn.addEventListener("click", () => {
+    sendMessage(chatInput.value);
+  });
+
+  chatInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      sendMessage(chatInput.value);
+    }
+  });
+
+  // === New Chat ===
+  newChatBtn.addEventListener("click", () => {
+    const chatId = Date.now().toString();
+    chats[chatId] = [];
+    currentChatId = chatId;
+
+    const li = document.createElement("li");
+    li.classList.add("chat-item");
+    li.dataset.id = chatId;
+    li.innerHTML = `
+      <span class="chat-name">New Chat</span>
+      <div class="menu">
+        <button class="menu-btn">⋮</button>
+        <div class="dropdown">
+          <button class="rename-btn">Rename</button>
+          <button class="delete-btn">Delete</button>
+        </div>
+      </div>
+    `;
+    chatList.appendChild(li);
+    updateChatUI(chatId);
+  });
+
+  function updateChatUI(chatId) {
+    document.querySelectorAll(".chat-item").forEach(item => {
+      item.classList.remove("active");
+    });
+    const chatItem = [...chatList.children].find(item => item.dataset.id === chatId);
+    chatItem.classList.add("active");
+
+    currentChatId = chatId;
+    messages.innerHTML = "";
+    chats[chatId].forEach(text => {
+      const [sender, ...msg] = text.split(": ");
+      const bubble = createMessageBubble(msg.join(": "), sender.toLowerCase());
+      messages.appendChild(bubble);
+    });
+    scrollToBottom();
+  }
+
+  // === Load selected chat ===
+  chatList.addEventListener("click", (e) => {
+    const item = e.target.closest(".chat-item");
+    if (item && item.dataset.id) {
+      updateChatUI(item.dataset.id);
+    }
+  });
+
+  // === Rename & Delete ===
+  chatList.addEventListener("click", (e) => {
+    const btn = e.target;
+    const chatItem = btn.closest(".chat-item");
+    const chatId = chatItem.dataset.id;
+
+    if (btn.classList.contains("rename-btn")) {
+      const newName = prompt("Rename chat:");
+      if (newName) {
+        chatItem.querySelector(".chat-name").textContent = newName;
+      }
+    }
+
+    if (btn.classList.contains("delete-btn")) {
+      if (confirm("Delete this chat?")) {
+        chatList.removeChild(chatItem);
+        delete chats[chatId];
+        if (currentChatId === chatId) {
+          messages.innerHTML = "";
+          currentChatId = null;
+        }
+      }
+    }
+  });
+
+  // === File upload via "+" ===
+  fileInput.addEventListener("change", () => {
+    const file = fileInput.files[0];
     if (file && file.type.startsWith("image/")) {
       const reader = new FileReader();
       reader.onload = () => {
-        const img = document.createElement("img");
-        img.src = reader.result;
-        img.style.maxWidth = "100%";
-        const imgWrap = document.createElement("div");
-        imgWrap.className = "message user";
-        imgWrap.appendChild(img);
-        messages.appendChild(imgWrap);
-        messages.scrollTop = messages.scrollHeight;
+        const modal = document.createElement("div");
+        modal.className = "image-modal";
+        modal.innerHTML = `
+          <span class="close-button">&times;</span>
+          <img src="${reader.result}" alt="Preview" />
+        `;
+        document.body.appendChild(modal);
+
+        modal.querySelector(".close-button").addEventListener("click", () => {
+          document.body.removeChild(modal);
+        });
       };
       reader.readAsDataURL(file);
-    }
-  });
-
-  // 📱 Swipe gesture
-  let touchStartX = 0;
-  let touchEndX = 0;
-  document.addEventListener("touchstart", (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-  });
-  document.addEventListener("touchend", (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    const threshold = 80;
-    if (touchEndX - touchStartX > threshold) {
-      sidebar.classList.add("active");
-    }
-    if (touchStartX - touchEndX > threshold) {
-      sidebar.classList.remove("active");
-    }
-  });
-
-  // 🔧 Fix scroll when keyboard appears on mobile
-  chatInput.addEventListener("focus", () => {
-    setTimeout(() => {
-      messages.scrollTop = messages.scrollHeight;
-    }, 100);
-  });
-
-  window.addEventListener("resize", () => {
-    if (document.activeElement === chatInput) {
-      setTimeout(() => {
-        messages.scrollTop = messages.scrollHeight;
-      }, 100);
     }
   });
 });
