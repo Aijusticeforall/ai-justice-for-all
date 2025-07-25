@@ -20,6 +20,27 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = "index.html";
     });
   }
+  const modal = document.getElementById("image-modal");
+  const modalImg = document.getElementById("modal-img");
+  const closeBtn = document.getElementById("close-modal");
+
+// Add click event for any uploaded image
+  document.addEventListener("click", function (e) {
+  if (e.target.classList.contains("uploaded-image")) {
+    modal.classList.remove("hidden");
+    modalImg.src = e.target.src;
+  }
+});
+
+closeBtn.addEventListener("click", () => {
+  modal.classList.add("hidden");
+});
+
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    modal.classList.add("hidden");
+  }
+});
 
   chatInput.addEventListener("focus", () => {
     setTimeout(() => {
