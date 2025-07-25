@@ -1,215 +1,67 @@
-/* === CSS VARIABLES === */
-:root {
-  --bg-light: #ffffff;
-  --bg-dark: #343541; /* Main chat background */
-  --text-light: #000000;
-  --text-dark: #ececf1;
-  --sidebar-bg-light: #f3f3f3;
-  --sidebar-bg-dark: #202123; /* ChatGPT sidebar dark */
-  --accent: #10a37f;
-}
-
-/* === BASE STYLES === */
-html,
-body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden;
-  font-family: Arial, sans-serif;
-  background-color: var(--bg-dark);
-  color: var(--text-dark);
-}
-
-body.light {
-  background-color: var(--bg-light);
-  color: var(--text-light);
-}
-
-#app {
-  display: flex;
-  height: 100%;
-  width: 100%;
-}
-
-/* === SIDEBAR === */
-.sidebar {
-  width: 260px;
-  background-color: var(--sidebar-bg-dark);
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-}
-
-body.light .sidebar {
-  background-color: var(--sidebar-bg-light);
-  color: black;
-}
-
-.sidebar.collapsed {
-  width: 48px;
-  overflow: hidden;
-}
-
-.sidebar.collapsed *:not(#toggle-sidebar) {
+/* Sidebar collapsed icon visibility */
+.sidebar.collapsed .chat-item span.chat-name {
   display: none;
 }
 
-#toggle-sidebar {
-  background: none;
-  border: none;
-  color: inherit;
-  font-size: 20px;
-  cursor: pointer;
-  margin-bottom: 10px;
+.sidebar.collapsed .chat-item .menu-btn {
+  display: inline-block;
 }
 
-#search-bar,
-#new-chat {
-  margin-bottom: 10px;
-  padding: 6px;
-  border-radius: 4px;
-  border: none;
-  width: 100%;
-}
-
-#new-chat {
-  background-color: var(--accent);
-  color: white;
-  cursor: pointer;
-}
-
-#chat-list {
-  list-style: none;
-  padding: 0;
-  flex-grow: 1;
-  overflow-y: auto;
-}
-
-.chat-item {
-  padding: 6px;
-  cursor: pointer;
-}
-
-.chat-item.active {
-  background-color: #444;
-}
-
-/* === CHAT WINDOW === */
-.chat-window {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--bg-dark);
-  position: relative;
-}
-
-body.light .chat-window {
-  background-color: var(--bg-light);
-}
-
-#messages {
-  flex-grow: 1;
-  overflow-y: auto;
-  padding: 20px;
-  padding-bottom: 120px;
-}
-
-.message {
-  padding: 6px 0;
-  color: inherit;
-}
-
-/* === INPUT BAR === */
+/* Center input bar and fix message layout */
 #input-container {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
   display: flex;
+  justify-content: center;
   align-items: center;
   padding: 12px;
-  background-color: #40414f;
-  gap: 8px;
-  z-index: 999;
-}
-
-body.light #input-container {
-  background-color: #fff;
-}
-
-.upload-label {
-  font-size: 24px;
-  cursor: pointer;
-  color: white;
-}
-
-body.light .upload-label {
-  color: black;
 }
 
 #chat-input {
-  flex-grow: 1;
-  padding: 12px;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  background-color: #2a2a2a;
+  width: 60%;
+  padding: 10px;
+}
+
+/* Message bubbles centered */
+.message {
+  max-width: 60%;
+  margin: 8px auto;
+  padding: 10px 14px;
+  border-radius: 12px;
+}
+
+.message.user {
+  background-color: #10a37f;
   color: white;
 }
 
-body.light #chat-input {
-  background-color: #eee;
-  color: #000;
-}
-
-#chat-input::placeholder {
-  color: #aaa;
-}
-
-#send-button {
-  width: 40px;
-  height: 40px;
-  background-color: #6366f1;
-  border: none;
-  border-radius: 50%;
+.message.assistant {
+  background-color: #444654;
   color: white;
-  font-size: 18px;
-  cursor: pointer;
+}
+
+/* Image modal close button */
+.image-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  z-index: 9999;
 }
 
-/* === TOP BAR === */
-#top-bar {
+.image-modal img {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.image-modal .close-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  display: flex;
-  gap: 10px;
-  z-index: 10;
-}
-
-/* === MOBILE === */
-@media (max-width: 768px) {
-  .sidebar {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    z-index: 1000;
-  }
-  .sidebar.active {
-    display: flex;
-  }
-  #input-container {
-    position: fixed;
-    bottom: 0;
-    padding: 10px;
-  }
-  #messages {
-    padding-bottom: 140px;
-  }
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
 }
