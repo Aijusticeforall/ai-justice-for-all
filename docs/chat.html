@@ -1,36 +1,38 @@
-
+<!-- chat.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Justice Chat</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body class="dark">
   <div id="app">
     <div class="sidebar" id="sidebar">
       <div class="sidebar-header">
         <button id="toggle-sidebar">☰</button>
-        <input type="text" id="search-bar" placeholder="Search...">
+        <input type="text" id="search-bar" placeholder="Search..." />
         <button id="new-chat">+ New Chat</button>
         <ul id="chat-list"></ul>
       </div>
     </div>
+
     <div class="chat-window">
       <div id="messages"></div>
       <div id="input-container">
-        <button id="plus-button">+</button>
-        <input type="file" id="file-input" accept="image/*">
-        <input type="text" id="chat-input" placeholder="Type your message...">
+        <label for="file-input" class="upload-label">+</label>
+        <input type="file" id="file-input" accept="image/*" hidden />
+        <input type="text" id="chat-input" placeholder="Type your message..." />
         <button id="send-button">➤</button>
       </div>
     </div>
   </div>
 
+  <!-- Modal -->
   <div id="image-modal" class="image-modal hidden">
-    <span class="close-button" id="close-modal">×</span>
-    <img id="modal-img" src="" alt="Enlarged">
+    <span id="close-modal" class="close-button">&times;</span>
+    <img id="modal-img" />
   </div>
 
   <script src="script.js"></script>
