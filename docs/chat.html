@@ -1,4 +1,3 @@
-<!-- chat.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,22 +18,22 @@
     </div>
 
     <div class="chat-window">
+      <div id="top-bar">
+        <button id="toggle-theme">🌙</button>
+        <button id="export-chat">⤓</button>
+      </div>
       <div id="messages"></div>
-      <div id="input-container">
+
+      <form id="input-container">
         <label for="file-input" class="upload-label">+</label>
         <input type="file" id="file-input" accept="image/*" hidden />
-        <input type="text" id="chat-input" placeholder="Type your message..." />
-        <button id="send-button">➤</button>
-      </div>
+        <input type="text" id="chat-input" placeholder="Type your message..." autocomplete="off" />
+        <button id="send-button" type="submit">➤</button>
+      </form>
     </div>
-  </div>
-
-  <!-- Modal -->
-  <div id="image-modal" class="image-modal hidden">
-    <span id="close-modal" class="close-button">&times;</span>
-    <img id="modal-img" />
   </div>
 
   <script src="script.js"></script>
 </body>
 </html>
+
